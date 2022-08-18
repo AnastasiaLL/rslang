@@ -1,0 +1,33 @@
+.start-screen {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid $color-shade-xl;
+  box-shadow: $box-shadow;
+  border-radius: 4px;
+
+  background-image: url('./assets/images/start-screen-img.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 38%;
+}
+
+.start-screen__info {
+  display: flex;
+  width: 62%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 10%;
+  text-align: center;
+  gap: 3rem;
+  width: 62%;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-screen__description {
+  font-size: 1.8rem;
+}

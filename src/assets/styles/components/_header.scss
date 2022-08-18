@@ -1,0 +1,59 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 2rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.logo-title{
+  color: $color-primary;
+  width: 11.3rem;
+  height: 3rem;
+  background-image: url(./assets/images/logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+}
+
+.header__navigation{
+  @include media-mobile{
+      display: none;
+  }
+}
+
+.login {
+  padding-bottom: 0.3rem;
+  border-left: 1px solid $color-primary;
+  padding-left: 3.5rem;
+}
+
+.navigation{
+  display: flex;
+}
+
+.navigation__nav-item{
+  margin-left: 36px;
+  cursor: pointer;
+
+  a{
+    color: $color-shade-s;
+      &:hover{
+        color: $color-primary;
+        border-bottom: 2px solid $color-primary;
+      }
+  }
+}
+
+.active {
+  border-bottom: 2px solid $color-primary;
+  a{
+    color: $color-primary;
+  }
+}
+
+.burger {
+  display: none;
+}

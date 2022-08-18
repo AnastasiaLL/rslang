@@ -1,0 +1,51 @@
+
+.button {
+  outline: none;
+  border-radius: 500px;
+  transition-property: background-color, color;
+  transition-duration: .3s;
+  border: 1px solid transparent;
+  text-align: center;
+  padding: 1.1rem 2rem 1rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  max-height: 4.2rem;
+  min-width: 18rem;
+  text-transform: uppercase;
+}
+
+
+.button-disabled {
+  color: $color-shade-xxl;
+  background-color: $color-shade-m;
+  box-shadow: inset 0 0 0 1px $color-shade-m;
+
+  &:hover{
+    color: $color-shade-xxl;
+    background-color: $color-shade-m;
+    box-shadow: inset 0 0 0 1px $color-shade-m;
+    cursor: auto;
+  }
+}
+
+.primary-button {
+  color: $color-shade-xxl;
+  background-color: $color-primary;
+
+  &:hover {
+    color: $color-shade-xxl;
+    background-color: $color-primary-dark;
+    box-shadow: inset 0 0 0 1px $color-primary-dark;
+  }
+}
+
+.secondary-button {
+  color: $color-primary;
+  background-color: $color-shade-xxl;
+  box-shadow: inset 0 0 0 1px $color-primary;
+
+  &:hover {
+    color: $color-shade-xxl;
+    background-color: $color-primary;
+  }
+}
