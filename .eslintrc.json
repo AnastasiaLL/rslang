@@ -1,0 +1,56 @@
+{
+    "parser": "@typescript-eslint/parser", 
+
+   "plugins": ["@typescript-eslint","import"],
+   "extends": [
+
+        "plugin:@typescript-eslint/recommended", 
+        "eslint:recommended",  
+
+        "airbnb-base"   
+   ],
+   
+   
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
+    },
+
+
+   "parserOptions": {
+       "ecmaVersion": 2020,
+       "sourceType": "module",
+
+        "project": "./tsconfig.json"  
+   },
+   "env": {
+       "es6": true,
+       "browser": true,
+       "node": true
+   },
+   "rules": {
+       "no-debugger": "off",
+       "no-console": 0,
+       "class-methods-use-this": "off",
+       "no-unused-vars": "off", 
+       "import/no-mutable-exports": "off", 
+
+        "@typescript-eslint/no-explicit-any": "error",
+
+        "import/extensions": [  
+            "error",
+            "ignorePackages",
+            {
+              "js": "never",
+              "jsx": "never",
+              "ts": "never",
+              "tsx": "never"
+            }
+          ]
+        
+   }
+}
