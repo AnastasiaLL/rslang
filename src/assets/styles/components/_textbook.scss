@@ -1,0 +1,48 @@
+.textbook__page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid $color-shade-xl;
+  box-shadow: $box-shadow;
+  border-radius: 4px;
+
+  align-items: center;
+  gap: 2rem;
+}
+
+
+.chapter__heading {
+  border: none;
+  padding: 1rem;
+  outline: none;
+  color: $color-primary;
+  font-size: 2rem;
+  background: transparent;
+
+  &:hover{
+    background-color: $color-primary-light;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+}
+
+.textbook__content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.sound-icon:hover {
+  background-color: $color-shade-xl;
+}
+
+.sound-icon {
+  padding: 8px;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  fill: $color-primary;
+}

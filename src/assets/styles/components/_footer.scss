@@ -1,0 +1,29 @@
+footer {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+footer .copyright {
+  text-align: center;
+}
+
+footer .copyright:before {
+  content: '©';
+}
+
+.logo {
+  width: 100px;
+  height: 37px;
+  background-image: url('./assets/images/rsschool-logo.svg');
+  background-repeat: no-repeat;
+}
+
+.footer__info {
+  display: flex;
+  gap: 2rem;
+}
