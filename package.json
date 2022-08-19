@@ -4,7 +4,7 @@
   "description": "task links:\r https://github.com/rolling-scopes-school/tasks/blob/master/tasks/stage-2/rs-lang/rslang.md",
   "main": "index.js",
   "scripts": {
-    "style": "sass src/assets/styles/index.scss src/style.css",
+    "style": "sass src/assets/styles/index.scss src/assets/css/style.css",
     "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
     "build": "webpack --config ./webpack.config.js --env mode=prod",
     "lint": "eslint . --ext .ts --fix",
