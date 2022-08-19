@@ -2,7 +2,7 @@ import createBLock from '../../components/createBLock';
 import signInClose from './signInClose';
 import createForm from '../../components/createForm';
 import registrationUser from './registrationUser';
-import signInUser from './signInUser';
+import authorizeUser from './authorizeUser';
 
 export default function signInOpen(): void {
   const popUpBack = createBLock('div', {
@@ -11,8 +11,8 @@ export default function signInOpen(): void {
     event: 'click',
   });
 
-  const registrationForm = createForm([{ label: 'Имя', id: 'Name' }, { label: 'Почта', id: 'Email', type: 'email' }, { label: 'Пароль', id: 'Password', type: 'password' }], registrationUser, 'Reg', 'Зарегистрироваться');
-  const signInForm = createForm([{ label: 'Почта', id: 'Email', type: 'email' }, { label: 'Пароль', id: 'Password', type: 'password' }], signInUser, 'Sign', 'Войти');
+  const registrationForm = createForm([{ label: 'Имя', id: 'name' }, { label: 'Почта', id: 'email', type: 'email' }, { label: 'Пароль', id: 'password', type: 'password' }], registrationUser, 'Reg', 'Зарегистрироваться');
+  const signInForm = createForm([{ label: 'Почта', id: 'email', type: 'email' }, { label: 'Пароль', id: 'password', type: 'password' }], authorizeUser, 'Sign', 'Войти');
   const popUp = createBLock('div', {
     classList: ['popUp'],
     children: [signInForm, registrationForm],

@@ -306,4 +306,8 @@ footer .copyright:before {
   display: flex;
 }
 
+.incorrectInput {
+  border: 2px solid #b0011d;
+}
+
 /*# sourceMappingURL=style.css.map */

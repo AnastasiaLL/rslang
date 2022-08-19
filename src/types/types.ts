@@ -18,7 +18,7 @@ export interface WORD {
 }
 
 export interface USER {
-    name: string;
+    name?: string;
     email: string;
     password: string
 }
