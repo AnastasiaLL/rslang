@@ -60,6 +60,10 @@ h2 {
   font-size: 3rem;
 }
 
+main {
+  height: 100%;
+}
+
 .button {
   outline: none;
   border-radius: 50rem;
@@ -125,6 +129,7 @@ h2 {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
+  cursor: pointer;
 }
 
 @media (max-width: 320px) {
