@@ -1,7 +1,9 @@
 import './assets/css/style.css';
-
+import drawHeader from './components/drawHeader';
 import signInOpen from './pages/signIn/signInOpen';
 
-document.querySelector('.login')?.addEventListener('click', (event) => {
+drawHeader();
+
+document.querySelector('.login')?.addEventListener('click', () => {
   signInOpen();
 });

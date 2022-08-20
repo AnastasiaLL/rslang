@@ -3,6 +3,7 @@ html{
     scroll-behavior: smooth;
     font-family: 'Roboto', sans-serif;
     color: $color-shade-xs;
+    height: 100%;
 }
 
 * {
@@ -39,11 +40,12 @@ body {
   display: flex;
   justify-content: center;
   background-color: #f9f9fd;
+  height: 100%;
 }
 
 .wrapper{
     width: $desktop-width;
-    height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -56,4 +58,12 @@ body {
 
 h2 {
   font-size: 3rem;
+}
+
+.main-block{
+  border: 1px solid #dddddd;
+  box-shadow: 1px 0px 10px -5px rgb(34 60 80 / 20%);
+  border-radius: 4px;
+
+  flex: 1 1 auto;
 }
