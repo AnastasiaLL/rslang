@@ -18,6 +18,7 @@ export default function authorizeUser() {
       window.localStorage.setItem('token', answer.token);
       window.localStorage.setItem('userId', answer.userId);
       window.localStorage.setItem('refreshToken', answer.refreshToken);
+      window.localStorage.setItem('rslangT86-name', answer.name);
       closeSignIn();
     }).catch(() => {
       emailBlock.classList.add('incorrectInput');

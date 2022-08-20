@@ -28,7 +28,7 @@ export default function openMainPage(): void {
     children: [infoBlock],
   });
 
-  const main = document.querySelector('main');
+  const main = document.querySelector('#main-block');
   if (main instanceof HTMLElement) {
     main.innerHTML = '';
     main.append(startScreen);
