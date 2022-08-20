@@ -22,9 +22,7 @@ export default function registrationUser(): void {
           signInClose();
         });
       } else {
-        emailBlock.classList.add('incorrectInput');
-        passwordBlock.classList.add('incorrectInput');
-        nameBlock.classList.add('incorrectInput');
+        throw new Error();
       }
     }).catch(() => {
       emailBlock.classList.add('incorrectInput');
