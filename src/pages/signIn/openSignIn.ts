@@ -1,13 +1,13 @@
 import createBLock from '../../components/createBLock';
-import signInClose from './signInClose';
+import closeSignIn from './closeSignIn';
 import createForm from '../../components/createForm';
 import registrationUser from './registrationUser';
 import authorizeUser from './authorizeUser';
 
-export default function signInOpen(): void {
+export default function openSignIn(): void {
   const popUpBack = createBLock('div', {
     classList: ['popUp-back'],
-    listener: signInClose,
+    listener: closeSignIn,
     event: 'click',
   });
 
