@@ -37,21 +37,16 @@
 .navigation__nav-item{
   margin-left: 36px;
   cursor: pointer;
-
-  a{
-    color: $color-shade-s;
+  color: $color-shade-s;
       &:hover{
         color: $color-primary;
-        border-bottom: 2px solid $color-primary;
       }
-  }
+
 }
 
 .active {
   border-bottom: 2px solid $color-primary;
-  a{
-    color: $color-primary;
-  }
+  color: $color-primary;
 }
 
 .burger {
