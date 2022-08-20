@@ -1,3 +1,3 @@
-export default function signInClose() {
+export default function closeSignIn() {
   document.querySelector('.popUp-container')?.remove();
 }

@@ -1,6 +1,6 @@
 import createUser from './workWithApi/createUser';
 import signInUser from './workWithApi/signInUser';
-import signInClose from './signInClose';
+import closeSignIn from './closeSignIn';
 
 export default function registrationUser(): void {
   const nameBlock = document.querySelector('#nameRegInput');
@@ -19,7 +19,7 @@ export default function registrationUser(): void {
     createUser(data).then((response) => {
       if (response.error?.status !== 'failed') {
         signInUser({ email: data.email, password: data.password }).then(() => {
-          signInClose();
+          closeSignIn();
         });
       } else {
         throw new Error();

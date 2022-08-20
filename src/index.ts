@@ -1,7 +1,7 @@
 import './assets/css/style.css';
 
-import signInOpen from './pages/signIn/signInOpen';
+import openSignIn from './pages/signIn/openSignIn';
 
-document.querySelector('.login')?.addEventListener('click', (event) => {
-  signInOpen();
+document.querySelector('.login')?.addEventListener('click', () => {
+  openSignIn();
 });
