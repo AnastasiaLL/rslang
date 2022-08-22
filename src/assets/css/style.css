@@ -511,4 +511,38 @@ footer .copyright:before {
   border: 2px solid #b0011d;
 }
 
+.team-screen {
+  display: flex;
+  width: 50%;
+  height: 30%;
+  margin: 20px auto;
+  background-image: url(http://localhost:8080/src/assets/images/start-screen-img.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 38%;
+  border: 1px solid #dddddd;
+  box-shadow: 1px 0px 10px -5px rgba(34, 60, 80, 0.2);
+  border-radius: 4px;
+  flex: 1 1 auto;
+}
+
+.team-screen__info {
+  display: flex;
+  width: 62%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 10%;
+  text-align: center;
+  gap: 3rem;
+  width: 62%;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-screen__description {
+  font-size: 1.8rem;
+}
+
 /*# sourceMappingURL=style.css.map */

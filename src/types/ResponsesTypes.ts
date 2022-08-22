@@ -1,8 +1,8 @@
-// responses 
+// responses
 
 export interface WORD {
     id: string;
-    group: number; // why number ? 
+    group: number;
     page: number;
     word: string;
     image: string;
@@ -33,15 +33,15 @@ export interface AUTH {
 
 export interface USERWORD {
     difficulty: string;
-    optional: object   //??
+    optional: object
 }
 
 export interface STATISTIC {
     learnedWords: number;
-    optional: object   //??
+    optional: object
 }
 
 export interface SETTING {
     wordsPerDay: number;
-    optional: object   //??
+    optional: object
 }
