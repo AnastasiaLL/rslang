@@ -1,4 +1,4 @@
-import { USER } from '../../../types/types';
+import { USER } from '../../../types/ResponsesTypes';
 
 export default async function createUser(data: USER) {
   console.log(data);
