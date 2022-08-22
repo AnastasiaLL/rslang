@@ -1,6 +1,7 @@
 import createBLock from '../../components/createBLock';
+import updateNav from '../../utils/updateNav';
 
-export default function drawTextbook() {
+export default function openTextbook() {
   const textbook = createBLock('div', { classList: ['textbook__page'] });
 
   textbook.innerHTML = 'Здесь скоро будет учебник';
@@ -18,5 +19,5 @@ export default function drawTextbook() {
 
   // сделать меню активным
 
-  document.querySelector('#textbook')?.classList.add('active');
+  updateNav('textbook');
 }
