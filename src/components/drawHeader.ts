@@ -1,51 +1,119 @@
 import createBLock from './createBLock';
-import drawTextbook from '../pages/textbook/textbook';
+import openTextbook from '../pages/textbook/openTextbook';
+import openMainPage from '../pages/mainPage/openMainPage';
+import openGamesPage from '../pages/games/openGamesPage';
+import HeaderConstants from '../constants/HeaderConstants';
+import openSignIn from '../pages/signIn/openSignIn';
+import logOut from '../pages/signIn/logOut';
+import { clickTeamPage } from './drawTeam';
 
 export default function drawHeader(): void {
-  let authStatus = '<a id="login">Войти</a>';
+  let authStatus = HeaderConstants.nav.login;
+  let loginListener = openSignIn;
 
-  const userName = window.localStorage.getItem('rslangT86-name');
-  if (userName) {
-    authStatus = `<a id="login">${JSON.parse(userName)}</a>`;
+  if (window.localStorage.getItem('rslangT86-name')) {
+    const userName = window.localStorage.getItem('rslangT86-name');
+    if (userName) {
+      authStatus = JSON.parse(userName);
+      loginListener = logOut;
+    }
   }
 
   const header = createBLock('header', {
     classList: ['header'],
   });
 
-  header.innerHTML = `
-  <div class="">
-  <a href="#" class="">
-    <div class="logo-title" id="logo-title"></div>
-  </a>
-</div>
-<nav class="header__navigation">
-  <ul class="navigation">
-    <li class="navigation__nav-item">
-      <div id="textbook">Учебник</div>
-    </li>
-    <li class="navigation__nav-item">
-      <div id="games">Игры</div>
-    </li>
-    <li class="navigation__nav-item">
-      <div id="stats">Статистика</div>
-    </li>
-    <li class="navigation__nav-item">
-      <div id="team">Команда</div>
-    </li>
-    <li class="navigation__nav-item login">
-      ${authStatus}
-    </li>
-  </ul>
-</nav>
-<div class="burger">
-  <div class="burger__line"></div>
-  <div class="burger__line"></div>
-  <div class="burger__line"></div>
-</div>`;
+  const logo = createBLock('div', {
+    classList: ['logo-title'],
+    listener: openMainPage,
+    event: 'click',
+  });
 
-  header.querySelector('#textbook')?.addEventListener('click', () => drawTextbook());
-  // header.querySelector('#logo-title')?.addEventListener('click', () => drawMain());
+  const nav = createBLock('nav', {
+    attributes: { id: 'header__navigation' },
+  });
+
+  const navList = createBLock('ul', {
+    classList: ['navigation'],
+  });
+
+  Object.keys(HeaderConstants.nav).forEach((pageName) => {
+    const navHTML = createBLock('li', {
+      classList: ['navigation__nav-item'],
+    });
+
+    switch (pageName) {
+      case 'login': {
+        const navInnerHTML = createBLock('div', {
+          classList: ['login'],
+          listener: loginListener,
+          event: 'click',
+          attributes: { id: pageName },
+        });
+        navInnerHTML.innerHTML = authStatus;
+        navHTML.append(navInnerHTML);
+        break;
+      }
+
+      case 'textbook': {
+        const navInnerHTML = createBLock('div', {
+          listener: openTextbook,
+          event: 'click',
+          attributes: { id: pageName },
+        });
+        navInnerHTML.innerHTML = HeaderConstants.nav[pageName];
+        navHTML.append(navInnerHTML);
+        break;
+      }
+
+      case 'games': {
+        const navInnerHTML = createBLock('div', {
+          listener: openGamesPage,
+          event: 'click',
+          attributes: { id: pageName },
+        });
+        navInnerHTML.innerHTML = HeaderConstants.nav[pageName];
+        navHTML.append(navInnerHTML);
+        break;
+      }
+
+      case 'team': {
+        const navInnerHTML = createBLock('div', {
+          listener: clickTeamPage,
+          event: 'click',
+          attributes: { id: pageName },
+        });
+        navInnerHTML.innerHTML = HeaderConstants.nav[pageName];
+        navHTML.append(navInnerHTML);
+        break;
+      }
+
+      default: {
+        const navInnerHTML = createBLock('div', {
+          attributes: { id: pageName },
+        });
+
+        navInnerHTML.innerHTML = HeaderConstants.nav[pageName];
+        navHTML.append(navInnerHTML);
+      }
+    }
+
+    navList.append(navHTML);
+  });
+
+  nav.append(navList);
+
+  const burger = createBLock('div', {
+    classList: ['burger'],
+  });
+
+  burger.innerHTML = `
+  <div class="burger__line"></div>
+  <div class="burger__line"></div>
+  <div class="burger__line"></div>
+  `;
+
+  header.append(logo, nav, burger);
 
   document.querySelector('.wrapper')?.prepend(header);
 }

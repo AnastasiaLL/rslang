@@ -1,5 +1,6 @@
 import createBLock from './createBLock';
 import Constants from '../constants/Constants';
+import updateNav from '../utils/updateNav';
 
 export function openTeamPage(name: string, dev: string, info: string): void {
   const devInfo = createBLock('p', {
@@ -34,6 +35,7 @@ export function openTeamPage(name: string, dev: string, info: string): void {
 }
 
 export function clickTeamPage() {
+
   const main = document.querySelector('#main-block');
   if (main instanceof HTMLElement) {
     main.innerHTML = '';
@@ -41,4 +43,6 @@ export function clickTeamPage() {
   Constants.teamPage.forEach((element) => {
     openTeamPage(element.name, element.dev, element.info);
   });
+
+  updateNav('team');
 }

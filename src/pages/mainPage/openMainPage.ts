@@ -1,5 +1,6 @@
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
+import updateNav from '../../utils/updateNav';
 
 export default function openMainPage(): void {
   const headLine = createBLock('h2', {
@@ -33,4 +34,6 @@ export default function openMainPage(): void {
     main.innerHTML = '';
     main.append(startScreen);
   }
+
+  updateNav('');
 }
