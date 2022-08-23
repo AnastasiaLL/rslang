@@ -12,7 +12,7 @@ export default function createForm(
     if (option.type) inputAttributes.type = option.type;
     const input = createBLock('input', {
       classList: ['form__input'],
-      attributes: inputAttributes,
+      attributes: { placeholder: option.label, ...inputAttributes },
     });
     return createBLock('label', {
       classList: ['form__label'],

@@ -35,7 +35,6 @@ export function openTeamPage(name: string, dev: string, info: string): void {
 }
 
 export function clickTeamPage() {
-
   const main = document.querySelector('#main-block');
   if (main instanceof HTMLElement) {
     main.innerHTML = '';

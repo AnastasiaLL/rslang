@@ -4,7 +4,9 @@ export default function createBLock(tag: string, options: tagOption): HTMLElemen
   const element = document.createElement(tag);
 
   if (options.classList) {
-    options.classList.forEach((className) => element.classList.add(className));
+    options.classList.forEach((className) => {
+      if (className) element.classList.add(className);
+    });
   }
 
   if (options.event && options.listener) {
