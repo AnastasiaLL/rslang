@@ -2,7 +2,7 @@ import createBLock from './createBLock';
 import { attributes } from '../types/tagOption';
 
 export default function createForm(
-  inputsOption: { label: string, id: string, type?: string }[],
+  inputsOption: { label: string, id: string, type?: string, for?: string }[],
   buttonListener: () => void,
   formName: string,
   headLine: string,
@@ -12,17 +12,18 @@ export default function createForm(
     if (option.type) inputAttributes.type = option.type;
     const input = createBLock('input', {
       classList: ['form__input'],
-      attributes: inputAttributes,
+      attributes: {placeholder: option.label, ...inputAttributes},
     });
-    return createBLock('label', {
-      classList: ['form__label'],
-      attributes: { for: `${option.id}${formName}Input` },
-      children: [input, option.label],
-    });
+    // return createBLock('label', {
+    //   classList: ['form__label'],
+    //   attributes: { for: `${option.id}${formName}Input` },
+    //   children: [input, option.label],
+    // });
+    return input
   });
 
   const button = createBLock('button', {
-    classList: ['button'],
+    classList: ['button', 'secondary-button'],
     event: 'click',
     listener: buttonListener,
     attributes: { type: 'button' },
@@ -30,6 +31,7 @@ export default function createForm(
   });
 
   const h2 = createBLock('h2', {
+    classList: ['form__h2'],
     children: [headLine],
   });
 
