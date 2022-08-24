@@ -1,12 +1,25 @@
 import createBLock from '../../components/createBLock';
 import updateNav from '../../utils/updateNav';
+import createTextbookHeader from './createTextbookHeader';
+import createTextbookDetails from './createTextbookDetails';
+import drawCards from './cards/drawCards';
 
 export default function openTextbook() {
-  const textbook = createBLock('div', { classList: ['textbook__page'] });
+  const textbookHeader = createTextbookHeader();
 
-  textbook.innerHTML = 'Здесь скоро будет учебник';
+  const wordList = createBLock('div', {
+    classList: ['textbook__words-list'],
+  });
 
-  // почистить главный блок
+  const textbookContent = createBLock('div', {
+    classList: ['textbook__content'],
+    children: [createTextbookDetails(), wordList],
+  });
+
+  const textbook = createBLock('div', {
+    classList: ['textbook__page'],
+    children: [textbookHeader, textbookContent],
+  });
 
   const mainBlock = document.querySelector('#main-block');
 
@@ -16,6 +29,9 @@ export default function openTextbook() {
     mainBlock.innerHTML = '';
     mainBlock.append(textbook);
   }
+
+  // вывести карточки
+  drawCards();
 
   // сделать меню активным
 
