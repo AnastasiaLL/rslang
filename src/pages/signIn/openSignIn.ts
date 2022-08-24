@@ -11,6 +11,7 @@ export default function openSignIn(): void {
     event: 'click',
   });
 
+  // сменить лейбл
   const registrationForm = createForm([{ label: 'Имя', id: 'name' }, { label: 'Почта', id: 'email', type: 'email' }, { label: 'Пароль', id: 'password', type: 'password' }], registrationUser, 'Reg', 'Зарегистрироваться');
   const signInForm = createForm([{ label: 'Почта', id: 'email', type: 'email' }, { label: 'Пароль', id: 'password', type: 'password' }], authorizeUser, 'Sign', 'Войти');
   const popUp = createBLock('div', {
