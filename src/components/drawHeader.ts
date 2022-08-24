@@ -6,6 +6,7 @@ import HeaderConstants from '../constants/HeaderConstants';
 import openSignIn from '../pages/signIn/openSignIn';
 import logOut from '../pages/signIn/logOut';
 import { clickTeamPage } from './drawTeam';
+import { openStatsPage } from '../pages/stats/openStatsPage';
 
 export default function drawHeader(): void {
   let authStatus = HeaderConstants.nav.login;
@@ -80,6 +81,17 @@ export default function drawHeader(): void {
       case 'team': {
         const navInnerHTML = createBLock('div', {
           listener: clickTeamPage,
+          event: 'click',
+          attributes: { id: pageName },
+        });
+        navInnerHTML.innerHTML = HeaderConstants.nav[pageName];
+        navHTML.append(navInnerHTML);
+        break;
+      }
+
+      case 'stats': {
+        const navInnerHTML = createBLock('div', {
+          listener: openStatsPage,
           event: 'click',
           attributes: { id: pageName },
         });
