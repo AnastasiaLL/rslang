@@ -9,7 +9,33 @@ export default class Constants {
 
   static gamesPage = {};
 
-  static statisticPage = {};
+  static statisticPage = {
+    subHeadingToday: 'Статистика за сегодня',
+    subHeadingTotal: 'Статистика за все время',
+    demoButton: 'Показать пример статистики за 3 дня',
+    demoButtonBack: 'Вернуться к своей статистике',
+    newWordsByDayStats: 'Новые слова по дням',
+    studiedByDayStats: 'Изученные слова по дням',
+    statsBlocks: [{
+      heading: 'Спринт',
+      percentageText: 'Правильных ответов',
+      newWordsText: 'новых слов',
+      bestSeriesText: 'правильных ответов подряд',
+    },
+    {
+      heading: 'Аудиовызов',
+      percentageText: 'Правильных ответов',
+      newWordsText: 'новых слов',
+      bestSeriesText: 'правильных ответов подряд',
+    },
+    {
+      heading: 'Всего слов за сегодня',
+      percentageText: 'Правильных ответов',
+      newWordsText: 'новых слов',
+      studiedText: 'слов изучено',
+    },
+    ],
+  };
 
   static teamPage = [
     {
