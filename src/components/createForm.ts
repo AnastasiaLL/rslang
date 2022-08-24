@@ -13,6 +13,7 @@ export default function createForm(
     const input = createBLock('input', {
       classList: ['form__input'],
       attributes: {placeholder: option.label, ...inputAttributes},
+
     });
     // return createBLock('label', {
     //   classList: ['form__label'],

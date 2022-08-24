@@ -14,7 +14,7 @@ export default function drawHeader(): void {
   if (window.localStorage.getItem('rslangT86-name')) {
     const userName = window.localStorage.getItem('rslangT86-name');
     if (userName) {
-      authStatus = JSON.parse(userName);
+      authStatus = userName;
       loginListener = logOut;
     }
   }

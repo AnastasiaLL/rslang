@@ -1,12 +1,21 @@
 import createBLock from '../../components/createBLock';
 import updateNav from '../../utils/updateNav';
+import createTextbookHeader from './createTextbookHeader';
+import createTextbookDetails from './createTextbookDetails';
+import createWordList from './createWordList';
 
 export default function openTextbook() {
-  const textbook = createBLock('div', { classList: ['textbook__page'] });
+  const textbookHeader = createTextbookHeader();
 
-  textbook.innerHTML = 'Здесь скоро будет учебник';
+  const textbookContent = createBLock('div', {
+    classList: ['textbook__content'],
+    children: [createTextbookDetails(), createWordList()],
+  });
 
-  // почистить главный блок
+  const textbook = createBLock('div', {
+    classList: ['textbook__page'],
+    children: [textbookHeader, textbookContent],
+  });
 
   const mainBlock = document.querySelector('#main-block');
 
