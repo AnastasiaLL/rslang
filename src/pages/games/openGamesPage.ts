@@ -15,7 +15,7 @@ export default function openGamesPage() {
     });
 
 
-//===========================Аудиовызов===========================
+//================Аудиовызов===========================
     const audiocallH1 = createBLock('h3', {
       classList: ['audiocall__h1'],
       children: [ 'Аудиовызов' ],
@@ -30,7 +30,7 @@ export default function openGamesPage() {
       children: [audiocallH1, audiocallP],
     });
 
-//==========================Спринт============================
+//==================Спринт============================
     const sprintH1 = createBLock('h3', {
       classList: ['sprint__h1'],
       children: [ 'Спринт' ],
