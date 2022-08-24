@@ -1,6 +1,18 @@
 // import {attributes} from "../types/tagOption";
 
 export default class Constants {
+  static url = 'https://rslang2022q1.herokuapp.com';
+
+  static path = {
+    words: '/words',
+    users: '/users',
+    tokens: '/tokens',
+    aggregatedWords: '/aggregatedWords',
+    statistics: '/statistics',
+    settings: '/settings',
+    signIn: '/signin',
+  };
+
   static mainPage = {
     headLine: 'RSLang - приложение для изучения английского',
     paragraph: 'Позволяет выучить английский и др описание возможностей и преимуществ приложения строк на пять и др описание возможностей и преимуществ приложения строк на пять',
