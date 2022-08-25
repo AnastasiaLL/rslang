@@ -70,6 +70,10 @@ export default class Constants {
   ];
 
   static textBookPage = {
+    localStorageKeyForPage: 'textbookPageNumber',
+    localStorageKeyForGroup: 'textbookGroupNumber',
+    numberFirstPage: 0,
+    numberLastPage: 30,
     chapterKey: 'chapterHeading',
     select: [
       {
@@ -90,11 +94,13 @@ export default class Constants {
         text: '<<',
         modifier: 'pagination__inactive',
         id: 'ltlt',
+        direction: 'start',
       },
       {
         text: '<',
         modifier: 'pagination__inactive',
         id: 'lt',
+        direction: 'previous',
       },
       {
         text: 1,
@@ -106,11 +112,13 @@ export default class Constants {
         text: '>',
         modifier: '',
         id: 'gt',
+        direction: 'next',
       },
       {
         text: '>>',
         modifier: '',
         id: 'gtgt',
+        direction: 'end',
       },
     ],
   };

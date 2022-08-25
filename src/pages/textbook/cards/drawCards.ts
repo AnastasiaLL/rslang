@@ -15,7 +15,7 @@ export default function drawCards(): void {
     const group = groupBlock.value;
     const page = pageBlock.dataset.pageNumber;
     if (group && page) {
-      getWords(page, group).then((answer) => {
+      getWords(Number(page) - 1, Number(group)).then((answer) => {
         console.log(answer);
         answer.forEach((word: WORD) => {
           wordList.append(createCard(word));
