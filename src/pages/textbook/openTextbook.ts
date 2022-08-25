@@ -3,6 +3,8 @@ import updateNav from '../../utils/updateNav';
 import createTextbookHeader from './createTextbookHeader';
 import createTextbookDetails from './createTextbookDetails';
 import drawCards from './cards/drawCards';
+import Constants from '../../constants/Constants';
+import changeButtonStatus from './changeButtonStatus';
 
 export default function openTextbook() {
   const textbookHeader = createTextbookHeader();
@@ -31,6 +33,17 @@ export default function openTextbook() {
   }
 
   // вывести карточки
+  const localStoragePageNumber = window.localStorage
+    .getItem(Constants.textBookPage.localStorageKeyForPage);
+  if (localStoragePageNumber) {
+    const pageCounterBlock = document.querySelector('#pagination__active');
+    if (pageCounterBlock instanceof HTMLButtonElement) {
+      pageCounterBlock.innerHTML = localStoragePageNumber;
+      pageCounterBlock.dataset.pageNumber = localStoragePageNumber;
+      changeButtonStatus('#ltlt', '#lt', Number(localStoragePageNumber), Constants.textBookPage.numberFirstPage + 1);
+      changeButtonStatus('#gtgt', '#gt', Number(localStoragePageNumber), Constants.textBookPage.numberLastPage);
+    }
+  }
   drawCards();
 
   // сделать меню активным
