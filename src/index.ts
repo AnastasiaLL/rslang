@@ -1,7 +1,8 @@
 import './assets/css/style.css';
 
-import openSignIn from './pages/signIn/openSignIn';
+import drawHeader from './components/drawHeader';
+import openMainPage from './pages/mainPage/openMainPage';
 
-document.querySelector('.login')?.addEventListener('click', () => {
-  openSignIn();
-});
+drawHeader();
+
+openMainPage();

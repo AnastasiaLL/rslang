@@ -1,8 +1,9 @@
-import { USER } from '../../../types/types';
+import { USER } from '../../../types/ResponsesTypes';
+import Constants from '../../../constants/Constants';
 
 export default async function signInUser(data: USER) {
   console.log(data);
-  const response = await fetch('https://rslang2022q1.herokuapp.com/signin', {
+  const response = await fetch(`${Constants.url}${Constants.path.signIn}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
