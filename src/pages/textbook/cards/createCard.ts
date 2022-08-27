@@ -2,7 +2,7 @@ import { WORD } from '../../../types/ResponsesTypes';
 import createBLock from '../../../components/createBLock';
 
 export default function createCard(word: WORD): HTMLElement {
-  const headLine = createBLock('div', {
+  const headLine = createBLock('h3', {
     children: [word.word],
   });
 
