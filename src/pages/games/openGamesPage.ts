@@ -1,5 +1,6 @@
 import createBLock from '../../components/createBLock';
 import updateNav from '../../utils/updateNav';
+import openAudioCallPage from './audiocall/openCallPage';
 
 export default function openGamesPage() {
   const mainBlock = document.querySelector('#main-block');
@@ -27,6 +28,8 @@ export default function openGamesPage() {
   const audiocallWrapper = createBLock('div', {
     classList: ['audiocall__wrapper', 'game'],
     children: [audiocallH1, audiocallP],
+    listener: openAudioCallPage,
+    event: 'click'
   });
 
   //= =================Спринт============================
