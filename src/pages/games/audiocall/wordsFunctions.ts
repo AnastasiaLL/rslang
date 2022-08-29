@@ -1,7 +1,7 @@
 import createBLock from "../../../components/createBLock";
 import { WORD } from "../../../types/ResponsesTypes";
 import getWords, { getAllWords } from "../../textbook/workWithApi/getWords";
-import  playAudioWorld  from "./audio";
+import  playAudioWord  from "./audio";
 
 
 
@@ -61,10 +61,12 @@ export async function getRandomWords(){
     // audioWrapper.classList.add(`${allWords[voiceWord].id}`);
     audioWrapper.addEventListener('click', () => {
         
-        playAudioWorld(allWords[voiceWord])
+        playAudioWord(allWords[voiceWord])
     })   
-    
-    return allWords  
+
+    // playAudioWord(allWords[voiceWord])
+
+    // return allWords  
 }
 
 
