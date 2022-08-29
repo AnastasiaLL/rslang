@@ -1,5 +1,6 @@
 import createBLock from '../../components/createBLock';
 import updateNav from '../../utils/updateNav';
+import startSpringGame from './sprint/openSprint';
 
 export default function openGamesPage() {
   const mainBlock = document.querySelector('#main-block');
@@ -42,6 +43,8 @@ export default function openGamesPage() {
   const sprintWrapper = createBLock('div', {
     classList: ['sprint__wrapper', 'game'],
     children: [sprintH1, sprintP],
+    event: 'click',
+    listener: startSpringGame,
   });
 
   const gamesWrapper = createBLock('div', {

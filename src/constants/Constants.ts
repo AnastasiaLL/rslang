@@ -122,4 +122,12 @@ export default class Constants {
       },
     ],
   };
+
+  static sprintGame = {
+    gameTime: 30,
+    trueButtonText: 'Верно',
+    falseButtonText: 'Неверно',
+    startAgainButtonText: 'Играть еще',
+    sequenceOfSuccess: 'Правильных ответов подряд',
+  };
 }
