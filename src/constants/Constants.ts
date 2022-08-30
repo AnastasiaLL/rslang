@@ -21,11 +21,21 @@ export default class Constants {
 
   static signIn = {};
 
-  static gamesPage = {};
+  static gamesPage = {
+    heading: 'Игры',
+    message: 'Закрепи новые слова при помощи игр',
+    audioChallengeHeading: 'Аудиовызов',
+    audioChallengeMessage: 'Улучшай восприятие речи на слух, угадав перевод по звучанию слова',
+    sprintHeading: 'Спринт',
+    sprintMessage: 'Тренируй скорость перевода, угадав как можно больше слов за 30 секунд',
+    choice: 'Выбери уровень сложности, чтобы начать',
+
+    onTextBookPage: 'Тренироваться по этой странице учeбника',
+  };
 
   static statisticPage = {
-    subHeadingToday: 'Статистика за сегодня',
-    subHeadingTotal: 'Статистика за все время',
+    subHeadingToday: 'Статистика по играм за сегодня',
+    subHeadingTotal: 'Статистика по играм за все время',
     demoButton: 'Показать пример статистики за 3 дня',
     demoButtonBack: 'Вернуться к своей статистике',
     newWordsByDayStats: 'Новые слова по дням',
@@ -127,7 +137,21 @@ export default class Constants {
     gameTime: 30,
     trueButtonText: 'Верно',
     falseButtonText: 'Неверно',
+    stopButtonText: 'Выйти из игры',
     startAgainButtonText: 'Играть еще',
-    sequenceOfSuccess: 'Правильных ответов подряд',
+    levelHeading: 'Сложность',
+    beginOnPage: 'Начинаем со страницы',
+
+    finishHeading: 'Результаты игры',
+    score: 'Общий счет игры',
+    sequenceOfSuccess: 'Правильных подряд',
+    correсtsAnswers: 'Правильные ответы',
+    incorreсtsAnswers: 'Неправильные ответы',
   };
+
+  static chapters = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+  static pages = 30;
+
+  static sprintPagesToPlay = 3;
 }

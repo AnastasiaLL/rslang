@@ -10,7 +10,6 @@ export default function launchTimer(maxSec: number, gameState: GameState) {
     Object.assign(gameState, { timer });
     Object.assign(gameState.timerContainer, { innerHTML: String(count) });
     if (count <= 0) {
-      clearInterval(timer);
       finishGame(gameState);
     }
   }, 1000);

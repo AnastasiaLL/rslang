@@ -7,7 +7,7 @@ import { dayStats, newWordsByDayStats, studiedByDayStats } from './model/getStat
 import demonstrateStatsPage from './demoStatsPage';
 
 export function drawTotalStatsContainers() {
-  const totalHeading = createBLock('h3', {
+  const totalHeading = createBLock('h2', {
     children: [Constants.statisticPage.subHeadingTotal],
     classList: ['total-heading'],
   });
@@ -86,7 +86,7 @@ export function drawTodayStats(
     statCards.push(statCard);
   });
 
-  const todayHeading = createBLock('h3', {
+  const todayHeading = createBLock('h2', {
     children: [Constants.statisticPage.subHeadingToday],
   });
   const todayStatsCards = createBLock('div', {

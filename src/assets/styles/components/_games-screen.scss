@@ -1,5 +1,6 @@
 .start-games{
-    height: 80vh;
+    height: 100%;
+    padding: 6rem 2rem;
 }
 .info-games{
     display: flex;
@@ -22,37 +23,38 @@
     justify-content: space-around;
     height: 100%;
     align-items: center;
+    min-height: 25rem;
 }
 .game {
-    height: 50%;
-    width: 30%;
+    width: 35%;
     display: flex;
     flex-direction: column;
-    /* text-align: center; */
+    padding: 3rem 2rem;
     justify-content: center;
-    cursor: pointer;
-    border-radius: 10px;
-
-    transform: scale(1);
-    transform-style: preserve-3d;
-    transition: transform .5s;
+    align-items: center;
+    xcursor: pointer;
+    border-radius: $border-radius;
+    gap: 3rem;
+    color: $color-shade-xxl;
+    min-width: 20rem;
+    xtransform: scale(1);
+    xtransform-style: preserve-3d;
+    xtransition: transform .5s;
+    font-size: 1.4rem;
 }
 
 .game:active,
 .game:hover{
-    transform: scale(1.50);
-    transition: transform .2s;
-        
+    transform: scale(1.2);
+    transition: transform .3s;
 }
 
 .audiocall__wrapper {
-    background-color: #dae73d;
-    // background-color: #4b92b1;
+    background-color: rgba(255, 159, 64, 1);
 }
 
 .sprint__wrapper {
-    // background-color: #ffc25c;
-    background-color: rgb(134, 55, 195);
+    background-color: rgba(153, 102, 255, 1);
 }
 
 .audiocall__p  {
@@ -68,5 +70,32 @@
     margin-bottom: 30px;
 }
 .sprint__p {
-    font-size: 15px;
+  font-size: 1.4rem;
+}
+
+.difficulty-choice {
+  border: 1px solid $color-shade-xxl;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: $color-shade-xxl;
+  cursor: pointer;
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+.difficulty-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.start-play-text {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 2.7rem;
 }

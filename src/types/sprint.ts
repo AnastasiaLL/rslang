@@ -1,30 +1,23 @@
-export interface Word {
-  id: string;
-  word: string;
-  wordTranslate: string;
-}
+import { WORD } from './ResponsesTypes';
 
-export interface WordPairedWithGuessTranslation {
-  id: string;
-  word: string;
-  wordTranslate: string;
+export interface WordPairedWithGuessTranslation extends WORD {
   guessTranslation: string;
 }
 
 export interface GameState {
-  currentWord: Word | undefined,
+  currentWord: WORD | undefined,
   answerFlag: boolean,
-  correctAnswers: (Word | undefined)[],
-  incorrectAnswers: (Word | undefined)[],
+  correctAnswers: (WORD | undefined)[],
+  incorrectAnswers: (WORD | undefined)[],
   totalScore: number,
   sequenceOfSuccess: number;
   allSequencesOfSuccess: number[],
-  startSprintGameCallback: () => void,
   words: WordPairedWithGuessTranslation[],
-  wordContainer: Element,
-  translationContainer: Element,
-  totalScoreContainer: Element,
-  sequenceOfSuccessContainer: Element,
-  timerContainer: Element,
+  wordContainer: HTMLElement,
+  translationContainer: HTMLElement,
+  totalScoreContainer: HTMLElement,
+  sequenceOfSuccessContainer: HTMLElement,
+  timerContainer: HTMLElement,
   timer: number,
+  sprintContainer: HTMLElement,
 }

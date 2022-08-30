@@ -41,6 +41,7 @@ body {
   justify-content: center;
   background-color: #f9f9fd;
   height: 100%;
+  color: $color-shade-s;
 }
 
 .wrapper{
@@ -57,13 +58,24 @@ body {
 }
 
 h2 {
-  font-size: 3rem;
+  color: $color-shade-m;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+  xfont-weight: bolder;
+  letter-spacing: 0.1rem;
 }
 
 .main-block{
   border: 1px solid #dddddd;
   box-shadow: 1px 0px 10px -5px rgb(34 60 80 / 20%);
-  border-radius: 4px;
+  border-radius: $border-radius;
 
   flex: 1 1 auto;
+
+  gap: 6rem;
 }

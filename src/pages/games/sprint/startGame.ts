@@ -1,15 +1,13 @@
 import createBLock from '../../../components/createBLock';
-import drawButtons from './drawButtons';
-import { Word, GameState } from '../../../types/sprint';
+import drawElements from './drawElements';
+import { GameState, WordPairedWithGuessTranslation } from '../../../types/sprint';
 import launchTimer from './launchTimer';
 import drawNewWord from './drawNewWord';
-import makeWordTranslationPairs from './makeWordTranslationPairs';
 
 export default function startGame(
   maxSec: number,
-  element: Element,
-  originalWords: Word[],
-  startSprintGameCallback: () => void,
+  sprintContainer: HTMLElement,
+  originalWords: WordPairedWithGuessTranslation[],
 ) {
   const gameState: GameState = {
     currentWord: undefined,
@@ -19,8 +17,7 @@ export default function startGame(
     totalScore: 0,
     sequenceOfSuccess: 0,
     allSequencesOfSuccess: [],
-    startSprintGameCallback,
-    words: makeWordTranslationPairs(originalWords),
+    words: originalWords,
 
     wordContainer: createBLock('div', {
       classList: ['word'],
@@ -42,10 +39,12 @@ export default function startGame(
     }),
 
     timer: 0,
+
+    sprintContainer,
   };
 
-  drawButtons(element, gameState);
-  gameState.totalScoreContainer.innerHTML = String(gameState.totalScore);
   launchTimer(maxSec, gameState);
+  drawElements(gameState);
+  gameState.totalScoreContainer.innerHTML = String(gameState.totalScore);
   drawNewWord(gameState);
 }
