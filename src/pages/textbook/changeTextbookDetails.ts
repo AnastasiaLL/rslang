@@ -2,7 +2,9 @@ import createBLock from '../../components/createBLock';
 import soundIcon from './soundIcon';
 import getWord from './workWithApi/getWord';
 import Constants from '../../constants/Constants';
-import { WORD } from '../../types/ResponsesTypes';
+import { USERWORD, WORD } from '../../types/ResponsesTypes';
+import getUserWord from './workWithApi/getUserWord';
+import changeWordStatus from './changeWordStatus';
 
 export default function changeTextbookDetails(event: Event): void {
   const { currentTarget } = event;
@@ -35,7 +37,11 @@ export default function changeTextbookDetails(event: Event): void {
             createBLock('label', {
               classList: ['word-details__switch'],
               children: [
-                createBLock('input', { attributes: { type: 'checkbox' } }),
+                createBLock('input', {
+                  event: 'change',
+                  listener: changeWordStatus,
+                  attributes: { id: 'switch-hard', type: 'checkbox', name: wordData.id },
+                }),
                 createBLock('span', { classList: ['word-details__switch-slider', 'switch-hard'] }),
               ],
             }),
@@ -49,7 +55,11 @@ export default function changeTextbookDetails(event: Event): void {
             createBLock('label', {
               classList: ['word-details__switch'],
               children: [
-                createBLock('input', { attributes: { type: 'checkbox' } }),
+                createBLock('input', {
+                  attributes: { id: 'switch-studied', type: 'checkbox', name: wordData.id },
+                  event: 'change',
+                  listener: changeWordStatus,
+                }),
                 createBLock('span', { classList: ['word-details__switch-slider', 'switch-studied'] }),
               ],
             }),
@@ -92,6 +102,25 @@ export default function changeTextbookDetails(event: Event): void {
           meaning,
           example,
         );
+
+        const token = window.localStorage.getItem(Constants.localStorageKeys.token);
+        const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
+        const hardControl = document.querySelector('.switch-hard')?.previousSibling;
+        const studiedControl = document.querySelector('.switch-studied')?.previousSibling;
+        if (hardControl instanceof HTMLInputElement && studiedControl instanceof HTMLInputElement) {
+          if (token && userId) {
+            getUserWord(userId, token, currentTarget.id).then((userWordData: USERWORD | Error) => {
+              if (!(userWordData instanceof Error) && userWordData) {
+                console.log(userWordData);
+                if (userWordData.difficulty === 'true') hardControl.checked = true;
+                if (userWordData.optional.studied) studiedControl.checked = true;
+              }
+            });
+          } else {
+            hardControl.disabled = true;
+            studiedControl.disabled = true;
+          }
+        }
       }
     });
   }

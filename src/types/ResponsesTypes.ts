@@ -35,7 +35,7 @@ export interface USERWORD {
     difficulty: string;
     optional: {
       studied: boolean,
-      'sprint-new': true;
+      'sprint-new': boolean;
       audiochallengeNew: boolean;
       correctAnswers: number;
       incorrectAnswers: number;
