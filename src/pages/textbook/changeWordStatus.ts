@@ -25,7 +25,7 @@ export default function changeWordStatus(event: Event) {
           createUserWord(userId, userWordData.optional.wordId, userWord, token, 'PUT');
           const wordBLock = document.getElementById(userWordData.optional.wordId);
           if (wordBLock instanceof HTMLElement) {
-            if (userWordData.difficulty !== 'true') {
+            if (userWord.difficulty === 'true') {
               wordBLock.classList.add('hard');
               console.log(userWord.difficulty);
             } else wordBLock.classList.remove('hard');
