@@ -1,11 +1,12 @@
 import Constants from '../../../constants/Constants';
+import { USERWORD } from '../../../types/ResponsesTypes';
 
 export default async function getUserWord(
   userId: string,
-  wordId: string,
   token: string,
+  wordId?: string,
 ) {
-  const url = `${Constants.url}${Constants.path.users}/${userId}${Constants.path.words}/${wordId}`;
+  const url = `${Constants.url}${Constants.path.users}/${userId}${Constants.path.words}`;
   console.log(url);
   const response = await fetch(url, {
     method: 'GET',
@@ -14,7 +15,14 @@ export default async function getUserWord(
       Accept: 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  });
-  const answer = await response.json();
-  return answer;
+  })
+    .then((res) => {
+      if (res.status >= 400) {
+        throw new Error(`${res.status}`);
+      } else return res;
+    })
+    .then((res) => res.json())
+    .catch((error) => error);
+  if (wordId) return response.filter((word: USERWORD) => word.optional.wordId === wordId)[0];
+  return response;
 }
