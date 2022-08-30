@@ -4,7 +4,7 @@ import { drawTodayStats, drawTotalStatsContainers, openStatsPage } from './openS
 import Constants from '../../constants/Constants';
 import createBLock from '../../components/createBLock';
 
-export default function demonstrateStatsPage() {
+export default async function demonstrateStatsPage() {
   const statsPage = createBLock('div', {
     classList: ['stats'],
   });
@@ -28,7 +28,7 @@ export default function demonstrateStatsPage() {
 
   statsPage.append(allTodayStats, totalStats, demoButton);
 
-  dayStatsData.forEach((pieceOfData) => {
+  Object.values(dayStatsData).forEach((pieceOfData) => {
     drawDoughnutChart(pieceOfData);
   });
 

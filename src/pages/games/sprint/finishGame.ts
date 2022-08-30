@@ -2,6 +2,7 @@ import { GameState } from '../../../types/sprint';
 import createBLock from '../../../components/createBLock';
 import Constants from '../../../constants/Constants';
 import openGamesPage from '../openGamesPage';
+import updateStatistics from '../../stats/model/updateStats';
 
 export default function finishGame(gameState: GameState) {
   clearInterval(gameState.timer);
@@ -63,8 +64,6 @@ export default function finishGame(gameState: GameState) {
     children: [correctAnswersContainer, incorrectAnswersContainer],
   });
 
-  // TODO updateStatistics();
-
   const startAgainButton = createBLock('button', {
     classList: ['button', 'secondary-button'],
     children: [Constants.sprintGame.startAgainButtonText],
@@ -80,4 +79,8 @@ export default function finishGame(gameState: GameState) {
     answers,
     startAgainButton,
   );
+
+  // TODO updateStatistics();
+
+  updateStatistics(gameState);
 }

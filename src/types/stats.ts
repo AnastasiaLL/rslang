@@ -10,31 +10,16 @@ export interface DayStat {
                           /// + помечены пользователем в учебнике в этот день
 }
 
-// DayStat - пример данных
-// [
-//   {
-//     activity: 'sprint',
-//     newWords: 10,
-//     answeredCorrectlyPercentage: 60,
-//     bestSeries: 5,
-//   },
-//   {
-//    newWords: 10,
-//    answeredCorrectlyPercentage: 90,
-//    bestSeries: 5,
-//  },
-//  {
-//    activity: 'totalByDay',
-//    newWords: 20,
-//    studied: 7,
-//    answeredCorrectlyPercentage: 75,
-//  },
-// ];
-
 export interface SeveralDaysStat {
   labels: string[], // ['22.08.2022', '23.08.2022', '24.08.2022']
                     // даты дней в формате  date.toLocaleDateString()
 
   data: number[], // [10, 20, 30]
                   // количество слов в порядке соотв дням выше
+}
+
+export interface AllDayStat {
+  sprint: DayStat,
+  audio: DayStat,
+  totalByDay: DayStat,
 }

@@ -2,7 +2,7 @@ import updateNav from '../../utils/updateNav';
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
 import { drawDoughnutChart, drawLineChart, drawBarChart } from './drawCharts';
-import { DayStat } from '../../types/stats';
+import { AllDayStat } from '../../types/stats';
 import { dayStats, newWordsByDayStats, studiedByDayStats } from './model/getStats';
 import demonstrateStatsPage from './demoStatsPage';
 
@@ -50,14 +50,14 @@ export function drawTotalStatsContainers() {
 }
 
 export function drawTodayStats(
-  dayStatsData: DayStat[],
+  dayStatsData: AllDayStat,
 ): DocumentFragment {
   const todayStats = document.createDocumentFragment();
 
   const statCards: HTMLElement[] = [];
 
   Constants.statisticPage.statsBlocks.forEach((item, index) => {
-    const data = dayStatsData[index];
+    const data = (Object.values(dayStatsData))[index];
     const statCard = createBLock('div', {
       classList: ['stat-card'],
     });
@@ -101,7 +101,7 @@ export function drawTodayStats(
 
 // ///////////////////////////////////////// //////////////////////////////////////////////
 
-export function openStatsPage() {
+export async function openStatsPage() {
   const statsPage = createBLock('div', {
     classList: ['stats'],
   });
@@ -121,18 +121,20 @@ export function openStatsPage() {
     listener: demonstrateStatsPage,
   });
 
-  const dayStatsData = dayStats();
+  const dayStatsData = await dayStats();
+
   const allTodayStats = drawTodayStats(dayStatsData);
+
   const totalStats = drawTotalStatsContainers();
 
   statsPage.append(allTodayStats, totalStats, demoButton);
 
-  dayStatsData.forEach((pieceOfData) => {
+  Object.values(dayStatsData).forEach((pieceOfData) => {
     drawDoughnutChart(pieceOfData);
   });
 
-  const newWordsByDayStatsData = newWordsByDayStats();
-  const studiedByDayStatsData = studiedByDayStats();
+  const newWordsByDayStatsData = await newWordsByDayStats();
+  const studiedByDayStatsData = await studiedByDayStats();
 
   drawBarChart(newWordsByDayStatsData, 'words-by-day');
   drawLineChart(studiedByDayStatsData, 'studied-by-day');
