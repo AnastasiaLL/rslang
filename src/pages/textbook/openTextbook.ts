@@ -1,7 +1,6 @@
 import createBLock from '../../components/createBLock';
 import updateNav from '../../utils/updateNav';
 import createTextbookHeader from './createTextbookHeader';
-import createTextbookDetails from './createTextbookDetails';
 import drawCards from './cards/drawCards';
 import Constants from '../../constants/Constants';
 import changeButtonStatus from './changeButtonStatus';
@@ -15,9 +14,13 @@ export default function openTextbook() {
     classList: ['textbook__words-list'],
   });
 
+  const wordDetails = createBLock('div', {
+    classList: ['word-details'],
+  });
+
   const textbookContent = createBLock('div', {
     classList: ['textbook__content'],
-    children: [createTextbookDetails(), wordList],
+    children: [wordDetails, wordList],
   });
 
   const textbook = createBLock('div', {
