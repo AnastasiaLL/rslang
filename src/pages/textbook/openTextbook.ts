@@ -5,9 +5,11 @@ import createTextbookDetails from './createTextbookDetails';
 import drawCards from './cards/drawCards';
 import Constants from '../../constants/Constants';
 import changeButtonStatus from './changeButtonStatus';
+import createTextbookGamesPanel from './createTextbookGamesPanel';
 
 export default function openTextbook() {
   const textbookHeader = createTextbookHeader();
+  const textbookGamesPanel = createTextbookGamesPanel();
 
   const wordList = createBLock('div', {
     classList: ['textbook__words-list'],
@@ -20,7 +22,7 @@ export default function openTextbook() {
 
   const textbook = createBLock('div', {
     classList: ['textbook__page'],
-    children: [textbookHeader, textbookContent],
+    children: [textbookHeader, textbookGamesPanel, textbookContent],
   });
 
   const mainBlock = document.querySelector('#main-block');

@@ -19,7 +19,6 @@ export default function drawNewWord(gameState: GameState) {
       Object.assign(gameState, { answerFlag: false });
     }
   } else {
-    clearInterval(gameState.timer);
     finishGame(gameState);
   }
 }
