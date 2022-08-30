@@ -3,6 +3,13 @@
 export default class Constants {
   static url = 'https://rslang2022q1.herokuapp.com';
 
+  static localStorageKeys = {
+    token: 'rslangT86-token',
+    userId: 'rslangT86-userId',
+    refreshToken: 'rslangT86-refreshToken',
+    name: 'rslangT86-name',
+  };
+
   static path = {
     words: '/words',
     users: '/users',
@@ -77,16 +84,28 @@ export default class Constants {
     chapterKey: 'chapterHeading',
     select: [
       {
-        value: '1',
+        value: '0',
         text: 'Уровень сложности: А1',
       },
       {
-        value: '2',
+        value: '1',
         text: 'Уровень сложности: А2',
       },
       {
-        value: '3',
+        value: '2',
         text: 'Уровень сложности: B1',
+      },
+      {
+        value: '3',
+        text: 'Уровень сложности: B2',
+      },
+      {
+        value: '4',
+        text: 'Уровень сложности: C1',
+      },
+      {
+        value: '5',
+        text: 'Уровень сложности: C2',
       },
     ],
     pagination: [

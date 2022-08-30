@@ -1,5 +1,6 @@
 import { WORD } from '../../../types/ResponsesTypes';
 import createBLock from '../../../components/createBLock';
+import changeTextbookDetails from '../changeTextbookDetails';
 
 export default function createCard(word: WORD): HTMLElement {
   const headLine = createBLock('h3', {
@@ -18,6 +19,9 @@ export default function createCard(word: WORD): HTMLElement {
   const card = createBLock('div', {
     classList: ['word-summary'],
     children: [headLine, transcription, translate],
+    attributes: { id: word.id },
+    listener: changeTextbookDetails,
+    event: 'click',
   });
 
   return card;
