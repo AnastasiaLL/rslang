@@ -1,13 +1,27 @@
 import createBLock from '../../../components/createBLock';
-import { WORD } from '../../../types/ResponsesTypes';
 import updateNav from '../../../utils/updateNav';
-import getWords, { getAllWords } from '../../textbook/workWithApi/getWords';
-import playAudioWorld from '../audiocall/audio';
-import {getRandomWords, nextWords} from './wordsFunctions';
+import {getRandomWords} from './wordsFunctions';
 
 export default async function openAudioCallPage() {
   
-  const mainBlock = document.querySelector('#main-block');
+  const mainBlock = document.querySelector('#main-block') as HTMLElement;
+  mainBlock.innerHTML = '';
+  
+  const correct = createBLock('div', {
+    classList: ['answers__correct'],
+    children: [ '0' ],
+  });
+  
+  const wrong = createBLock('div', {
+    classList: ['answers__wrong'],
+    children: [ '0' ],
+  });
+
+  const answersWrapper = createBLock('div', {
+    classList: ['answers-wrapper'],
+    children: [ correct,  wrong],
+  });
+
 
   const voice = createBLock('div', {
     classList: ['voice'],
@@ -64,14 +78,14 @@ export default async function openAudioCallPage() {
   const dontKnown = createBLock('button', {
     classList: ['dontKnown', 'button', 'secondary-button'],
     children: [ 'Не знаю!' ],
-    listener: nextWords,
-    event: 'click'
+    // listener: nextWords,
+    // event: 'click'
   });
 
 
   const audiocallWrapper = createBLock('div', {
     classList: ['audiocall'],
-    children: [voice, words, dontKnown],
+    children: [answersWrapper, voice, words, dontKnown],
   });
 
 
