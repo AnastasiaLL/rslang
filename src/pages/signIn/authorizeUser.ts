@@ -1,5 +1,6 @@
 import signInUser from './workWithApi/signInUser';
 import closeSignIn from './closeSignIn';
+import Constants from '../../constants/Constants';
 
 export default function authorizeUser() {
   const emailBlock = document.querySelector('#emailSignInput');
@@ -15,10 +16,10 @@ export default function authorizeUser() {
       password: passwordBlock.value,
     };
     signInUser(data).then((answer) => {
-      window.localStorage.setItem('rslangT86-token', answer.token);
-      window.localStorage.setItem('rslangT86-userId', answer.userId);
-      window.localStorage.setItem('rslangT86-refreshToken', answer.refreshToken);
-      window.localStorage.setItem('rslangT86-name', answer.name);
+      window.localStorage.setItem(Constants.localStorageKeys.token, answer.token);
+      window.localStorage.setItem(Constants.localStorageKeys.userId, answer.userId);
+      window.localStorage.setItem(Constants.localStorageKeys.refreshToken, answer.refreshToken);
+      window.localStorage.setItem(Constants.localStorageKeys.name, answer.name);
       closeSignIn();
     }).catch(() => {
       emailBlock.classList.add('incorrectInput');

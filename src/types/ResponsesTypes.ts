@@ -33,7 +33,14 @@ export interface AUTH {
 
 export interface USERWORD {
     difficulty: string;
-    optional: object
+    optional: {
+      studied: boolean,
+      'sprint-new': boolean;
+      audiochallengeNew: boolean;
+      correctAnswers: number;
+      incorrectAnswers: number;
+      wordId: string;
+    }
 }
 
 export interface STATISTIC {

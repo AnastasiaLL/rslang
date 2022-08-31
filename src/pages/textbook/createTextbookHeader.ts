@@ -1,6 +1,5 @@
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
-import drawCards from './cards/drawCards';
 import { tagOption } from '../../types/tagOption';
 import changePage from './changePage';
 import changeGroup from './changeGroup';

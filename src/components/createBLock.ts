@@ -15,7 +15,11 @@ export default function createBLock(tag: string, options: tagOption): HTMLElemen
 
   if (options.children && options.children.length) {
     options.children.forEach((child) => {
-      element.append(child);
+      if (typeof child === 'string') {
+        element.innerHTML += child;
+      } else {
+        element.append(child);
+      }
     });
   }
 

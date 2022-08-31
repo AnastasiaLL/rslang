@@ -2,10 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-
+  padding: 6rem 2rem;
   align-items: center;
   gap: 3rem;
-  padding: 3rem 2rem;
 }
 
 
@@ -20,7 +19,7 @@
   &:hover{
     background-color: $color-primary-light;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: $border-radius;
   }
 }
 
@@ -64,7 +63,7 @@
   padding: 1.5rem 2rem 2rem;
   box-shadow: $box-shadow;
   background-color: $color-shade-xxl;
-  border-radius: 4px;
+  border-radius: $border-radius;
   height: fit-content;
 }
 
@@ -79,9 +78,9 @@
 }
 
 .word-details__image {
-  height: 20rem;
+  height: 23rem;
   background-size: cover;
-  border-radius: 4px;
+  border-radius: $border-radius;
 }
 
 .word-summary {
@@ -95,7 +94,7 @@
   padding: 1.5rem 2rem;
   box-shadow: $box-shadow;
   background-color: $color-shade-xxl;
-  border-radius: 4px;
+  border-radius: $border-radius;
 }
 
 .word-details__word-russian {
