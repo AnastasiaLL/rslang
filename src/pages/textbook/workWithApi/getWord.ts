@@ -2,7 +2,6 @@ import Constants from '../../../constants/Constants';
 
 export default async function getWord(wordId: string) {
   const url = `${Constants.url}${Constants.path.words}/${wordId}`;
-  console.log(url);
   const response = await fetch(url, {
     method: 'GET',
     headers: {

@@ -31,6 +31,7 @@ export default function drawCards(): void {
             const wordBLock = document.getElementById(userWord.optional.wordId);
             if (wordBLock instanceof HTMLElement) {
               if (userWord.difficulty === 'true') wordBLock.classList.add('hard');
+              if (userWord.optional.studied) wordBLock.classList.add('studied');
             }
           });
         });
