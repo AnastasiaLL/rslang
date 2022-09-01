@@ -320,7 +320,12 @@ h3 {
 
 .hard {
   border: #e48f17 1px solid;
-  box-shadow: 1px 0px 10px -5px rgba(255, 165, 54, 0.7);
+  box-shadow: 1px 0 10px -5px rgba(255, 165, 54, 0.7);
+}
+
+.studied {
+  border: #3a7e52 1px solid;
+  box-shadow: 1px 0 10px -5px rgba(58, 126, 82, 0.7);
 }
 
 .word-details__switch {

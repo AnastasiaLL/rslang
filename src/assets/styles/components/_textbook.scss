@@ -114,7 +114,12 @@
 
 .hard {
   border: $color-secondary 1px solid;
-  box-shadow: 1px 0px 10px -5px rgb(255 165 54 / 70%);
+  box-shadow: 1px 0 10px -5px rgb(255 165 54 / 70%);
+}
+
+.studied {
+  border: $color-primary 1px solid;
+  box-shadow: 1px 0 10px -5px rgb(58, 126, 82, 70%);
 }
 
 .word-details__switch {

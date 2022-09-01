@@ -7,7 +7,6 @@ export default async function getUserWord(
   wordId?: string,
 ) {
   const url = `${Constants.url}${Constants.path.users}/${userId}${Constants.path.words}`;
-  console.log(url);
   const response = await fetch(url, {
     method: 'GET',
     credentials: 'same-origin',
