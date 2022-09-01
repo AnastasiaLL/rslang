@@ -2,18 +2,24 @@ import threeDaysDates from '../../../utils/dates';
 
 export const dayStats = {
   sprint: {
+    dayWordsShown: 20,
+    dayCorrectAnswers: 12,
     activity: 'sprint',
     newWords: 10,
     answeredCorrectlyPercentage: 60,
     bestSeries: 5,
   },
   audio: {
-    activity: 'audioChallenge',
+    dayWordsShown: 20,
+    dayCorrectAnswers: 18,
+    activity: 'audio',
     newWords: 10,
     answeredCorrectlyPercentage: 90,
     bestSeries: 5,
   },
   totalByDay: {
+    dayWordsShown: 100,
+    dayCorrectAnswers: 75,
     activity: 'totalByDay',
     newWords: 20,
     studied: 7,

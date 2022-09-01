@@ -3,7 +3,9 @@ import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
 import { drawDoughnutChart, drawLineChart, drawBarChart } from './drawCharts';
 import { AllDayStat } from '../../types/stats';
-import { dayStats, newWordsByDayStats, studiedByDayStats } from './model/getStats';
+import {
+  dayStats, newWordsByDayStats, studiedByDayStats, getStatistics,
+} from './model/getStats';
 import demonstrateStatsPage from './demoStatsPage';
 
 export function drawTotalStatsContainers() {
@@ -58,6 +60,7 @@ export function drawTodayStats(
 
   Constants.statisticPage.statsBlocks.forEach((item, index) => {
     const data = (Object.values(dayStatsData))[index];
+    console.log('Object.values(dayStatsData))[index]', data);
     const statCard = createBLock('div', {
       classList: ['stat-card'],
     });
@@ -121,7 +124,9 @@ export async function openStatsPage() {
     listener: demonstrateStatsPage,
   });
 
-  const dayStatsData = await dayStats();
+  const allStats = await getStatistics();
+
+  const dayStatsData = await dayStats(allStats);
 
   const allTodayStats = drawTodayStats(dayStatsData);
 
@@ -133,8 +138,8 @@ export async function openStatsPage() {
     drawDoughnutChart(pieceOfData);
   });
 
-  const newWordsByDayStatsData = await newWordsByDayStats();
-  const studiedByDayStatsData = await studiedByDayStats();
+  const newWordsByDayStatsData = await newWordsByDayStats(allStats);
+  const studiedByDayStatsData = await studiedByDayStats(allStats);
 
   drawBarChart(newWordsByDayStatsData, 'words-by-day');
   drawLineChart(studiedByDayStatsData, 'studied-by-day');

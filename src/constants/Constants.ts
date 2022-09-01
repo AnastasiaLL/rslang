@@ -173,4 +173,6 @@ export default class Constants {
   static pages = 30;
 
   static sprintPagesToPlay = 3;
+
+  static answersForWordToBeStudied = 3;
 }

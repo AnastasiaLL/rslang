@@ -1,3 +1,4 @@
+import { AllDayStat, SeveralDaysStat, DayStat } from './stats';
 // responses
 
 export interface WORD {
@@ -34,18 +35,26 @@ export interface AUTH {
 export interface USERWORD {
     difficulty: string;
     optional: {
+      correctAnswersSequence: number;
+      shownInSprint: number,
+      shownInAudio: number,
       studied: boolean,
-      'sprint-new': boolean;
-      audiochallengeNew: boolean;
+      sprintNew: boolean;
+      audioChallengeNew: boolean;
       correctAnswers: number;
       incorrectAnswers: number;
       wordId: string;
     }
 }
 
-export interface STATISTIC {
-    learnedWords: number;
-    optional: object
+export interface STATISTICS {
+  learnedWords: number,
+  optional: {
+    today: Date,
+    todayStat: AllDayStat,
+    newWords: SeveralDaysStat,
+    studiedWords: SeveralDaysStat,
+  }
 }
 
 export interface SETTING {

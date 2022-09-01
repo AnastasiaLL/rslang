@@ -29,6 +29,7 @@ export default async function demonstrateStatsPage() {
   statsPage.append(allTodayStats, totalStats, demoButton);
 
   Object.values(dayStatsData).forEach((pieceOfData) => {
+    console.log('pieceOfData', pieceOfData);
     drawDoughnutChart(pieceOfData);
   });
 

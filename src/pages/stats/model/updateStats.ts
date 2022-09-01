@@ -1,87 +1,139 @@
 import Constants from '../../../constants/Constants';
-import { GameState } from '../../../types/sprint';
 import { getStatistics } from './getStats';
+import nullStats from './nullStats';
+import upsertStats from './upsertStats';
 
-function getAnsweredCorrectlyPercentage(gameState: GameState) {
-  const correct = gameState.correctAnswers.length;
-  const total = [...gameState.correctAnswers, gameState.incorrectAnswers].length;
-  return (correct / total) * 100;
-}
+export default async function updateStatistics(
+  game: string,
+  token: string,
+  userId: string,
+  totalWordsShown: number,
+  correct: number,
+  maxSequence: number,
+  todayNewWords: number,
+  todayStudiedWords: number,
+) {
+  // 1. получаем/создаем объект статистики этого пользователя
+  let statsObj = await getStatistics();
 
-export default async function updateStatistics(gameState: GameState) {
-  const token = window.localStorage.getItem(Constants.localStorageKeys.token);
-  const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
-
-  const url = `${Constants.url}/users/${userId}/statistics`;
-
-  // 1. получаем статистику этого пользователя
-  const stats = await getStatistics();
-  console.log('stats', stats);
-
-  // 2. Проверяем в статистике дату
-  const todayDateObj = new Date();
-  const todayDate = todayDateObj.toLocaleDateString();
-
-  if (todayDate !== stats.today) {
-    // обнулить статистику до обновления
+  if (!statsObj) {
+    statsObj = JSON.parse(JSON.stringify(nullStats));
+    console.log('нулевой statsObj', statsObj);
   }
 
-  // 3. Рассчитываем все нужные результаты
+  // 2. Проверяем в статистике дату сегодняшнего дня
+  const todayDateObj = new Date();
+  const todayDate = todayDateObj.toLocaleDateString();
+  if (todayDate !== statsObj.optional.today) {
+    // обнулить статистику дня всю, до обновления
+    Object.assign(statsObj.optional.todayStat, nullStats.optional.todayStat);
+  }
 
-  // TODO как считать новые слова?
+  // 3. Рассчитываем все нужные для статистики результаты и кладем в пришедший объект
 
-  const answeredCorrectlyPercentage = getAnsweredCorrectlyPercentage(gameState);
-  const bestSeries = Math.max(...gameState.allSequencesOfSuccess);
+  // 3.1. Новые слова за день
+  statsObj.optional.todayStat[game].newWords += todayNewWords;
+  statsObj.optional.todayStat.totalByDay.newWords += todayNewWords;
 
-  const statData = {
+  // 3.2. Изученные слова за день
+  statsObj.optional.todayStat.totalByDay.studied += todayStudiedWords;
+
+  // 3.3. Правильных ответов подряд
+  if (statsObj.optional.todayStat[game].bestSeries < maxSequence) {
+    statsObj.optional.todayStat[game].bestSeries = maxSequence;
+  }
+
+  // 3.4. correct/total %
+
+  statsObj.optional.todayStat[game].dayWordsShown = totalWordsShown;
+  statsObj.optional.todayStat[game].dayCorrectAnswers = correct;
+  statsObj.optional.todayStat[game].answeredCorrectlyPercentage = Math.round((statsObj.optional
+    .todayStat[game].dayCorrectAnswers / statsObj.optional.todayStat[game].dayWordsShown) * 100)
+    ?? 0;
+
+  statsObj.optional.todayStat.totalByDay.dayWordsShown += totalWordsShown;
+  statsObj.optional.todayStat.totalByDay.dayCorrectAnswers += correct;
+  statsObj.optional.todayStat.totalByDay.answeredCorrectlyPercentage = Math.round((statsObj.optional
+    .todayStat.totalByDay.dayCorrectAnswers / statsObj.optional
+    .todayStat.totalByDay.dayWordsShown) * 100) ?? 0;
+
+  // 3.5 Новые слова в статистике за несколько дней
+
+  if (statsObj.optional.newWords.labels.includes(todayDate)) {
+    // есть этот день в этой статистике
+    const todaysData = statsObj.optional.newWords.data.pop() + todayNewWords;
+    statsObj.optional.newWords.data.push(todaysData);
+  } else {
+    statsObj.optional.newWords.labels.push(todayDate);
+    statsObj.optional.newWords.data.push(todayNewWords);
+  }
+
+  // 3.6 Изученные слова в статистике за несколько дней
+
+  if (statsObj.optional.studiedWords.labels.includes(todayDate)) {
+    // есть этот день в этой статистике
+    const todaysData = statsObj.optional.studiedWords.data.pop() + todayNewWords;
+    statsObj.optional.studiedWords.data.push(todaysData);
+  } else {
+    statsObj.optional.studiedWords.labels.push(todayDate);
+    statsObj.optional.studiedWords.data.push(todayNewWords);
+  }
+
+  // 4. Делаем новый объект, куда переписываем все поля пришедшего в том числе обновленнные
+  //  иначе бэкенд не берет
+
+  /*
+  const newStatsObj = {
     learnedWords: 0,
     optional: {
       today: todayDate,
       todayStat: {
         sprint: {
+          dayWordsShown: statsObj.optional.todayStat.sprint.dayWordsShown,
+          dayCorrectAnswers: statsObj.optional.todayStat.sprint.dayCorrectAnswers,
           activity: 'sprint',
-          newWords: 100, // ??????????????????????????
-          answeredCorrectlyPercentage: 60,
-          bestSeries: 50,
+          newWords: statsObj.optional.todayStat.sprint.newWords,
+          answeredCorrectlyPercentage:
+                statsObj.optional.todayStat.sprint.answeredCorrectlyPercentage,
+          bestSeries: statsObj.optional.todayStat.sprint.bestSeries,
         },
         audio: {
-          activity: 'audioChallenge',
-          newWords: 100,
-          answeredCorrectlyPercentage: 90,
-          bestSeries: 50,
+          dayWordsShown: statsObj.optional.todayStat.audio.dayWordsShown,
+          dayCorrectAnswers: statsObj.optional.todayStat.audio.dayCorrectAnswers,
+          activity: 'audio',
+          newWords: statsObj.optional.todayStat.audio.newWords,
+          answeredCorrectlyPercentage:
+                statsObj.optional.todayStat.audio.answeredCorrectlyPercentage,
+          bestSeries: statsObj.optional.todayStat.audio.bestSeries,
         },
         totalByDay: {
+          dayWordsShown: statsObj.optional.todayStat.totalByDay.dayWordsShown,
+          dayCorrectAnswers: statsObj.optional.todayStat.totalByDay.dayCorrectAnswers,
           activity: 'totalByDay',
-          newWords: 200,
-          studied: 70,
-          answeredCorrectlyPercentage: 75,
+          newWords: statsObj.optional.todayStat.totalByDay.newWords,
+          studied: statsObj.optional.todayStat.totalByDay.studied,
+          answeredCorrectlyPercentage: statsObj.optional
+            .todayStat.totalByDay.answeredCorrectlyPercentage,
         },
       },
       newWords: {
-        labels: ['22.08.2022', '23.08.2022'],
-        data: [10, 20],
+        labels: statsObj.optional.newWords.labels,
+        data: statsObj.optional.newWords.data,
       },
       studiedWords: {
-        labels: ['22.08.2022', '23.08.2022'],
-        data: [10, 20],
+        labels: statsObj.optional.studiedWords.labels,
+        data: statsObj.optional.studiedWords.data,
       },
     },
   };
+  */
 
-  const response = await fetch(url, {
-    method: 'PUT',
-    credentials: 'same-origin',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(statData),
-  });
+  const newStatsObj = {
+    learnedWords: 0,
+    optional: statsObj.optional,
+  };
 
-  const answer = await response.json();
-  const status = response;
+  console.log('newStatsObj before put', newStatsObj);
 
-  console.log(status);
-  console.log(answer);
+  upsertStats(userId, token, newStatsObj);
 }

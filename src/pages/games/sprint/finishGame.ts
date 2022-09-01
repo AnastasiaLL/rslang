@@ -3,8 +3,9 @@ import createBLock from '../../../components/createBLock';
 import Constants from '../../../constants/Constants';
 import openGamesPage from '../openGamesPage';
 import updateStatistics from '../../stats/model/updateStats';
+import updateGameUserWords from '../updateGameUserWords';
 
-export default function finishGame(gameState: GameState) {
+export default async function finishGame(gameState: GameState) {
   clearInterval(gameState.timer);
 
   gameState.allSequencesOfSuccess.push(gameState.sequenceOfSuccess);
@@ -80,7 +81,40 @@ export default function finishGame(gameState: GameState) {
     startAgainButton,
   );
 
-  // TODO updateStatistics();
+  // update user/words & stats;
+  console.log('all words in game', [...gameState.correctAnswers, ...gameState.incorrectAnswers]);
 
-  updateStatistics(gameState);
+  const token = window.localStorage.getItem(Constants.localStorageKeys.token);
+  const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
+  if (token && userId) {
+    // updateGameUserWords
+
+    const allShownWordsIDs = [...gameState.correctAnswers, ...gameState.incorrectAnswers]
+      .map((wordData) => wordData?.id);
+    const correctAnswersIDs = gameState.correctAnswers.map((wordData) => wordData?.id);
+
+    const updatedUserWords = await updateGameUserWords(
+      token,
+      userId,
+      allShownWordsIDs,
+      correctAnswersIDs,
+    );
+
+    // updateStatistics
+    const correct = gameState.correctAnswers.length;
+    const totalWordsShown = [...gameState.correctAnswers, ...gameState.incorrectAnswers].length;
+
+    updateStatistics(
+      'sprint',
+      token,
+      userId,
+      totalWordsShown,
+      correct,
+      maxSequence,
+      updatedUserWords.todaySpringNewWords,
+      updatedUserWords.todaySpringStudiedWords,
+    );
+  } else {
+    gameState.sprintContainer.append('Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры');
+  }
 }

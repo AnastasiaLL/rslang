@@ -36,6 +36,7 @@ export default function startGame(
 
     timerContainer: createBLock('div', {
       classList: ['timer'],
+      attributes: { id: 'sprint-timer' },
     }),
 
     timer: 0,

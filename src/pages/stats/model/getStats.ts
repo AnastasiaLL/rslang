@@ -1,6 +1,8 @@
-import { AllDayStat, DayStat, SeveralDaysStat } from '../../../types/stats';
+import { AllDayStat, SeveralDaysStat } from '../../../types/stats';
+import { STATISTICS } from '../../../types/ResponsesTypes';
 import threeDaysDates from '../../../utils/dates';
 import Constants from '../../../constants/Constants';
+import nullStats from './nullStats';
 
 export async function getStatistics() {
   const token = window.localStorage.getItem(Constants.localStorageKeys.token);
@@ -8,70 +10,42 @@ export async function getStatistics() {
 
   const url = `${Constants.url}/users/${userId}/statistics`;
 
-  const response = await fetch(url, {
-    method: 'GET',
-    credentials: 'same-origin',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-    },
-  });
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+    });
 
-  const answer = await response.json();
-  return answer;
+    const answer = await response.json();
+    return answer;
+  } catch {
+    return null;
+  }
 }
 
-export async function dayStats(): Promise<AllDayStat> {
-  const allStats = await getStatistics();
-  const data = allStats.optional.todayStat;
-
+export async function dayStats(allStats: STATISTICS): Promise<AllDayStat> {
+  if (allStats) {
+    return allStats.optional.todayStat;
+  }
   // если получили ничего, то нулевые данные, чтобы показались графики
-  const initialData = {
-    sprint: {
-      activity: 'sprint',
-      newWords: 10,
-      answeredCorrectlyPercentage: 60,
-      bestSeries: 5,
-    },
-    audio: {
-      activity: 'audioChallenge',
-      newWords: 10,
-      answeredCorrectlyPercentage: 90,
-      bestSeries: 5,
-    },
-    totalByDay: {
-      activity: 'totalByDay',
-      newWords: 20,
-      studied: 7,
-      answeredCorrectlyPercentage: 75,
-    },
-  };
 
-  return data ?? initialData;
+  return nullStats.optional.todayStat;
 }
 
-export async function newWordsByDayStats(): Promise<SeveralDaysStat> {
-  // const data = null;
-  const allStats = await getStatistics();
-  const data = allStats.optional.newWords;
-
-  const initialData = {
-    labels: threeDaysDates(),
-    data: [0, 0, 0],
-  };
-
-  return data ?? initialData;
+export async function newWordsByDayStats(allStats: STATISTICS): Promise<SeveralDaysStat> {
+  if (allStats) {
+    return allStats.optional.newWords;
+  }
+  return nullStats.optional.newWords;
 }
 
-export async function studiedByDayStats(): Promise<SeveralDaysStat> {
-  // const data = null;
-  const allStats = await getStatistics();
-  const data = allStats.optional.studiedWords;
-
-  const initialData = {
-    labels: threeDaysDates(),
-    data: [0, 0, 0],
-  };
-
-  return data ?? initialData;
+export async function studiedByDayStats(allStats: STATISTICS): Promise<SeveralDaysStat> {
+  if (allStats) {
+    return allStats.optional.studiedWords;
+  }
+  return nullStats.optional.studiedWords;
 }

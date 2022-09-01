@@ -24,6 +24,8 @@ export default function openGamesPage() {
     children: [Constants.gamesPage.audioChallengeMessage],
   });
 
+  /// ДОБАВЛЯТЬ СЮДА) ////////////////////
+
   const audiocallDifficultyChoices = Constants.chapters.map((chapter) => createBLock('div', {
     classList: ['difficulty-choice'],
     children: [chapter],

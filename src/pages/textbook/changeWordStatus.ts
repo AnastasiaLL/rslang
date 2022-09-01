@@ -34,9 +34,12 @@ export default function changeWordStatus(event: Event) {
           const userWord: USERWORD = {
             difficulty: 'false',
             optional: {
+              correctAnswersSequence: 0,
+              shownInSprint: 0,
+              shownInAudio: 0,
               studied: false,
-              'sprint-new': false,
-              audiochallengeNew: false,
+              sprintNew: false,
+              audioChallengeNew: false,
               correctAnswers: 0,
               incorrectAnswers: 0,
               wordId: controller.name,
