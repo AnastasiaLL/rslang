@@ -1,26 +1,31 @@
 import createBLock from '../../components/createBLock';
 import updateNav from '../../utils/updateNav';
 import createTextbookHeader from './createTextbookHeader';
-import createTextbookDetails from './createTextbookDetails';
 import drawCards from './cards/drawCards';
 import Constants from '../../constants/Constants';
 import changeButtonStatus from './changeButtonStatus';
+import createTextbookGamesPanel from './createTextbookGamesPanel';
 
 export default function openTextbook() {
   const textbookHeader = createTextbookHeader();
+  const textbookGamesPanel = createTextbookGamesPanel();
 
   const wordList = createBLock('div', {
     classList: ['textbook__words-list'],
   });
 
+  const wordDetails = createBLock('div', {
+    classList: ['word-details'],
+  });
+
   const textbookContent = createBLock('div', {
     classList: ['textbook__content'],
-    children: [createTextbookDetails(), wordList],
+    children: [wordDetails, wordList],
   });
 
   const textbook = createBLock('div', {
     classList: ['textbook__page'],
-    children: [textbookHeader, textbookContent],
+    children: [textbookHeader, textbookGamesPanel, textbookContent],
   });
 
   const mainBlock = document.querySelector('#main-block');
