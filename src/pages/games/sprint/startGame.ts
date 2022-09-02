@@ -20,7 +20,7 @@ export default function startGame(
     words: originalWords,
 
     wordContainer: createBLock('div', {
-      classList: ['word'],
+      classList: ['word-to-guess'],
     }),
     translationContainer: createBLock('div', {
       classList: ['translation'],
@@ -36,6 +36,7 @@ export default function startGame(
 
     timerContainer: createBLock('div', {
       classList: ['timer'],
+      attributes: { id: 'sprint-timer' },
     }),
 
     timer: 0,

@@ -4,6 +4,5 @@ export default function logOut() {
   window.localStorage.removeItem('rslangT86-userId');
   window.localStorage.removeItem('rslangT86-refreshToken');
   window.localStorage.removeItem('rslangT86-name');
-
-  console.log('Вы разлогинены');
+  window.location.reload();
 }

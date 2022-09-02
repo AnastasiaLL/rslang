@@ -107,8 +107,6 @@ export function drawCounters() {
   correct.textContent = `${answersCorrect}`;
 }
 
-
-
 // export function endAudioCallGame(){
 
 // // update user/words & stats; ////////////////

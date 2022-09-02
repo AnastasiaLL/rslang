@@ -7,18 +7,13 @@ import openSignIn from '../pages/signIn/openSignIn';
 import logOut from '../pages/signIn/logOut';
 import { clickTeamPage } from './drawTeam';
 import { openStatsPage } from '../pages/stats/openStatsPage';
+import Constants from '../constants/Constants';
+import getUser from '../pages/signIn/workWithApi/getUser';
+import { USER } from '../types/ResponsesTypes';
 
 export default function drawHeader(): void {
-  let authStatus = HeaderConstants.nav.login;
-  let loginListener = openSignIn;
-
-  if (window.localStorage.getItem('rslangT86-name')) {
-    const userName = window.localStorage.getItem('rslangT86-name');
-    if (userName) {
-      authStatus = userName;
-      loginListener = logOut;
-    }
-  }
+  const authStatus = HeaderConstants.nav.login;
+  const loginListener = openSignIn;
 
   const header = createBLock('header', {
     classList: ['header'],
@@ -28,6 +23,7 @@ export default function drawHeader(): void {
     classList: ['logo-title'],
     listener: openMainPage,
     event: 'click',
+    attributes: { id: 'logo-title' },
   });
 
   const nav = createBLock('nav', {
@@ -128,4 +124,25 @@ export default function drawHeader(): void {
   header.append(logo, nav, burger);
 
   document.querySelector('.wrapper')?.prepend(header);
+
+  const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
+  const token = window.localStorage.getItem(Constants.localStorageKeys.token);
+  if (userId && token) {
+    if (userId) {
+      getUser(userId, token).then((user: USER) => {
+        const navItem = document.querySelector('.login')?.parentElement;
+        if (navItem instanceof HTMLElement) {
+          navItem.innerHTML = '';
+          navItem.append(
+            createBLock('div', { children: [user.name || 'Name'], attributes: { id: 'user-name' } }),
+            createBLock('div', {
+              classList: ['login'], children: ['Выйти'], event: 'click', listener: logOut,
+            }),
+          );
+        }
+      }).catch(() => {
+        logOut();
+      });
+    }
+  }
 }

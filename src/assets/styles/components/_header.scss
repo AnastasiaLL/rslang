@@ -27,7 +27,6 @@
 
 .login {
   padding-bottom: 0.3rem;
-  border-left: 1px solid $color-primary;
   padding-left: 3.5rem;
 }
 
@@ -42,12 +41,25 @@
       &:hover{
         color: $color-primary;
       }
+}
 
+.navigation__nav-item:last-child {
+  border-left: 1px solid $color-primary;
+  display: flex;
 }
 
 .active {
   border-bottom: 2px solid $color-primary;
   color: $color-primary;
+}
+
+#user-name {
+  padding-bottom: 0.3rem;
+  padding-left: 3.5rem;
+  cursor: default;
+  &:hover {
+    color: $color-shade-s;
+  }
 }
 
 .burger {

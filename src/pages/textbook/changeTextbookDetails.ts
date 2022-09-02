@@ -93,6 +93,7 @@ export default function changeTextbookDetails(event: Event): void {
             createBLock('p', { classList: ['translation'], children: [wordData.textExampleTranslate] }),
           ],
         });
+
         tbDetailsContainer.append(
           soundIconBlock,
           englishWord,
@@ -114,6 +115,21 @@ export default function changeTextbookDetails(event: Event): void {
                 console.log(userWordData);
                 if (userWordData.difficulty === 'true') hardControl.checked = true;
                 if (userWordData.optional.studied) studiedControl.checked = true;
+
+                const wordStats = createBLock('div', {
+                  classList: ['textbook__scores'],
+                  children: [
+                    createBLock('div', {
+                      classList: ['textbook__score'],
+                      children: [`${Constants.textBookPage.wordStatCorrect} <div class="textbook__score-num"> ${userWordData.optional.correctAnswers} </div>`],
+                    }),
+                    createBLock('div', {
+                      classList: ['textbook__score'],
+                      children: [`${Constants.textBookPage.wordStatIncorrect}  <div class="textbook__score-num"> ${userWordData.optional.incorrectAnswers} </div>`],
+                    }),
+                  ],
+                });
+                tbDetailsContainer.append(wordStats);
               }
             });
           } else {

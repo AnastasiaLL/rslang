@@ -8,6 +8,7 @@ import openAudioCallPage from './audiocall/openCallPage';
 import { getGameReady } from './sprint/getGameReady';
 
 export default function openGamesPage() {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'games');
   const mainBlock = document.querySelector('#main-block');
 
   const heading = createBLock('h2', {
@@ -17,6 +18,11 @@ export default function openGamesPage() {
   const paragraph = createBLock('p', {
     classList: ['start-games__description'],
     children: [Constants.gamesPage.message],
+  });
+
+  const faq = createBLock('div', {
+    classList: ['start-games__rules'],
+    children: [Constants.gamesPage.faq],
   });
 
   //= ===============Аудиовызов===========================
@@ -91,7 +97,7 @@ export default function openGamesPage() {
 
   const infoGames = createBLock('div', {
     classList: ['info-games'],
-    children: [heading, paragraph, gamesWrapper],
+    children: [heading, paragraph, gamesWrapper, faq],
   });
 
   const startGames = createBLock('div', {

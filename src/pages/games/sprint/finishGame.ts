@@ -2,8 +2,10 @@ import { GameState } from '../../../types/sprint';
 import createBLock from '../../../components/createBLock';
 import Constants from '../../../constants/Constants';
 import openGamesPage from '../openGamesPage';
+import prepareUpsertStats from '../../stats/model/prepareUpsertStats';
+import updateGameUserWords from '../updateGameUserWords';
 
-export default function finishGame(gameState: GameState) {
+export default async function finishGame(gameState: GameState) {
   clearInterval(gameState.timer);
 
   gameState.allSequencesOfSuccess.push(gameState.sequenceOfSuccess);
@@ -63,8 +65,6 @@ export default function finishGame(gameState: GameState) {
     children: [correctAnswersContainer, incorrectAnswersContainer],
   });
 
-  // TODO updateStatistics();
-
   const startAgainButton = createBLock('button', {
     classList: ['button', 'secondary-button'],
     children: [Constants.sprintGame.startAgainButtonText],
@@ -80,4 +80,43 @@ export default function finishGame(gameState: GameState) {
     answers,
     startAgainButton,
   );
+
+  // update user/words & stats; ////////////////
+  console.log('all words in game', [...gameState.correctAnswers, ...gameState.incorrectAnswers]);
+
+  const token = window.localStorage.getItem(Constants.localStorageKeys.token);
+  const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
+
+  if (token && userId) {
+    // updateGameUserWords
+
+    const allShownWordsIDs = [...gameState.correctAnswers, ...gameState.incorrectAnswers]
+      .map((wordData) => wordData?.id);
+    const correctAnswersIDs = gameState.correctAnswers.map((wordData) => wordData?.id);
+
+    const updatedUserWords = await updateGameUserWords(
+      'sprint', // audio
+      token,
+      userId,
+      allShownWordsIDs, // id те которые польз-ль видел
+      correctAnswersIDs, // id угадал
+    );
+
+    // updateStatistics
+    const correct = gameState.correctAnswers.length;
+    const totalWordsShown = [...gameState.correctAnswers, ...gameState.incorrectAnswers].length;
+
+    prepareUpsertStats(
+      'sprint',
+      token,
+      userId,
+      totalWordsShown,
+      correct,
+      maxSequence,
+      updatedUserWords.todayGameNewWords,
+      updatedUserWords.todayGameStudiedWords,
+    );
+  } else {
+    gameState.sprintContainer.append('Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры');
+  }
 }

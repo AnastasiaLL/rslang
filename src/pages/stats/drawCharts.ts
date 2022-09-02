@@ -34,7 +34,6 @@ export function drawDoughnutChart(todayData: DayStat) {
 
 export function drawLineChart(studiedByDayStatsData: SeveralDaysStat, id: string) {
   const canvas = document.getElementById(id);
-
   const maxScale = Math.max(...studiedByDayStatsData.data) + 10;
 
   if (canvas) {
@@ -57,7 +56,6 @@ export function drawLineChart(studiedByDayStatsData: SeveralDaysStat, id: string
             max: maxScale,
             min: 0,
           },
-
         },
         plugins: {
           legend: {
@@ -71,9 +69,7 @@ export function drawLineChart(studiedByDayStatsData: SeveralDaysStat, id: string
 
 export function drawBarChart(newWordsByDayStatsData: SeveralDaysStat, id: string) {
   const canvas = document.getElementById(id);
-
   const maxScale = Math.max(...newWordsByDayStatsData.data) + 10;
-
   if (canvas) {
     const chart = new Chart(canvas as HTMLCanvasElement, {
       type: 'bar',
@@ -84,7 +80,6 @@ export function drawBarChart(newWordsByDayStatsData: SeveralDaysStat, id: string
           backgroundColor: fadedColors,
         }],
       },
-
       options: {
         responsive: true,
         scales: {
@@ -100,7 +95,6 @@ export function drawBarChart(newWordsByDayStatsData: SeveralDaysStat, id: string
           },
         },
       },
-
     });
   }
 }
