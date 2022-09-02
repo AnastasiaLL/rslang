@@ -174,6 +174,8 @@ export default class Constants {
         direction: 'end',
       },
     ],
+    wordStatCorrect: 'Угадано в играх',
+    wordStatIncorrect: 'Не угадано в играх',
   };
 
   static sprintGame = {

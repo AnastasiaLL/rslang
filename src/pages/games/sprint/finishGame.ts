@@ -2,7 +2,7 @@ import { GameState } from '../../../types/sprint';
 import createBLock from '../../../components/createBLock';
 import Constants from '../../../constants/Constants';
 import openGamesPage from '../openGamesPage';
-import updateStatistics from '../../stats/model/updateStats';
+import prepareUpsertStats from '../../stats/model/prepareUpsertStats';
 import updateGameUserWords from '../updateGameUserWords';
 
 export default async function finishGame(gameState: GameState) {
@@ -81,7 +81,7 @@ export default async function finishGame(gameState: GameState) {
     startAgainButton,
   );
 
-  // update user/words & stats;
+  // update user/words & stats; ////////////////
   console.log('all words in game', [...gameState.correctAnswers, ...gameState.incorrectAnswers]);
 
   const token = window.localStorage.getItem(Constants.localStorageKeys.token);
@@ -95,18 +95,18 @@ export default async function finishGame(gameState: GameState) {
     const correctAnswersIDs = gameState.correctAnswers.map((wordData) => wordData?.id);
 
     const updatedUserWords = await updateGameUserWords(
-      'sprint',
+      'sprint', // audio
       token,
       userId,
-      allShownWordsIDs,
-      correctAnswersIDs,
+      allShownWordsIDs, // id те которые польз-ль видел
+      correctAnswersIDs, // id угадал
     );
 
     // updateStatistics
     const correct = gameState.correctAnswers.length;
     const totalWordsShown = [...gameState.correctAnswers, ...gameState.incorrectAnswers].length;
 
-    updateStatistics(
+    prepareUpsertStats(
       'sprint',
       token,
       userId,
