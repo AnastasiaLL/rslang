@@ -18,6 +18,11 @@ export default function openGamesPage() {
     children: [Constants.gamesPage.message],
   });
 
+  const faq = createBLock('div', {
+    classList: ['start-games__rules'],
+    children: [Constants.gamesPage.faq],
+  });
+
   //= ===============Аудиовызов===========================
   const audiocallH1 = createBLock('h3', {
     children: [Constants.gamesPage.audioChallengeHeading],
@@ -90,7 +95,7 @@ export default function openGamesPage() {
 
   const infoGames = createBLock('div', {
     classList: ['info-games'],
-    children: [heading, paragraph, gamesWrapper],
+    children: [heading, paragraph, gamesWrapper, faq],
   });
 
   const startGames = createBLock('div', {

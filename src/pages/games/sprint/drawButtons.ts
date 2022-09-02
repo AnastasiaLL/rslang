@@ -2,6 +2,7 @@ import createBLock from '../../../components/createBLock';
 import Constants from '../../../constants/Constants';
 import { GameState } from '../../../types/sprint';
 import drawNewWord from './drawNewWord';
+import finishGame from './finishGame';
 
 export default function drawButtons(gameState: GameState) {
   const registerRightAnswer = () => {
@@ -53,6 +54,22 @@ export default function drawButtons(gameState: GameState) {
   const buttonsBlock = createBLock('div', {
     classList: ['buttons-block'],
     children: [buttonTrue, buttonFalse],
+  });
+
+  window.addEventListener('keydown', (event) => {
+    switch (event.code) {
+      case 'ArrowLeft':
+        guessTrue();
+        break;
+      case 'ArrowRight':
+        guessFalse();
+        break;
+      case 'Space':
+        finishGame(gameState);
+        break;
+      default:
+        break;
+    }
   });
 
   return buttonsBlock;

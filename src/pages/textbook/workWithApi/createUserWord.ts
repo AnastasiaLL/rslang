@@ -8,6 +8,7 @@ export default async function createUserWord(
   token: string,
   method: string,
 ) {
+  console.log(token);
   const response = await fetch(`${Constants.url}${Constants.path.users}/${userId}${Constants.path.words}/${wordId}`, {
     method,
     credentials: 'same-origin',
