@@ -8,6 +8,7 @@ export default class Constants {
     userId: 'rslangT86-userId',
     refreshToken: 'rslangT86-refreshToken',
     name: 'rslangT86-name',
+    pageName: 'rslangT86-pageName',
   };
 
   static path = {

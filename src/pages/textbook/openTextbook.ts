@@ -7,6 +7,7 @@ import changeButtonStatus from './changeButtonStatus';
 import createTextbookGamesPanel from './createTextbookGamesPanel';
 
 export default function openTextbook() {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'textbook');
   const textbookHeader = createTextbookHeader();
   const textbookGamesPanel = createTextbookGamesPanel();
 

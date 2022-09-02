@@ -7,6 +7,7 @@ import openAudioCallPage from './audiocall/openCallPage';
 import { getGameReady } from './sprint/getGameReady';
 
 export default function openGamesPage() {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'games');
   const mainBlock = document.querySelector('#main-block');
 
   const heading = createBLock('h2', {

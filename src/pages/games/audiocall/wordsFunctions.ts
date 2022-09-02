@@ -52,6 +52,7 @@ export async function getRandomWords(chapter: number) {
     for (let i = 0; i < 5; i += 1) {
       let num: number;
 
+      // eslint-disable-next-line no-inner-declarations
       function random() {
         num = getRandomNumber(0, 19);
 

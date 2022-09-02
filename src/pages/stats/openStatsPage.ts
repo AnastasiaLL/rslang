@@ -106,6 +106,7 @@ export function drawTodayStats(
 // ///////////////////////////////////////// //////////////////////////////////////////////
 
 export async function openStatsPage() {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'stats');
   const statsPage = createBLock('div', {
     classList: ['stats'],
   });

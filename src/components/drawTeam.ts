@@ -35,6 +35,7 @@ export function openTeamPage(name: string, dev: string, info: string): void {
 }
 
 export function clickTeamPage() {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'team');
   const main = document.querySelector('#main-block');
   if (main instanceof HTMLElement) {
     main.innerHTML = '';
