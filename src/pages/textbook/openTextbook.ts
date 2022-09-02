@@ -5,6 +5,8 @@ import drawCards from './cards/drawCards';
 import Constants from '../../constants/Constants';
 import changeButtonStatus from './changeButtonStatus';
 import createTextbookGamesPanel from './createTextbookGamesPanel';
+import getUser from '../signIn/workWithApi/getUser';
+import logOut from '../signIn/logOut';
 
 export default function openTextbook() {
   window.localStorage.setItem(Constants.localStorageKeys.pageName, 'textbook');
@@ -51,6 +53,20 @@ export default function openTextbook() {
     }
   }
   drawCards();
+
+  const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
+  const token = window.localStorage.getItem(Constants.localStorageKeys.token);
+  const select = document.querySelector('.chapter__heading');
+  if (userId && token && select instanceof HTMLSelectElement) {
+    getUser(userId, token).then(() => {
+      select.append(createBLock('option', {
+        attributes: { value: 'hard' },
+        children: ['Сложные слова'],
+      }));
+    }).catch((reason) => {
+      if (reason.status === 401) logOut();
+    });
+  }
 
   // сделать меню активным
 
