@@ -1,4 +1,3 @@
-import { USER } from '../../../types/ResponsesTypes';
 import Constants from '../../../constants/Constants';
 
 export default async function signInUser(id: string, token: string) {

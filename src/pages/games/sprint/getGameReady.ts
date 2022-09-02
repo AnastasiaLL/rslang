@@ -17,7 +17,8 @@ export function getGameReady(chapterId: number) {
 
     const heading = createBLock('div', {
       classList: ['game-parameters'],
-      children: [`${Constants.sprintGame.levelHeading}: ${String(chapterId + 1)}`],
+      // children: [`${Constants.sprintGame.levelHeading}: ${String(chapterId + 1)}`]
+      children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[chapterId]}`],
     });
 
     mainBlock.append(heading, sprintContainer);
@@ -74,7 +75,9 @@ export function getGameReadyFromTextBook() {
         mainBlock.innerHTML = '';
         const heading = createBLock('div', {
           classList: ['game-parameters'],
-          children: [`${Constants.sprintGame.levelHeading}: ${group} | ${Constants.sprintGame.beginOnPage}: ${page}`],
+          // children:[`${Constants.sprintGame.levelHeading}: ${group}
+          // |${Constants.sprintGame.beginOnPage}:${page}`],
+          children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[Number(group)]} | ${Constants.sprintGame.beginOnPage}: ${page}`],
         });
         const sprintContainer = createBLock('div', {
           classList: ['game-container'],

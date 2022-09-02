@@ -2,8 +2,10 @@ import updateNav from '../../utils/updateNav';
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
 import { drawDoughnutChart, drawLineChart, drawBarChart } from './drawCharts';
-import { DayStat } from '../../types/stats';
-import { dayStats, newWordsByDayStats, studiedByDayStats } from './model/getStats';
+import { AllDayStat } from '../../types/stats';
+import {
+  dayStats, newWordsByDayStats, studiedByDayStats, getStatistics,
+} from './model/getStats';
 import demonstrateStatsPage from './demoStatsPage';
 
 export function drawTotalStatsContainers() {
@@ -50,14 +52,15 @@ export function drawTotalStatsContainers() {
 }
 
 export function drawTodayStats(
-  dayStatsData: DayStat[],
+  dayStatsData: AllDayStat,
 ): DocumentFragment {
   const todayStats = document.createDocumentFragment();
 
   const statCards: HTMLElement[] = [];
 
   Constants.statisticPage.statsBlocks.forEach((item, index) => {
-    const data = dayStatsData[index];
+    const data = (Object.values(dayStatsData))[index];
+    console.log('Object.values(dayStatsData))[index]', data);
     const statCard = createBLock('div', {
       classList: ['stat-card'],
     });
@@ -89,6 +92,7 @@ export function drawTodayStats(
   const todayHeading = createBLock('h2', {
     children: [Constants.statisticPage.subHeadingToday],
   });
+
   const todayStatsCards = createBLock('div', {
     classList: ['today-stats'],
     children: statCards,
@@ -101,7 +105,8 @@ export function drawTodayStats(
 
 // ///////////////////////////////////////// //////////////////////////////////////////////
 
-export function openStatsPage() {
+export async function openStatsPage() {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'stats');
   const statsPage = createBLock('div', {
     classList: ['stats'],
   });
@@ -121,21 +126,23 @@ export function openStatsPage() {
     listener: demonstrateStatsPage,
   });
 
-  const dayStatsData = dayStats();
+  const allStats = await getStatistics();
+
+  const dayStatsData = await dayStats(allStats);
+
   const allTodayStats = drawTodayStats(dayStatsData);
+
   const totalStats = drawTotalStatsContainers();
 
   statsPage.append(allTodayStats, totalStats, demoButton);
 
-  dayStatsData.forEach((pieceOfData) => {
+  Object.values(dayStatsData).forEach((pieceOfData) => {
     drawDoughnutChart(pieceOfData);
   });
 
-  const newWordsByDayStatsData = newWordsByDayStats();
-  const studiedByDayStatsData = studiedByDayStats();
+  const newWordsByDayStatsData = await newWordsByDayStats(allStats);
+  const studiedByDayStatsData = await studiedByDayStats(allStats);
 
   drawBarChart(newWordsByDayStatsData, 'words-by-day');
   drawLineChart(studiedByDayStatsData, 'studied-by-day');
 }
-
-// ///////////////////////////////////////// //////////////////////////////////////////////

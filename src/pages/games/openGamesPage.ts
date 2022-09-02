@@ -1,9 +1,13 @@
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
 import updateNav from '../../utils/updateNav';
+
+import openAudioCallPage from './audiocall/openCallPage';
+
 import { getGameReady } from './sprint/getGameReady';
 
 export default function openGamesPage() {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'games');
   const mainBlock = document.querySelector('#main-block');
 
   const heading = createBLock('h2', {
@@ -15,6 +19,11 @@ export default function openGamesPage() {
     children: [Constants.gamesPage.message],
   });
 
+  const faq = createBLock('div', {
+    classList: ['start-games__rules'],
+    children: [Constants.gamesPage.faq],
+  });
+
   //= ===============Аудиовызов===========================
   const audiocallH1 = createBLock('h3', {
     children: [Constants.gamesPage.audioChallengeHeading],
@@ -24,9 +33,12 @@ export default function openGamesPage() {
     children: [Constants.gamesPage.audioChallengeMessage],
   });
 
-  const audiocallDifficultyChoices = Constants.chapters.map((chapter) => createBLock('div', {
+  const audiocallDifficultyChoices = Constants.chapters.map((chapter, index) => createBLock('div', {
     classList: ['difficulty-choice'],
     children: [chapter],
+    event: 'click',
+    listener: () => openAudioCallPage(index),
+    // listener: () => openAudioCallPage(),
   }));
 
   const audiocallDifficultyContainer = createBLock('div', {
@@ -42,6 +54,8 @@ export default function openGamesPage() {
   const audiocallWrapper = createBLock('div', {
     classList: ['audiocall__wrapper', 'game'],
     children: [audiocallH1, audiocallP, startPlayText, audiocallDifficultyContainer],
+    // listener: openAudioCallPage,
+    // event: 'click'
   });
 
   //= =================Спринт============================
@@ -82,7 +96,7 @@ export default function openGamesPage() {
 
   const infoGames = createBLock('div', {
     classList: ['info-games'],
-    children: [heading, paragraph, gamesWrapper],
+    children: [heading, paragraph, gamesWrapper, faq],
   });
 
   const startGames = createBLock('div', {

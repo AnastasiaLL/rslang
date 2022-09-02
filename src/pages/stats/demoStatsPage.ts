@@ -4,7 +4,7 @@ import { drawTodayStats, drawTotalStatsContainers, openStatsPage } from './openS
 import Constants from '../../constants/Constants';
 import createBLock from '../../components/createBLock';
 
-export default function demonstrateStatsPage() {
+export default async function demonstrateStatsPage() {
   const statsPage = createBLock('div', {
     classList: ['stats'],
   });
@@ -14,27 +14,23 @@ export default function demonstrateStatsPage() {
     mainBlock.innerHTML = '';
     mainBlock.append(statsPage);
   }
-
   const dayStatsData = dayStats;
   const allTodayStats = drawTodayStats(dayStatsData);
   const totalStats = drawTotalStatsContainers();
-
   const demoButton = createBLock('button', {
     classList: ['button', 'primary-button'],
     children: [Constants.statisticPage.demoButtonBack],
     event: 'click',
     listener: openStatsPage,
   });
-
   statsPage.append(allTodayStats, totalStats, demoButton);
 
-  dayStatsData.forEach((pieceOfData) => {
+  Object.values(dayStatsData).forEach((pieceOfData) => {
     drawDoughnutChart(pieceOfData);
   });
 
   const newWordsByDayStatsData = newWordsByDayStats;
   const studiedByDayStatsData = studiedByDayStats;
-
   drawBarChart(newWordsByDayStatsData, 'words-by-day');
   drawLineChart(studiedByDayStatsData, 'studied-by-day');
 }

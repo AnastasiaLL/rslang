@@ -23,6 +23,7 @@ export default function drawHeader(): void {
     classList: ['logo-title'],
     listener: openMainPage,
     event: 'click',
+    attributes: { id: 'logo-title' },
   });
 
   const nav = createBLock('nav', {

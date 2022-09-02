@@ -3,6 +3,7 @@ import Constants from '../../constants/Constants';
 import updateNav from '../../utils/updateNav';
 
 export default function openMainPage(): void {
+  window.localStorage.setItem(Constants.localStorageKeys.pageName, 'logo-title');
   const headLine = createBLock('h2', {
     children: [
       Constants.mainPage.headLine,
