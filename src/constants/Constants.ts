@@ -177,9 +177,9 @@ export default class Constants {
 
   static sprintGame = {
     gameTime: 30,
-    trueButtonText: 'Верно',
-    falseButtonText: 'Неверно',
-    stopButtonText: 'Выйти из игры',
+    trueButtonText: 'Верно (🡨)',
+    falseButtonText: 'Неверно (🡪)',
+    stopButtonText: 'Выйти из игры (Space)',
     startAgainButtonText: 'Играть еще',
     levelHeading: 'Сложность',
     beginOnPage: 'Начинаем со страницы',
