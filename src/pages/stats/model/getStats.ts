@@ -1,6 +1,5 @@
 import { AllDayStat, SeveralDaysStat } from '../../../types/stats';
 import { STATISTICS } from '../../../types/ResponsesTypes';
-import threeDaysDates from '../../../utils/dates';
 import Constants from '../../../constants/Constants';
 import nullStats from './nullStats';
 

@@ -94,6 +94,7 @@ export default async function finishGame(gameState: GameState) {
     const correctAnswersIDs = gameState.correctAnswers.map((wordData) => wordData?.id);
 
     const updatedUserWords = await updateGameUserWords(
+      'sprint',
       token,
       userId,
       allShownWordsIDs,
@@ -111,8 +112,8 @@ export default async function finishGame(gameState: GameState) {
       totalWordsShown,
       correct,
       maxSequence,
-      updatedUserWords.todaySpringNewWords,
-      updatedUserWords.todaySpringStudiedWords,
+      updatedUserWords.todayGameNewWords,
+      updatedUserWords.todayGameStudiedWords,
     );
   } else {
     gameState.sprintContainer.append('Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры');

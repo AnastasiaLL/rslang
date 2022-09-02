@@ -14,28 +14,23 @@ export default async function demonstrateStatsPage() {
     mainBlock.innerHTML = '';
     mainBlock.append(statsPage);
   }
-
   const dayStatsData = dayStats;
   const allTodayStats = drawTodayStats(dayStatsData);
   const totalStats = drawTotalStatsContainers();
-
   const demoButton = createBLock('button', {
     classList: ['button', 'primary-button'],
     children: [Constants.statisticPage.demoButtonBack],
     event: 'click',
     listener: openStatsPage,
   });
-
   statsPage.append(allTodayStats, totalStats, demoButton);
 
   Object.values(dayStatsData).forEach((pieceOfData) => {
-    console.log('pieceOfData', pieceOfData);
     drawDoughnutChart(pieceOfData);
   });
 
   const newWordsByDayStatsData = newWordsByDayStats;
   const studiedByDayStatsData = studiedByDayStats;
-
   drawBarChart(newWordsByDayStatsData, 'words-by-day');
   drawLineChart(studiedByDayStatsData, 'studied-by-day');
 }

@@ -1,4 +1,4 @@
-import { AllDayStat, SeveralDaysStat, DayStat } from './stats';
+import { AllDayStat, SeveralDaysStat } from './stats';
 // responses
 
 export interface WORD {
@@ -36,11 +36,11 @@ export interface USERWORD {
     difficulty: string;
     optional: {
       correctAnswersSequence: number;
-      shownInSprint: number,
-      shownInAudio: number,
+      sprintShown: number,
+      audioShown: number,
       studied: boolean,
       sprintNew: boolean;
-      audioChallengeNew: boolean;
+      audioNew: boolean;
       correctAnswers: number;
       incorrectAnswers: number;
       wordId: string;
