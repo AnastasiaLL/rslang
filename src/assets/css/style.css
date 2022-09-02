@@ -156,7 +156,6 @@ h3 {
 
 .login {
   padding-bottom: 0.3rem;
-  border-left: 1px solid #3a7e52;
   padding-left: 3.5rem;
 }
 
@@ -173,9 +172,23 @@ h3 {
   color: #3a7e52;
 }
 
+.navigation__nav-item:last-child {
+  border-left: 1px solid #3a7e52;
+  display: flex;
+}
+
 .active {
   border-bottom: 2px solid #3a7e52;
   color: #3a7e52;
+}
+
+#user-name {
+  padding-bottom: 0.3rem;
+  padding-left: 3.5rem;
+  cursor: default;
+}
+#user-name:hover {
+  color: #464646;
 }
 
 .burger {

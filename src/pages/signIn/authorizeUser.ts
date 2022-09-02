@@ -21,6 +21,7 @@ export default function authorizeUser() {
       window.localStorage.setItem(Constants.localStorageKeys.refreshToken, answer.refreshToken);
       window.localStorage.setItem(Constants.localStorageKeys.name, answer.name);
       closeSignIn();
+      window.location.reload();
     }).catch(() => {
       emailBlock.classList.add('incorrectInput');
       passwordBlock.classList.add('incorrectInput');
