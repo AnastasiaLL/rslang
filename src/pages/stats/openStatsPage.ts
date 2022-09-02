@@ -137,4 +137,3 @@ export function openStatsPage() {
   drawBarChart(newWordsByDayStatsData, 'words-by-day');
   drawLineChart(studiedByDayStatsData, 'studied-by-day');
 }
-
