@@ -36,8 +36,9 @@ export default async function updateSprintUserWords(
         if (correctAnswersIDs.includes(id)) {
           suchWord.optional.correctAnswers += 1;
           suchWord.optional.correctAnswersSequence += 1;
-          if (suchWord.optional.correctAnswers >= Constants.answersForWordToBeStudied) {
+          if (suchWord.optional.correctAnswersSequence >= Constants.answersForWordToBeStudied) {
             suchWord.optional.studied = true;
+            suchWord.difficulty = 'false';
             todayGameStudiedWords.push(suchWord);
           }
         } else {

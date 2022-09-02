@@ -7,6 +7,7 @@ export default function launchTimer(maxSec: number, gameState: GameState) {
     if (!document.querySelector('#sprint-timer')) {
       clearInterval(gameState.timer);
     }
+
     console.log(count);
     count -= 1;
     Object.assign(gameState.timerContainer, { innerHTML: String(count) });

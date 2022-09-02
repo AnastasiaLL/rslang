@@ -2,7 +2,7 @@ import { getStatistics } from './getStats';
 import nullStats from './nullStats';
 import upsertStats from './upsertStats';
 
-export default async function updateStatistics(
+export default async function prepareUpsertStats(
   game: string,
   token: string,
   userId: string,

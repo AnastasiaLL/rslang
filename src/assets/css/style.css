@@ -473,6 +473,29 @@ input:checked + .word-details__switch-slider:before {
   cursor: default;
 }
 
+.textbook__scores {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+  color: #bebebe;
+  border-top: 1px solid #dddddd;
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.textbook__score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.textbook__score-num {
+  font-size: 3rem;
+  color: #3a7e52;
+}
+
 footer {
   height: 100px;
   display: flex;
