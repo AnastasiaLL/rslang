@@ -32,11 +32,12 @@ export default function openGamesPage() {
     children: [Constants.gamesPage.audioChallengeMessage],
   });
 
-  /// ДОБАВЛЯТЬ СЮДА) ////////////////////
-
-  const audiocallDifficultyChoices = Constants.chapters.map((chapter) => createBLock('div', {
+  const audiocallDifficultyChoices = Constants.chapters.map((chapter, index) => createBLock('div', {
     classList: ['difficulty-choice'],
     children: [chapter],
+    event: 'click',
+    listener: () => openAudioCallPage(index),
+    // listener: () => openAudioCallPage(),
   }));
 
   const audiocallDifficultyContainer = createBLock('div', {
@@ -52,8 +53,8 @@ export default function openGamesPage() {
   const audiocallWrapper = createBLock('div', {
     classList: ['audiocall__wrapper', 'game'],
     children: [audiocallH1, audiocallP, startPlayText, audiocallDifficultyContainer],
-    listener: openAudioCallPage,
-    event: 'click',
+    // listener: openAudioCallPage,
+    // event: 'click'
   });
 
   //= =================Спринт============================
