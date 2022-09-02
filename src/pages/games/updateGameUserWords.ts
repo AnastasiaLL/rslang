@@ -11,15 +11,12 @@ export default async function updateSprintUserWords(
   correctAnswersIDs: (string | undefined)[],
 ) {
   const userWords = await getUserWord(userId, token);
-  console.log('getUserWord(userId, token)', userWords);
+  console.log('userWords которые уже есть перед игрой', userWords);
 
   const todayGameNewWords = [];
   const todayGameStudiedWords = [];
 
   const gameShown = `${game}Shown`;
-  const gameNew = `${game}New`;
-
-  console.log('gameShown', gameShown, 'gameNew', gameNew);
 
   allShownWordsIDs.forEach((id) => {
     const suchWord = userWords.find((userWord: USERWORD) => userWord.optional.wordId === id);
@@ -29,10 +26,8 @@ export default async function updateSprintUserWords(
       // 1. Новое ли, посчитать показ, в/из список новых слов
         suchWord.optional[gameShown] += 1;
 
-        if (suchWord.optional[gameShown] > 1) {
-          suchWord.optional[gameNew] = false;
-        } else {
-          suchWord.optional[gameNew] = true;
+        if (suchWord.optional[gameShown] === 1) {
+          // показано один раз - новое
           todayGameNewWords.push(suchWord);
         }
 
@@ -81,24 +76,23 @@ export default async function updateSprintUserWords(
           },
         };
 
-        newUserWord.optional[gameShown] += 1;
-        newUserWord.optional[gameNew] = true;
+        // точно показано не более 1 раза === новое
+        todayGameNewWords.push(newUserWord);
+
+        const currentShown = Number(newUserWord.optional[gameShown]);
+        newUserWord.optional[gameShown] = currentShown + 1;
 
         // 2. Правильно ли отвечено
 
         if (correctAnswersIDs.includes(id)) {
           newUserWord.optional.correctAnswers += 1;
           newUserWord.optional.correctAnswersSequence += 1;
-          // if (newUserWord.optional.correctAnswers >= Constants.answersForWordToBeStudied) {
-          //  newUserWord.optional.studied = true;
-          // }
         } else {
-        // есть неправильный ответ - удаляем слово из изученных, обнуляем счет правильности
-          // newUserWord.optional.studied = false;
+        // есть неправильный ответ - слово не может быть в изученных т.к. его не было в userwords
+        // счет правильности не трогаем,, т.к. слово появилось 1 раз и он же неправильный ответ
           newUserWord.optional.incorrectAnswers += 1;
-          // newUserWord.optional.correctAnswersSequence = 0;
         }
-        todayGameNewWords.push(newUserWord);
+
         console.log('newUserWord', newUserWord);
         createUserWord(userId, id, newUserWord, token, 'POST');
       }

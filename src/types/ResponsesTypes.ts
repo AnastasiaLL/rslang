@@ -32,19 +32,22 @@ export interface AUTH {
     name: string
 }
 
+export interface UserWordOptional {
+  [key: string]: string | number | boolean,
+  correctAnswersSequence: number,
+  sprintShown: number,
+  audioShown: number,
+  studied: boolean,
+  sprintNew: boolean,
+  audioNew: boolean,
+  correctAnswers: number,
+  incorrectAnswers: number,
+  wordId: string,
+}
+
 export interface USERWORD {
     difficulty: string;
-    optional: {
-      correctAnswersSequence: number;
-      sprintShown: number,
-      audioShown: number,
-      studied: boolean,
-      sprintNew: boolean;
-      audioNew: boolean;
-      correctAnswers: number;
-      incorrectAnswers: number;
-      wordId: string;
-    }
+    optional: UserWordOptional,
 }
 
 export interface STATISTICS {

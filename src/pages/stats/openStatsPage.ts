@@ -92,6 +92,7 @@ export function drawTodayStats(
   const todayHeading = createBLock('h2', {
     children: [Constants.statisticPage.subHeadingToday],
   });
+
   const todayStatsCards = createBLock('div', {
     classList: ['today-stats'],
     children: statCards,

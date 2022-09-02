@@ -86,6 +86,7 @@ export default async function finishGame(gameState: GameState) {
 
   const token = window.localStorage.getItem(Constants.localStorageKeys.token);
   const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
+
   if (token && userId) {
     // updateGameUserWords
 
