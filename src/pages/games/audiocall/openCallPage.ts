@@ -1,6 +1,6 @@
 import createBLock from '../../../components/createBLock';
 import { WORD } from '../../../types/ResponsesTypes';
-import { isMatch } from './wordsFunctions';
+import { isMatch, nextWords } from './wordsFunctions';
 // import { getRandomWords } from './wordsFunctions';
 
 export const index = 0;
@@ -37,8 +37,8 @@ export default async function openAudioCallPage() {
   const dontKnown = createBLock('button', {
     classList: ['dontKnown', 'button', 'secondary-button'],
     children: ['Не знаю!'],
-    // listener: nextWords,
-    // event: 'click'
+    listener: nextWords,
+    event: 'click',
   });
 
   const audiocallWrapper = createBLock('div', {
@@ -50,25 +50,19 @@ export default async function openAudioCallPage() {
     mainBlock.innerHTML = '';
     mainBlock.append(audiocallWrapper);
   }
-
 }
 
-
-export function drawWords(arrWords: WORD[]){
-
+export function drawWords(arrWords: WORD[]) {
   const WordsWrapper = document.querySelector('.words') as HTMLElement;
 
-  for (let i=0; i < arrWords.length; i+=1){
+  for (let i = 0; i < arrWords.length; i += 1) {
     const newWord = createBLock('div', {
-        classList: ['word', 'button', 'secondary-button'],
-        children: [`${arrWords[i].wordTranslate}`],
-      });
+      classList: ['word', 'button', 'secondary-button'],
+      children: [`${arrWords[i].wordTranslate}`],
+    });
     newWord.addEventListener('click', () => {
-        isMatch(arrWords[i]);
-      });
-      WordsWrapper.append(newWord);
+      isMatch(arrWords[i]);
+    });
+    WordsWrapper.append(newWord);
   }
-  
 }
-
-
