@@ -1,5 +1,6 @@
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
+import { controllerAudioCall } from '../games/audiocall/wordsFunctions';
 import { getGameReadyFromTextBook } from '../games/sprint/getGameReady';
 
 export default function createTextbookGamesPanel(): HTMLElement {
@@ -12,7 +13,7 @@ export default function createTextbookGamesPanel(): HTMLElement {
     classList: ['button', 'secondary-button'],
     children: [Constants.gamesPage.audioChallengeHeading],
     event: 'click',
-    // listener: ,
+    listener: () => controllerAudioCall(1),
   });
 
   const buttonSprint = createBLock('button', {

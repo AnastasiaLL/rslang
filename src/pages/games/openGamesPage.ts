@@ -2,9 +2,6 @@ import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
 import updateNav from '../../utils/updateNav';
 import { controllerAudioCall } from './audiocall/wordsFunctions';
-
-import openAudioCallPage from './audiocall/openCallPage';
-
 import { getGameReady } from './sprint/getGameReady';
 
 export default function openGamesPage() {

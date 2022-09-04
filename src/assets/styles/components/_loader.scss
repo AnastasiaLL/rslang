@@ -1,0 +1,12 @@
+.loader {
+  margin: 10% 50%;
+  font-size: 2rem;
+  padding-top: 2rem;
+  background-image: url('../images/loader.gif');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 2rem;
+  text-transform: uppercase;
+  font-color: $color-shade-m;
+  text-align: center;
+}
