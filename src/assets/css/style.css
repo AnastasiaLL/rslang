@@ -972,10 +972,13 @@ footer .copyright:before {
 }
 
 .voice {
-  background-color: #563de7;
-  width: 100px;
-  height: 100px;
+  background-color: rgba(77, 52, 224, 0.1);
+  width: 65px;
+  height: 65px;
   cursor: pointer;
+  border-radius: 90px;
+  /* border: 1px solid orange; */
+  padding: 11px;
 }
 
 .words {
@@ -987,6 +990,41 @@ footer .copyright:before {
 .word {
   margin: 10px;
   cursor: pointer;
+}
+
+.end-audioCall {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.audiocall-results__answers {
+  gap: 4rem;
+  display: flex;
+  align-items: flex-start;
+  border-top: 1px solid #dddddd;
+  padding-top: 5rem;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.audiocall-results__scores {
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+  color: #898989;
+  margin: 30px;
+}
+
+.audiocall-button {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.audiocall-paragraph {
+  margin: 30px;
+  text-align: center;
 }
 
 .game-container {

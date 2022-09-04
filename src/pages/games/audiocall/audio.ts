@@ -15,4 +15,3 @@ export function voiceFunction(Word: WORD) {
     playAudioWord(Word);
   });
 }
-
