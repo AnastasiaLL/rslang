@@ -1,6 +1,7 @@
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
 import updateNav from '../../utils/updateNav';
+import openSignIn from '../signIn/openSignIn';
 
 export default function openMainPage(): void {
   window.localStorage.setItem(Constants.localStorageKeys.pageName, 'logo-title');
@@ -18,12 +19,24 @@ export default function openMainPage(): void {
   const button = createBLock('button', {
     classList: ['button', 'primary-button'],
     children: [Constants.mainPage.buttonStart],
+    event: 'click',
+    listener: openSignIn,
   });
 
-  const infoBlock = createBLock('div', {
-    classList: ['start-screen__info'],
-    children: [headLine, paragraph, button],
-  });
+  let infoBlock;
+
+  if (window.localStorage.getItem(Constants.localStorageKeys.userId)) {
+    console.log(window.localStorage.getItem(Constants.localStorageKeys.userId));
+    infoBlock = createBLock('div', {
+      classList: ['start-screen__info'],
+      children: [headLine, paragraph],
+    });
+  } else {
+    infoBlock = createBLock('div', {
+      classList: ['start-screen__info'],
+      children: [headLine, paragraph, button],
+    });
+  }
 
   const startScreen = createBLock('div', {
     classList: ['start-screen'],

@@ -54,12 +54,14 @@
 }
 
 #user-name {
+
+}
+
+.user-name {
   padding-bottom: 0.3rem;
   padding-left: 3.5rem;
   cursor: default;
-  &:hover {
-    color: $color-shade-s;
-  }
+  color: $color-primary;
 }
 
 .burger {
