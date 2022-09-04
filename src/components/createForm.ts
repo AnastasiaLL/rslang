@@ -15,6 +15,16 @@ export default function createForm(
       attributes: { placeholder: option.label, ...inputAttributes },
 
     });
+    input.addEventListener('input', (event) => {
+      const { target } = event;
+      if (target instanceof HTMLInputElement) {
+        target.classList.remove('incorrectInput');
+        const alert = target.nextSibling;
+        if (alert instanceof HTMLElement) {
+          if (alert.classList.contains('error-alert')) alert.remove();
+        }
+      }
+    });
     // return createBLock('label', {
     //   classList: ['form__label'],
     //   attributes: { for: `${option.id}${formName}Input` },
