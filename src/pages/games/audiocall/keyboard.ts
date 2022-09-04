@@ -6,7 +6,7 @@ document.addEventListener('keydown', keydownAudiocall);
 export default function keydownAudiocall(event: KeyboardEvent) {
   console.log(event.code);
 
-  if (event.code === 'Space') {
+  if (event.code === 'Enter') {
     event.preventDefault();
     nextWords();
   } else if (event.code === 'Numpad1' || event.code === 'Digit1') {

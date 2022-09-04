@@ -40,7 +40,7 @@ export default async function openAudioCallPage() {
 
   const dontKnown = createBLock('button', {
     classList: ['dontKnown', 'button', 'secondary-button'],
-    children: ['Не знаю! (Space)'],
+    children: ['Не знаю! (Enter)'],
     listener: nextWords,
     event: 'click',
   });
