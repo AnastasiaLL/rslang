@@ -11,6 +11,10 @@ export default async function signInUser(data: USER) {
     },
     body: JSON.stringify(data),
   });
-  const answer = await response.json();
-  return answer;
+  const answer = await response;
+  if (answer.status === 404 || answer.status === 403) {
+    return answer;
+  }
+  const answer2 = answer.json();
+  return answer2;
 }

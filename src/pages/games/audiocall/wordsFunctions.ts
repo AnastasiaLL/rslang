@@ -91,9 +91,9 @@ export function nextWords() {
 
 export function drawCounters() {
   const wrong = document.querySelector('.answers__wrong') as HTMLElement;
-  wrong.textContent = `${answersWrong}`;
+  wrong.textContent = `Неправильных ответов: ${answersWrong}`;
   const correct = document.querySelector('.answers__correct') as HTMLElement;
-  correct.textContent = `${answersCorrect}`;
+  correct.textContent = `Правильных ответов: ${answersCorrect}`;
 }
 
 export async function endAudioCallGame() {

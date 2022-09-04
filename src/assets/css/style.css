@@ -592,6 +592,7 @@ footer .copyright:before {
 }
 
 .popUp {
+  height: 350px;
   z-index: 3;
   background: #FFF;
   display: flex;
@@ -603,14 +604,12 @@ footer .copyright:before {
 
 .popUp__form {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
   padding: 2rem;
   text-align: center;
   gap: 3rem;
-  justify-content: center;
-  align-items: center;
 }
 
 .popUp__form_Sign {
@@ -622,51 +621,7 @@ footer .copyright:before {
   color: #3a7e52;
 }
 
-#emailSignInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#passwordSignInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#nameRegInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#emailRegInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#passwordRegInput {
+.form__input {
   outline: none;
   border-radius: 50rem;
   border: 1px solid #3a7e52;
@@ -679,6 +634,31 @@ footer .copyright:before {
 
 .incorrectInput {
   border: 2px solid #b0011d;
+}
+
+.error-alert {
+  position: relative;
+  z-index: 2;
+  padding: 5px 10px;
+  text-align: left;
+  width: 145px;
+  background: #dedede;
+  top: 35px;
+  margin-top: -77px;
+  left: -15px;
+  border-radius: 5px;
+}
+
+.error-alert::before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  z-index: 1;
+  display: inline-block;
+  top: -5px;
+  transform: rotate(45deg);
+  background: #dedede;
 }
 
 .team-screen {
@@ -948,7 +928,7 @@ footer .copyright:before {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   text-align: center;
   align-items: center;
@@ -961,26 +941,24 @@ footer .copyright:before {
   justify-content: space-around;
 }
 
+.promt {
+  font-size: 15px;
+}
+
 .answers__correct {
-  font-size: 25px;
-  padding-top: 10px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
+  font-size: 17px;
   color: #3a7e52;
-  background-color: #FFFFFF;
-  box-shadow: inset 0 0 0 1px #3a7e52;
+  background-color: rgba(77, 52, 224, 0.1);
+  padding: 8px;
+  border-radius: 16px;
 }
 
 .answers__wrong {
-  font-size: 25px;
-  padding-top: 10px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  color: #7e3a3a;
-  background-color: #FFFFFF;
-  box-shadow: inset 0 0 0 1px #bb3b3b;
+  font-size: 17px;
+  color: #bb3b3b;
+  background-color: rgba(77, 52, 224, 0.1);
+  padding: 8px;
+  border-radius: 16px;
 }
 
 .voice {
@@ -989,7 +967,6 @@ footer .copyright:before {
   height: 65px;
   cursor: pointer;
   border-radius: 90px;
-  /* border: 1px solid orange; */
   padding: 11px;
 }
 
@@ -1008,8 +985,12 @@ footer .copyright:before {
   display: flex;
   flex-direction: column;
   text-align: center;
+<<<<<<< HEAD
   padding: 3rem 2rem;
   font-size: 1.4rem;
+=======
+  font-size: 14px;
+>>>>>>> 0ba64b17a12bec74add9580c5a2d1e7fd1c5cc64
 }
 
 .audiocall-results__answers {
