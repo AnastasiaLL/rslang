@@ -31,6 +31,8 @@ export default function drawCards(): void {
           answer.forEach((word: WORD) => {
             wordList.append(createCard(word));
           });
+          const card = document.querySelector('.word-summary');
+          if (card instanceof HTMLElement) card.click();
         });
       } else if (token && userId) {
         getUserWord(userId, token).then((answer) => {
