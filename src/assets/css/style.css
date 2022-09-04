@@ -993,6 +993,7 @@ footer .copyright:before {
   display: flex;
   flex-direction: column;
   text-align: center;
+  font-size: 14px;
 }
 
 .audiocall-results__answers {
