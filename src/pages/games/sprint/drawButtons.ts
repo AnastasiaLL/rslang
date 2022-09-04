@@ -56,7 +56,7 @@ export default function drawButtons(gameState: GameState) {
     children: [buttonTrue, buttonFalse],
   });
 
-  window.addEventListener('keydown', (event) => {
+  const keyBoardListener = (event: KeyboardEvent) => {
     switch (event.code) {
       case 'ArrowLeft':
         guessTrue();
@@ -70,7 +70,9 @@ export default function drawButtons(gameState: GameState) {
       default:
         break;
     }
-  });
+  };
+
+  window.addEventListener('keydown', keyBoardListener);
 
   return buttonsBlock;
 }
