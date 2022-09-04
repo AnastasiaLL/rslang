@@ -202,4 +202,6 @@ export default class Constants {
   static sprintPagesToPlay = 10;
 
   static answersForWordToBeStudied = 3;
+
+  static loader = 'Идет загрузка';
 }
