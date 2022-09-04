@@ -1,5 +1,5 @@
 import { currentWordsArray } from './openCallPage';
-import { isMatch, nextWords } from './wordsFunctions';
+import { endAudioCallGame, isMatch, nextWords } from './wordsFunctions';
 
 document.addEventListener('keydown', keydownAudiocall);
 
@@ -24,5 +24,8 @@ export default function keydownAudiocall(event: KeyboardEvent) {
   } else if (event.code === 'Numpad5' || event.code === 'Digit5') {
     event.preventDefault();
     isMatch(currentWordsArray[4]);
+  } else if (event.code === 'Escape') {
+    event.preventDefault();
+    endAudioCallGame();
   }
 }

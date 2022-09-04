@@ -2,7 +2,7 @@ import createBLock from '../../../components/createBLock';
 import { WORD } from '../../../types/ResponsesTypes';
 import soundIcon from '../../textbook/soundIcon';
 import keydownAudiocall from './keyboard';
-import { isMatch, nextWords } from './wordsFunctions';
+import { endAudioCallGame, isMatch, nextWords } from './wordsFunctions';
 // import { getRandomWords } from './wordsFunctions';
 
 export const index = 0;
@@ -12,14 +12,19 @@ export default async function openAudioCallPage() {
   const mainBlock = document.querySelector('#main-block') as HTMLElement;
   mainBlock.innerHTML = '';
 
+  const promt = createBLock('p', {
+    classList: ['promt'],
+    children: ['Подсказка: для управления игрой используйте клавиши 1, 2, 3, 4, 5, Space, Esc'],
+  });
+
   const correct = createBLock('div', {
     classList: ['answers__correct'],
-    children: ['0'],
+    children: ['Правильных ответов: 0'],
   });
 
   const wrong = createBLock('div', {
     classList: ['answers__wrong'],
-    children: ['0'],
+    children: ['Неправильных ответов: 0'],
   });
 
   const answersWrapper = createBLock('div', {
@@ -45,9 +50,16 @@ export default async function openAudioCallPage() {
     event: 'click',
   });
 
+  const escape = createBLock('button', {
+    classList: ['dontKnown', 'button', 'secondary-button'],
+    children: ['Выйти из игры (Esc)'],
+    listener: endAudioCallGame,
+    event: 'click',
+  });
+
   const audiocallWrapper = createBLock('div', {
     classList: ['audiocall'],
-    children: [answersWrapper, voice, words, dontKnown],
+    children: [promt, answersWrapper, voice, words, dontKnown, escape],
   });
 
   if (mainBlock) {
