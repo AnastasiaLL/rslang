@@ -202,7 +202,7 @@ h3 {
   background-image: url("../images/start-screen-img.png");
   background-repeat: no-repeat;
   background-position: right top;
-  background-size: 38%;
+  background-size: contain;
 }
 
 .start-screen__info {
