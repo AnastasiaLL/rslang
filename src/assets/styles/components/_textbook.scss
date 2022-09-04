@@ -12,11 +12,12 @@
 
 .chapter__heading {
   border: none;
-  padding: 1rem 1rem 1rem 0;
+  padding: 1.5rem 1.5rem 1.5rem 1rem;
   outline: none;
   color: $color-primary;
   font-size: 2rem;
-  background: transparent;
+  background: $color-shade-xxl;
+  border-radius: $border-radius;
 
   &:hover{
     background-color: $color-primary-light;
@@ -72,6 +73,7 @@
 .word-details__word {
   font-size: 2.5rem;
   font-weight: bolder;
+  padding-right: 3rem;
 }
 
 .transcription {

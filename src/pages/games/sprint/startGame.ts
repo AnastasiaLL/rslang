@@ -48,7 +48,6 @@ export default function startGame(
   drawElements(gameState);
   gameState.totalScoreContainer.innerHTML = String(gameState.totalScore);
   drawNewWord(gameState);
-
   disableAllButtons();
 
   launchTimer(maxSec, gameState);

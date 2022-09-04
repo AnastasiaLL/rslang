@@ -24,6 +24,9 @@ export function getGameReady(chapterId: number) {
       children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[chapterId]}`],
     });
 
+    mainBlock.innerHTML = '';
+    mainBlock.append(heading, sprintContainer);
+
     const howManyPages = randomPages();
 
     const promises = howManyPages.map((page) => getWords(page, chapterId));
@@ -90,6 +93,8 @@ export function getGameReadyFromTextBook() {
           return null;
         })
         .then((secondPromiseResult) => {
+          mainBlock.innerHTML = '';
+          mainBlock.append(heading, sprintContainer);
           if (secondPromiseResult) {
             const userWordStudied = secondPromiseResult
               .filter((word: USERWORD) => word.optional.studied === true);
@@ -103,12 +108,11 @@ export function getGameReadyFromTextBook() {
               .filter((word) => !userWordStudiedIDs.includes(word.id));
 
             console.log('studiedFilteredOut', studiedFilteredOut);
+
             startGame(Constants.sprintGame.gameTime, sprintContainer, studiedFilteredOut);
           } else {
             startGame(Constants.sprintGame.gameTime, sprintContainer, words.flat());
           }
-          mainBlock.innerHTML = '';
-          mainBlock.append(heading, sprintContainer);
         });
     }
   }
