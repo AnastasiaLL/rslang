@@ -13,27 +13,10 @@ export let answersWrong = 0;
 export let voiceWordObj: WORD;
 export let allWords: WORD[] = [];
 export let currentWordNumber = 0;
-export const answersCorrectArray: WORD[] = [];
-export const answersWrongArray: WORD[] = [];
+export let answersCorrectArray: WORD[] = [];
+export let answersWrongArray: WORD[] = [];
 export let currentSeries = 0;
 export let maxSeries = 0;
-
-export function controllerAudioCall(id: number) {
-  const page = 1;
-  answersCorrect = 0;
-  answersWrong = 0;
-  getAudioCallWords(id, page).then(() => {
-    getRandomArray(allWords);
-    startAudioCallGame();
-  });
-}
-
-export function startAudioCallGame() {
-  openAudioCallPage();
-  drawWords(RandomWords(allWords));
-  voiceFunction(allWords[currentWordNumber]);
-  playAudioWord(allWords[currentWordNumber]);
-}
 
 export async function getAudioCallWords(chapter: number, page: number) {
   const answ = await getWords(page, chapter);
@@ -54,7 +37,6 @@ export function RandomWords(arr: WORD[]) {
     }
   }
   newArray.sort(() => 0.5 - Math.random());
-  (newArray);
 
   return newArray;
 }
@@ -115,84 +97,75 @@ export function drawCounters() {
 }
 
 export async function endAudioCallGame() {
-
-
   const mainBlock = document.querySelector('#main-block') as HTMLElement;
   mainBlock.innerHTML = '';
 
-
-
   const finishMessage = createBLock('h2', {
-      children: [Constants.sprintGame.finishHeading],
-    });
+    children: [Constants.sprintGame.finishHeading],
+  });
 
-    const scores = createBLock('div', {
-      classList: ['audiocall-results__scores'],
-    });
+  const scores = createBLock('div', {
+    classList: ['audiocall-results__scores'],
+  });
 
-    scores.innerHTML = `
+  scores.innerHTML = `
         <div class="score">
           ${Constants.sprintGame.score}
           <div class="total-score">20</div>
         </div>
         <div class="score">
           ${Constants.sprintGame.sequenceOfSuccess}
-          <div class="sequence-of-success">${answersCorrect}</div>
+          <div class="sequence-of-success">${maxSeries}</div>
         </div>`;
 
-    const correctAnswersContainer = createBLock('div', {
-      classList: ['results__correct-answers'],
-    });
+  const correctAnswersContainer = createBLock('div', {
+    classList: ['results__correct-answers'],
+  });
 
-    correctAnswersContainer.innerHTML = `<div class="results__sub-heading">${Constants.sprintGame.correсtsAnswers}
+  correctAnswersContainer.innerHTML = `<div class="results__sub-heading">${Constants.sprintGame.correсtsAnswers}
     (${answersCorrect})</div>`;
 
-    answersCorrectArray.forEach((answer) => {
-      const correctAnswer = createBLock('div', {
-        classList: ['results__correct-answer'],
-        children: [`${answer?.word} - ${answer?.wordTranslate}`],
-      });
-      correctAnswersContainer.append(correctAnswer);
+  answersCorrectArray.forEach((answer) => {
+    const correctAnswer = createBLock('div', {
+      classList: ['results__correct-answer'],
+      children: [`${answer?.word} - ${answer?.wordTranslate}`],
     });
+    correctAnswersContainer.append(correctAnswer);
+  });
 
-    const incorrectAnswersContainer = createBLock('div', {
-      classList: ['results__incorrect-answers'],
-    });
+  const incorrectAnswersContainer = createBLock('div', {
+    classList: ['results__incorrect-answers'],
+  });
 
-    incorrectAnswersContainer.innerHTML = `<div class="results__sub-heading">${Constants.sprintGame.incorreсtsAnswers}
+  incorrectAnswersContainer.innerHTML = `<div class="results__sub-heading">${Constants.sprintGame.incorreсtsAnswers}
     (${answersWrong})</div>`;
 
-    answersWrongArray.forEach((answer) => {
-      const incorrectAnswer = createBLock('div', {
-        classList: ['results__incorrect-answer'],
-        children: [`${answer?.word} - ${answer?.wordTranslate}`],
-      });
-      incorrectAnswersContainer.append(incorrectAnswer);
+  answersWrongArray.forEach((answer) => {
+    const incorrectAnswer = createBLock('div', {
+      classList: ['results__incorrect-answer'],
+      children: [`${answer?.word} - ${answer?.wordTranslate}`],
     });
+    incorrectAnswersContainer.append(incorrectAnswer);
+  });
 
-    const answers = createBLock('div', {
-      classList: ['audiocall-results__answers'],
-      children: [correctAnswersContainer, incorrectAnswersContainer],
-    });
+  const answers = createBLock('div', {
+    classList: ['audiocall-results__answers'],
+    children: [correctAnswersContainer, incorrectAnswersContainer],
+  });
 
-    const startAgainButton = createBLock('button', {
-      classList: ['button', 'secondary-button', 'audiocall-button'],
-      children: [Constants.sprintGame.startAgainButtonText],
-      event: 'click',
-      listener: openGamesPage,
-    });
+  const startAgainButton = createBLock('button', {
+    classList: ['button', 'secondary-button', 'audiocall-button'],
+    children: [Constants.sprintGame.startAgainButtonText],
+    event: 'click',
+    listener: openGamesPage,
+  });
 
-    const endWrap = createBLock('div', {
-      classList: ['end-audioCall'],
-      children: [finishMessage,scores,answers,startAgainButton],
-    });
+  const endWrap = createBLock('div', {
+    classList: ['end-audioCall'],
+    children: [finishMessage, scores, answers, startAgainButton],
+  });
 
-
-    mainBlock.append(endWrap)
-
-
-
-
+  mainBlock.append(endWrap);
 
   // update user/words & stats; ////////////////
   console.log('all words in game', [...answersCorrectArray, ...answersWrongArray]);
@@ -232,10 +205,35 @@ export async function endAudioCallGame() {
   } else {
     const paragraph = createBLock('p', {
       classList: ['audiocall-paragraph'],
-      children: ['Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры']
+      children: ['Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры'],
     });
     mainBlock.append(paragraph);
   }
+}
 
+export function startAudioCallGame() {
+  openAudioCallPage();
+  drawWords(RandomWords(allWords));
+  voiceFunction(allWords[currentWordNumber]);
+  playAudioWord(allWords[currentWordNumber]);
+}
 
+export function controllerAudioCall(id: number) {
+  let page = getRandomNumber(1, 29);
+  answersCorrect = 0;
+  answersWrong = 0;
+  answersCorrectArray = [];
+  answersWrongArray = [];
+  const groupBlock = document.querySelector('.chapter__heading') as HTMLSelectElement;
+  const pageBlock = document.querySelector('#pagination__active') as HTMLElement;
+
+  if (groupBlock && pageBlock) {
+    page = Number(pageBlock.dataset.pageNumber) - 1;
+    id = Number(groupBlock.value);
+  }
+
+  getAudioCallWords(id, page).then(() => {
+    getRandomArray(allWords);
+    startAudioCallGame();
+  });
 }

@@ -976,10 +976,13 @@ footer .copyright:before {
 }
 
 .voice {
-  background-color: #563de7;
-  width: 100px;
-  height: 100px;
+  background-color: rgba(77, 52, 224, 0.1);
+  width: 65px;
+  height: 65px;
   cursor: pointer;
+  border-radius: 90px;
+  /* border: 1px solid orange; */
+  padding: 11px;
 }
 
 .words {
