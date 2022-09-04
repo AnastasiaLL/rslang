@@ -3,6 +3,7 @@ import drawElements from './drawElements';
 import { GameState, WordPairedWithGuessTranslation } from '../../../types/sprint';
 import launchTimer from './launchTimer';
 import drawNewWord from './drawNewWord';
+import { disableAllButtons } from '../../../utils/disableEnable';
 
 export default function startGame(
   maxSec: number,
@@ -44,8 +45,11 @@ export default function startGame(
     sprintContainer,
   };
 
-  launchTimer(maxSec, gameState);
   drawElements(gameState);
   gameState.totalScoreContainer.innerHTML = String(gameState.totalScore);
   drawNewWord(gameState);
+
+  disableAllButtons();
+
+  launchTimer(maxSec, gameState);
 }

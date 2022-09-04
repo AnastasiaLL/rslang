@@ -127,6 +127,12 @@ h3 {
   background-color: #3a7e52;
 }
 
+.button[disabled] {
+  color: #464646;
+  background-color: #bebebe;
+  box-shadow: inset 0 0 0 1px #464646;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -417,6 +423,10 @@ input:checked + .word-details__switch-slider:before {
 .word-summary:hover {
   background-color: #e1f1e7;
   cursor: pointer;
+}
+
+.word-summary h3 {
+  font-size: 2rem;
 }
 
 .word-summary__studied-icon {
@@ -1126,6 +1136,19 @@ footer .copyright:before {
   font-size: 2rem;
   padding-bottom: 2rem;
   font-weight: bolder;
+}
+
+.loader {
+  margin: 10% 50%;
+  font-size: 2rem;
+  padding-top: 2rem;
+  background-image: url("../images/loader.gif");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 2rem;
+  text-transform: uppercase;
+  font-color: #898989;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

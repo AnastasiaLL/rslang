@@ -1,5 +1,6 @@
 import { GameState } from '../../../types/sprint';
 import finishGame from './finishGame';
+import { enableAllButtons } from '../../../utils/disableEnable';
 
 export default function launchTimer(maxSec: number, gameState: GameState) {
   let count = maxSec;
@@ -14,6 +15,8 @@ export default function launchTimer(maxSec: number, gameState: GameState) {
     if (count <= 0) {
       finishGame(gameState);
     }
+
+    enableAllButtons();
   }, 1000);
   Object.assign(gameState, { timer });
 }
