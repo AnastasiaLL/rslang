@@ -203,6 +203,10 @@ input:checked + .word-details__switch-slider:before {
   cursor: pointer;
 }
 
+.word-summary h3 {
+  font-size: 2rem;
+}
+
 
 .word-summary__studied-icon {
   padding: 8px;

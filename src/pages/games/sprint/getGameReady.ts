@@ -7,6 +7,7 @@ import makeWordTranslationPairs from './makeWordTranslationPairs';
 import { WordPairedWithGuessTranslation } from '../../../types/sprint';
 import getUserWord from '../../textbook/workWithApi/getUserWord';
 import { USERWORD } from '../../../types/ResponsesTypes';
+import showLoader from '../../../utils/loader';
 
 export function getGameReady(chapterId: number) {
   const mainBlock = document.querySelector('#main-block');
@@ -22,8 +23,6 @@ export function getGameReady(chapterId: number) {
       // children: [`${Constants.sprintGame.levelHeading}: ${String(chapterId + 1)}`]
       children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[chapterId]}`],
     });
-
-    mainBlock.append(heading, sprintContainer);
 
     const howManyPages = randomPages();
 
@@ -49,7 +48,6 @@ export function getGameReadyFromTextBook() {
     const group = groupBlock.value;
     const page = pageBlock.dataset.pageNumber;
     if (group && page) {
-      mainBlock.innerHTML = '';
       const heading = createBLock('div', {
         classList: ['game-parameters'],
         children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[Number(group)]} | ${Constants.sprintGame.beginOnPage}: ${page}`],
@@ -58,9 +56,10 @@ export function getGameReadyFromTextBook() {
         classList: ['game-container'],
       });
 
-      mainBlock.append(heading, sprintContainer);
+      showLoader();
+      // mainBlock.append(heading, sprintContainer);
 
-      let howManyPages = Constants.pages - Number(page);
+      let howManyPages = Constants.pages - Number(page) + 1;
       if (howManyPages > Constants.sprintPagesToPlay) {
         howManyPages = Constants.sprintPagesToPlay;
       }
@@ -108,6 +107,8 @@ export function getGameReadyFromTextBook() {
           } else {
             startGame(Constants.sprintGame.gameTime, sprintContainer, words.flat());
           }
+          mainBlock.innerHTML = '';
+          mainBlock.append(heading, sprintContainer);
         });
     }
   }
