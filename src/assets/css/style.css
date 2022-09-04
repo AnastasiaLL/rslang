@@ -985,12 +985,8 @@ footer .copyright:before {
   display: flex;
   flex-direction: column;
   text-align: center;
-<<<<<<< HEAD
   padding: 3rem 2rem;
   font-size: 1.4rem;
-=======
-  font-size: 14px;
->>>>>>> 0ba64b17a12bec74add9580c5a2d1e7fd1c5cc64
 }
 
 .audiocall-results__answers {
