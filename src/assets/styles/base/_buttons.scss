@@ -51,7 +51,7 @@
 }
 
 .button[disabled] {
-  color: $color-shade-s;
-  background-color: $color-shade-l;
-  box-shadow: inset 0 0 0 1px $color-shade-s;
+  color: $color-shade-l;
+  background-color: $color-shade-xxl;
+  box-shadow: inset 0 0 0 1px $color-shade-l;
 }
