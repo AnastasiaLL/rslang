@@ -5,6 +5,7 @@ import getUserWord from '../workWithApi/getUserWord';
 import Constants from '../../../constants/Constants';
 import createBLock from '../../../components/createBLock';
 import getWord from '../workWithApi/getWord';
+import drawCrown from '../drawCrown';
 
 export default function drawCards(): void {
   const wordList = document.querySelector('.textbook__words-list');
@@ -58,6 +59,7 @@ export default function drawCards(): void {
               if (userWord.optional.studied) wordBLock.classList.add('studied');
             }
           });
+          drawCrown();
         });
       }
     }

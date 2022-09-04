@@ -316,3 +316,13 @@ input:checked + .word-details__switch-slider:before {
 .textbook-background_hard {
   background: rgb(255, 255, 255);
 }
+
+.page-crown::after {
+  position: absolute;
+  margin-top: -45px;
+  content: " ";
+  background: url("../images/crown.svg");
+  background-size: 100%;
+  width: 25px;
+  height: 20px;
+}
