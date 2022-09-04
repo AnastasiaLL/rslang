@@ -16,8 +16,6 @@
 }
 
 .popUp {
-  width: 50%;
-  height: 40%;
   z-index: 3;
   background: #FFF;
   display: flex;
@@ -29,13 +27,11 @@
 
 
 .popUp__form {
-  width: 100%;
   display: flex;
-  height: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 0 10%;
+  padding: 2rem;
   text-align: center;
   gap: 3rem;
   justify-content: center;
@@ -44,7 +40,7 @@
 
 .popUp__form_Sign{
   background-color: #ffc25c;
-  border-radius: 10px 136px 135px 13px;
+  border-radius: 8px 75px 75px 8px;
 }
 
 .form__h2{
