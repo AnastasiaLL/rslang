@@ -1,7 +1,9 @@
+import createBLock from '../../../components/createBLock';
 import Constants from '../../../constants/Constants';
 import { WORD } from '../../../types/ResponsesTypes';
 import prepareUpsertStats from '../../stats/model/prepareUpsertStats';
 import getWords from '../../textbook/workWithApi/getWords';
+import openGamesPage from '../openGamesPage';
 import updateGameUserWords from '../updateGameUserWords';
 import playAudioWord, { voiceFunction } from './audio';
 import openAudioCallPage, { drawWords } from './openCallPage';
@@ -11,41 +13,21 @@ export let answersWrong = 0;
 export let voiceWordObj: WORD;
 export let allWords: WORD[] = [];
 export let currentWordNumber = 0;
-export const answersCorrectArray: WORD[] = [];
-export const answersWrongArray: WORD[] = [];
+export let answersCorrectArray: WORD[] = [];
+export let answersWrongArray: WORD[] = [];
 export let currentSeries = 0;
 export let maxSeries = 0;
-
-export function controllerAudioCall(id: number) {
-  const page = 1;
-  getAudioCallWords(id, page).then(() => {
-    getRandomArray(allWords);
-    startAudioCallGame();
-  });
-}
-
-export function startAudioCallGame() {
-  openAudioCallPage();
-  drawWords(RandomWords(allWords));
-  voiceFunction(allWords[currentWordNumber]);
-  playAudioWord(allWords[currentWordNumber]);
-}
 
 export async function getAudioCallWords(chapter: number, page: number) {
   const answ = await getWords(page, chapter);
   allWords = answ.slice();
-
-  console.log(1);
 }
 
 export function getRandomArray(arr: WORD[]) {
   arr.sort(() => 0.5 - Math.random());
-  console.log(allWords);
-  console.log(2);
 }
 
 export function RandomWords(arr: WORD[]) {
-  console.log(3);
   const newArray: WORD[] = [];
   newArray.push(arr[currentWordNumber]);
   while (newArray.length < 5) {
@@ -55,7 +37,6 @@ export function RandomWords(arr: WORD[]) {
     }
   }
   newArray.sort(() => 0.5 - Math.random());
-  console.log(newArray);
 
   return newArray;
 }
@@ -116,6 +97,76 @@ export function drawCounters() {
 }
 
 export async function endAudioCallGame() {
+  const mainBlock = document.querySelector('#main-block') as HTMLElement;
+  mainBlock.innerHTML = '';
+
+  const finishMessage = createBLock('h2', {
+    children: [Constants.sprintGame.finishHeading],
+  });
+
+  const scores = createBLock('div', {
+    classList: ['audiocall-results__scores'],
+  });
+
+  scores.innerHTML = `
+        <div class="score">
+          ${Constants.sprintGame.score}
+          <div class="total-score">20</div>
+        </div>
+        <div class="score">
+          ${Constants.sprintGame.sequenceOfSuccess}
+          <div class="sequence-of-success">${maxSeries}</div>
+        </div>`;
+
+  const correctAnswersContainer = createBLock('div', {
+    classList: ['results__correct-answers'],
+  });
+
+  correctAnswersContainer.innerHTML = `<div class="results__sub-heading">${Constants.sprintGame.correсtsAnswers}
+    (${answersCorrect})</div>`;
+
+  answersCorrectArray.forEach((answer) => {
+    const correctAnswer = createBLock('div', {
+      classList: ['results__correct-answer'],
+      children: [`${answer?.word} - ${answer?.wordTranslate}`],
+    });
+    correctAnswersContainer.append(correctAnswer);
+  });
+
+  const incorrectAnswersContainer = createBLock('div', {
+    classList: ['results__incorrect-answers'],
+  });
+
+  incorrectAnswersContainer.innerHTML = `<div class="results__sub-heading">${Constants.sprintGame.incorreсtsAnswers}
+    (${answersWrong})</div>`;
+
+  answersWrongArray.forEach((answer) => {
+    const incorrectAnswer = createBLock('div', {
+      classList: ['results__incorrect-answer'],
+      children: [`${answer?.word} - ${answer?.wordTranslate}`],
+    });
+    incorrectAnswersContainer.append(incorrectAnswer);
+  });
+
+  const answers = createBLock('div', {
+    classList: ['audiocall-results__answers'],
+    children: [correctAnswersContainer, incorrectAnswersContainer],
+  });
+
+  const startAgainButton = createBLock('button', {
+    classList: ['button', 'secondary-button', 'audiocall-button'],
+    children: [Constants.sprintGame.startAgainButtonText],
+    event: 'click',
+    listener: openGamesPage,
+  });
+
+  const endWrap = createBLock('div', {
+    classList: ['end-audioCall'],
+    children: [finishMessage, scores, answers, startAgainButton],
+  });
+
+  mainBlock.append(endWrap);
+
   // update user/words & stats; ////////////////
   console.log('all words in game', [...answersCorrectArray, ...answersWrongArray]);
 
@@ -152,75 +203,37 @@ export async function endAudioCallGame() {
       updatedUserWords.todayGameStudiedWords,
     );
   } else {
-  // gameState.sprintContainer.append('Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры');
+    const paragraph = createBLock('p', {
+      classList: ['audiocall-paragraph'],
+      children: ['Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры'],
+    });
+    mainBlock.append(paragraph);
   }
 }
 
-// export function drawCounters() {
-//   // openAudioCallPage();
-//   const wrong = document.querySelector('.answers__wrong') as HTMLElement;
-//   wrong.textContent = `${answersWrong}`;
-//   const correct = document.querySelector('.answers__correct') as HTMLElement;
-//   correct.textContent = `${answersCorrect}`;
-// }
+export function startAudioCallGame() {
+  openAudioCallPage();
+  drawWords(RandomWords(allWords));
+  voiceFunction(allWords[currentWordNumber]);
+  playAudioWord(allWords[currentWordNumber]);
+}
 
-// export function isMatch(currentWord: WORD) {
-//   if (voiceWordObj.id === currentWord.id) {
-//     answersCorrect += 1;
-//   } else {
-//     answersCorrect -= 1;
-//   }
-//   drawCounters();
-// }
+export function controllerAudioCall(id: number) {
+  let page = getRandomNumber(1, 29);
+  answersCorrect = 0;
+  answersWrong = 0;
+  answersCorrectArray = [];
+  answersWrongArray = [];
+  const groupBlock = document.querySelector('.chapter__heading') as HTMLSelectElement;
+  const pageBlock = document.querySelector('#pagination__active') as HTMLElement;
 
-// export function voiceFunction(ArrayWords: WORD[]) {
-//   const voiceWord = getRandomNumber(0, 5);
-//   const audioWrapper = document.querySelector('.voice') as HTMLElement;
-//   audioWrapper.textContent = '';
+  if (groupBlock && pageBlock) {
+    page = Number(pageBlock.dataset.pageNumber) - 1;
+    id = Number(groupBlock.value);
+  }
 
-//   voiceWordObj = ArrayWords[voiceWord];
-
-//   audioWrapper.addEventListener('click', () => {
-//     playAudioWord(ArrayWords[voiceWord]);
-//   });
-// }
-
-// export async function getRandomWords(chapter: number) {
-//   const page = getRandomNumber(0, 5);
-//   const allWords: WORD[] = [];
-
-//   const WordsWrapper = document.querySelector('.words') as HTMLElement;
-//   WordsWrapper.textContent = '';
-
-//   getWords(page, chapter).then((answer) => {
-//     for (let i = 0; i < 5; i += 1) {
-//       let num: number;
-
-//   function random() {
-//     num = getRandomNumber(0, 19);
-
-//     if (allWords.includes(answer[num])) {
-//       random();
-//     } else {
-//       allWords.push(answer[num]);
-//   const newWord = createBLock('div', {
-//     classList: ['word', 'button', 'secondary-button'],
-//     children: [`${answer[num].wordTranslate}`],
-//   });
-
-//   newWord.addEventListener('click', () => {
-//     isMatch(answer[num]);
-//   });
-//   WordsWrapper.append(newWord);
-// }
-//       }
-
-//       random();
-//     }
-//   }).then(() => voiceFunction(allWords));
-// }
-
-// const dontKnown = document.querySelector('.dontKnown') as HTMLElement;
-// dontKnown.addEventListener( 'click', () => {
-//     NotMatch ()
-// });
+  getAudioCallWords(id, page).then(() => {
+    getRandomArray(allWords);
+    startAudioCallGame();
+  });
+}
