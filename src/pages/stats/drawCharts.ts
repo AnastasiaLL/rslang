@@ -26,6 +26,10 @@ export function drawDoughnutChart(todayData: DayStat) {
         datasets: [{
           data: [todayData.answeredCorrectlyPercentage,
             (100 - todayData.answeredCorrectlyPercentage)],
+          backgroundColor: [
+            correctColor,
+            incorrectColor,
+          ],
         }],
       },
       options: {
@@ -62,6 +66,9 @@ export function drawLineChart(studiedByDayStatsData: SeveralDaysStat, id: string
         labels: studiedByDayStatsData.labels,
         datasets: [{
           data: studiedByDayStatsData.data,
+          fill: false,
+          borderColor: randomBrightColor(),
+          tension: 0.1,
         }],
       },
       options: {
@@ -100,8 +107,10 @@ export function drawBarChart(newWordsByDayStatsData: SeveralDaysStat, id: string
     const chart = new Chart(canvas as HTMLCanvasElement, {
       type: 'bar',
       data: {
+        labels: newWordsByDayStatsData.labels,
         datasets: [{
           data: newWordsByDayStatsData.data,
+          backgroundColor: fadedColors,
         }],
       },
       options: {

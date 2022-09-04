@@ -5,6 +5,8 @@ import randomPages from '../../../utils/randomisers';
 import createBLock from '../../../components/createBLock';
 import makeWordTranslationPairs from './makeWordTranslationPairs';
 import { WordPairedWithGuessTranslation } from '../../../types/sprint';
+import getUserWord from '../../textbook/workWithApi/getUserWord';
+import { USERWORD } from '../../../types/ResponsesTypes';
 
 export function getGameReady(chapterId: number) {
   const mainBlock = document.querySelector('#main-block');
@@ -47,6 +49,17 @@ export function getGameReadyFromTextBook() {
     const group = groupBlock.value;
     const page = pageBlock.dataset.pageNumber;
     if (group && page) {
+      mainBlock.innerHTML = '';
+      const heading = createBLock('div', {
+        classList: ['game-parameters'],
+        children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[Number(group)]} | ${Constants.sprintGame.beginOnPage}: ${page}`],
+      });
+      const sprintContainer = createBLock('div', {
+        classList: ['game-container'],
+      });
+
+      mainBlock.append(heading, sprintContainer);
+
       let howManyPages = Constants.pages - Number(page);
       if (howManyPages > Constants.sprintPagesToPlay) {
         howManyPages = Constants.sprintPagesToPlay;
@@ -58,35 +71,44 @@ export function getGameReadyFromTextBook() {
         promises.push(getWords(Number(page) - 1 + i, Number(group)));
       }
 
-      console.log(promises);
+      const words: WordPairedWithGuessTranslation[][] = [];
 
-      Promise.allSettled(promises).then((allResults) => {
-        const words: WordPairedWithGuessTranslation[][] = [];
+      Promise.allSettled(promises)
+        .then((allResults) => {
+          allResults.forEach((result) => {
+            if (result.status === 'fulfilled') {
+              const pairedWords = makeWordTranslationPairs(result.value);
+              words.unshift(pairedWords);
+            }
+          });
+          console.log('1st Promise result', words);
 
-        allResults.forEach((result) => {
-          if (result.status === 'fulfilled') {
-            const pairedWords = makeWordTranslationPairs(result.value);
-            words.unshift(pairedWords);
+          const token = window.localStorage.getItem(Constants.localStorageKeys.token);
+          const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
+          if (userId && token) {
+            return getUserWord(userId, token);
+          }
+          return null;
+        })
+        .then((secondPromiseResult) => {
+          if (secondPromiseResult) {
+            const userWordStudied = secondPromiseResult
+              .filter((word: USERWORD) => word.optional.studied === true);
+
+            console.log('userWordNotStudied', userWordStudied);
+
+            const userWordStudiedIDs = userWordStudied
+              .map((word: USERWORD) => word.optional.wordId);
+
+            const studiedFilteredOut = words.flat()
+              .filter((word) => !userWordStudiedIDs.includes(word.id));
+
+            console.log('studiedFilteredOut', studiedFilteredOut);
+            startGame(Constants.sprintGame.gameTime, sprintContainer, studiedFilteredOut);
+          } else {
+            startGame(Constants.sprintGame.gameTime, sprintContainer, words.flat());
           }
         });
-
-        console.log('words', words);
-
-        mainBlock.innerHTML = '';
-        const heading = createBLock('div', {
-          classList: ['game-parameters'],
-          // children:[`${Constants.sprintGame.levelHeading}: ${group}
-          // |${Constants.sprintGame.beginOnPage}:${page}`],
-          children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[Number(group)]} | ${Constants.sprintGame.beginOnPage}: ${page}`],
-        });
-        const sprintContainer = createBLock('div', {
-          classList: ['game-container'],
-        });
-
-        mainBlock.append(heading, sprintContainer);
-
-        startGame(Constants.sprintGame.gameTime, sprintContainer, words.flat());
-      });
     }
   }
 }
