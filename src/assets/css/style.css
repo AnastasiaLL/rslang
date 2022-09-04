@@ -580,6 +580,7 @@ footer .copyright:before {
 }
 
 .popUp {
+  height: 350px;
   z-index: 3;
   background: #FFF;
   display: flex;
@@ -591,14 +592,12 @@ footer .copyright:before {
 
 .popUp__form {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
   padding: 2rem;
   text-align: center;
   gap: 3rem;
-  justify-content: center;
-  align-items: center;
 }
 
 .popUp__form_Sign {
@@ -610,51 +609,7 @@ footer .copyright:before {
   color: #3a7e52;
 }
 
-#emailSignInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#passwordSignInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#nameRegInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#emailRegInput {
-  outline: none;
-  border-radius: 50rem;
-  border: 1px solid #3a7e52;
-  padding: 1.1rem 2rem 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  max-height: 4.2rem;
-  min-width: 18rem;
-}
-
-#passwordRegInput {
+.form__input {
   outline: none;
   border-radius: 50rem;
   border: 1px solid #3a7e52;
@@ -667,6 +622,31 @@ footer .copyright:before {
 
 .incorrectInput {
   border: 2px solid #b0011d;
+}
+
+.error-alert {
+  position: relative;
+  z-index: 2;
+  padding: 5px 10px;
+  text-align: left;
+  width: 145px;
+  background: #dedede;
+  top: 35px;
+  margin-top: -77px;
+  left: -15px;
+  border-radius: 5px;
+}
+
+.error-alert::before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  z-index: 1;
+  display: inline-block;
+  top: -5px;
+  transform: rotate(45deg);
+  background: #dedede;
 }
 
 .team-screen {
