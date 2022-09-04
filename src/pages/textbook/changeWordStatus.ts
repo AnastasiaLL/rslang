@@ -2,6 +2,7 @@ import getUserWord from './workWithApi/getUserWord';
 import Constants from '../../constants/Constants';
 import { USERWORD } from '../../types/ResponsesTypes';
 import createUserWord from './workWithApi/createUserWord';
+import drawCrown from './drawCrown';
 
 export default function changeWordStatus(event: Event) {
   const controller = event.currentTarget;
@@ -62,6 +63,7 @@ export default function changeWordStatus(event: Event) {
             wordBLock.classList.add('studied');
           } else wordBLock.classList.remove('studied');
         }
+        drawCrown();
       });
     }
   }
