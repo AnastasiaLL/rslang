@@ -1,7 +1,7 @@
 import createBLock from '../../components/createBLock';
 import Constants from '../../constants/Constants';
 import updateNav from '../../utils/updateNav';
-import {controllerAudioCall} from '../games/audiocall/wordsFunctions'
+import { controllerAudioCall } from './audiocall/wordsFunctions';
 
 import openAudioCallPage from './audiocall/openCallPage';
 
@@ -39,7 +39,7 @@ export default function openGamesPage() {
     children: [chapter],
     event: 'click',
     listener: () => controllerAudioCall(index),
-    
+
   }));
 
   const audiocallDifficultyContainer = createBLock('div', {
