@@ -663,13 +663,13 @@ footer .copyright:before {
 
 .team-screen {
   display: flex;
-  width: 50%;
-  height: 30%;
-  margin: 20px auto;
-  background-image: url(http://localhost:8080/src/assets/images/start-screen-img.png);
+  width: 25%;
+  height: 54vh;
+  margin: 20px;
   background-repeat: no-repeat;
   background-position: right top;
-  background-size: 38%;
+  background-size: 70%;
+  background-position-x: center;
   border: 1px solid #dddddd;
   box-shadow: 1px 0px 10px -5px rgba(34, 60, 80, 0.2);
   border-radius: 8px;
@@ -686,13 +686,31 @@ footer .copyright:before {
   padding: 0 10%;
   text-align: center;
   gap: 3rem;
-  width: 62%;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: 66px;
+}
+
+.cardWrapper {
+  display: flex;
+  margin-top: 10vh;
 }
 
 .team-screen__description {
   font-size: 1.8rem;
+}
+
+.id-1 {
+  background-image: url(http://localhost:8080/src/assets/images/1.jpg);
+}
+
+.id-2 {
+  background-image: url(http://localhost:8080/src/assets/images/2.jpg);
+}
+
+.id-3 {
+  background-image: url(http://localhost:8080/src/assets/images/3.jpg);
 }
 
 .stats {
