@@ -182,13 +182,11 @@ h3 {
   color: #3a7e52;
 }
 
-#user-name {
+.user-name {
   padding-bottom: 0.3rem;
   padding-left: 3.5rem;
   cursor: default;
-}
-#user-name:hover {
-  color: #464646;
+  color: #3a7e52;
 }
 
 .burger {
@@ -202,7 +200,8 @@ h3 {
   background-image: url("../images/start-screen-img.png");
   background-repeat: no-repeat;
   background-position: right top;
-  background-size: 38%;
+  background-size: contain;
+  border-radius: 8px;
 }
 
 .start-screen__info {
@@ -231,6 +230,7 @@ h3 {
   padding: 6rem 2rem;
   align-items: center;
   gap: 3rem;
+  border-radius: 8px;
 }
 
 .chapter__heading {
@@ -497,31 +497,31 @@ input:checked + .word-details__switch-slider:before {
 }
 
 .textbook-background_0 {
-  background: rgba(77, 52, 224, 0.1);
+  background: linear-gradient(90deg, rgba(153, 92, 223, 0.5) 0%, rgba(153, 92, 223, 0.5) 4%, rgba(153, 92, 223, 0.05) 4%, rgba(153, 92, 223, 0.05) 100%);
 }
 
 .textbook-background_1 {
-  background: rgba(52, 224, 158, 0.1);
+  background: linear-gradient(90deg, rgba(92, 173, 223, 0.5) 0%, rgba(92, 173, 223, 0.5) 4%, rgba(92, 173, 223, 0.05) 4%, rgba(92, 173, 223, 0.05) 100%);
 }
 
 .textbook-background_2 {
-  background: rgba(207, 52, 224, 0.1);
+  background: linear-gradient(90deg, rgba(92, 223, 184, 0.5) 0%, rgba(92, 223, 166, 0.5) 4%, rgba(92, 223, 166, 0.05) 4%, rgba(92, 223, 166, 0.05) 100%);
 }
 
 .textbook-background_3 {
-  background: rgba(52, 210, 224, 0.1);
+  background: linear-gradient(90deg, rgba(151, 223, 92, 0.5) 0%, rgba(151, 223, 92, 0.5) 4%, rgba(151, 223, 92, 0.05) 4%, rgba(151, 223, 92, 0.05) 100%);
 }
 
 .textbook-background_4 {
-  background: rgba(95, 224, 52, 0.1);
+  background: linear-gradient(90deg, rgba(255, 160, 51, 0.5) 0%, rgba(255, 160, 51, 0.5) 4%, rgba(255, 160, 51, 0.05) 4%, rgba(255, 160, 51, 0.05) 100%);
 }
 
 .textbook-background_5 {
-  background: rgba(207, 52, 224, 0.1);
+  background: linear-gradient(90deg, rgba(223, 97, 92, 0.5) 0%, rgba(223, 97, 92, 0.5) 4%, rgba(223, 97, 92, 0.05) 4%, rgba(223, 97, 92, 0.05) 100%);
 }
 
 .textbook-background_hard {
-  background: rgba(224, 52, 66, 0.1);
+  background: rgb(255, 255, 255);
 }
 
 footer {
@@ -580,8 +580,6 @@ footer .copyright:before {
 }
 
 .popUp {
-  width: 50%;
-  height: 40%;
   z-index: 3;
   background: #FFF;
   display: flex;
@@ -592,13 +590,11 @@ footer .copyright:before {
 }
 
 .popUp__form {
-  width: 100%;
   display: flex;
-  height: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 0 10%;
+  padding: 2rem;
   text-align: center;
   gap: 3rem;
   justify-content: center;
@@ -607,7 +603,7 @@ footer .copyright:before {
 
 .popUp__form_Sign {
   background-color: #ffc25c;
-  border-radius: 10px 136px 135px 13px;
+  border-radius: 8px 75px 75px 8px;
 }
 
 .form__h2 {

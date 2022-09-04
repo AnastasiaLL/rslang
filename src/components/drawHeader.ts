@@ -134,7 +134,7 @@ export default function drawHeader(): void {
         if (navItem instanceof HTMLElement) {
           navItem.innerHTML = '';
           navItem.append(
-            createBLock('div', { children: [user.name || 'Name'], attributes: { id: 'user-name' } }),
+            createBLock('div', { children: [user.name || 'Name'], attributes: { id: 'user-name' }, classList: ['user-name'] }),
             createBLock('div', {
               classList: ['login'], children: ['Выйти'], event: 'click', listener: logOut,
             }),

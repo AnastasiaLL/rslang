@@ -23,7 +23,8 @@ export default class Constants {
 
   static mainPage = {
     headLine: 'RSLang - приложение для изучения английского',
-    paragraph: 'Позволяет выучить английский и др описание возможностей и преимуществ приложения строк на пять и др описание возможностей и преимуществ приложения строк на пять',
+    paragraph: `Выучи английский от уровня А1 до С2 с приложением RSLang! </br>
+    В приложении тебя ждет учебник с более чем 3000 словами разного уровня, игры для запоминания слов и статистика твоих успехов`,
     buttonStart: 'Начать',
   };
 
@@ -198,7 +199,7 @@ export default class Constants {
 
   static pages = 30;
 
-  static sprintPagesToPlay = 3;
+  static sprintPagesToPlay = 10;
 
   static answersForWordToBeStudied = 3;
 }

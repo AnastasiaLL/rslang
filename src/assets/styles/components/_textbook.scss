@@ -5,6 +5,8 @@
   padding: 6rem 2rem;
   align-items: center;
   gap: 3rem;
+
+  border-radius: 8px;
 }
 
 
@@ -284,29 +286,29 @@ input:checked + .word-details__switch-slider:before {
 }
 
 .textbook-background_0 {
-  background: rgba(77, 52, 224, 0.1);
+  background: linear-gradient(90deg, rgba(153, 92, 223, 0.5) 0%, rgba(153, 92, 223, 0.5) 4%, rgba(153, 92, 223, 0.05) 4%, rgba(153, 92, 223, 0.05) 100%);
 }
 
 .textbook-background_1 {
-  background: rgba(52, 224, 158, 0.1);
+  background: linear-gradient(90deg, rgba(92, 173, 223, 0.5) 0%, rgba(92, 173, 223, 0.5) 4%, rgba(92, 173, 223, 0.05) 4%, rgba(92, 173, 223, 0.05) 100%);
 }
 
 .textbook-background_2 {
-  background: rgba(207, 52, 224, 0.1);
+  background: linear-gradient(90deg, rgba(92, 223, 184, 0.5) 0%, rgba(92, 223, 166, 0.5) 4%, rgba(92, 223, 166, 0.05) 4%, rgba(92, 223, 166, 0.05) 100%);
 }
 
 .textbook-background_3 {
-  background: rgba(52, 210, 224, 0.1);
+  background: linear-gradient(90deg, rgba(151, 223, 92, 0.5) 0%, rgba(151, 223, 92, 0.5) 4%, rgba(151, 223, 92, 0.05) 4%, rgba(151, 223, 92, 0.05) 100%);
 }
 
 .textbook-background_4 {
-  background: rgba(95, 224, 52, 0.1);
+  background: linear-gradient(90deg, rgba(255, 160, 51, 0.5) 0%, rgba(255, 160, 51, 0.5) 4%, rgba(255, 160, 51, 0.05) 4%, rgba(255, 160, 51, 0.05) 100%);
 }
 
 .textbook-background_5 {
-  background: rgba(207, 52, 224, 0.1);
+  background: linear-gradient(90deg, rgb(223, 97, 92, 0.5) 0%, rgba(223, 97, 92, 0.5) 4%, rgba(223, 97, 92, 0.05) 4%, rgba(223, 97, 92, 0.05) 100%);
 }
 
 .textbook-background_hard {
-  background: rgba(224, 52, 66, 0.1);
+  background: rgb(255, 255, 255);
 }
