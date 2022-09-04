@@ -68,6 +68,7 @@ export default function openTextbook() {
     });
   }
 
+
   // сделать меню активным
 
   updateNav('textbook');
