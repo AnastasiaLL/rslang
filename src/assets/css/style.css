@@ -696,7 +696,7 @@ footer .copyright:before {
 .team-screen {
   display: flex;
   width: 25%;
-  xheight: 54vh;
+  height: 54vh;
   margin: 20px;
   background-repeat: no-repeat;
   background-position: right top;
@@ -729,15 +729,15 @@ footer .copyright:before {
 }
 
 .id-1 {
-  background-image: url(http://localhost:8080/src/assets/images/1.jpg);
+  background-image: url("../images/1.jpg");
 }
 
 .id-2 {
-  background-image: url(http://localhost:8080/src/assets/images/2.jpg);
+  background-image: url("../images/2.jpg");
 }
 
 .id-3 {
-  background-image: url(http://localhost:8080/src/assets/images/3.jpg);
+  background-image: url("../images/3.jpg");
 }
 
 .stats {
