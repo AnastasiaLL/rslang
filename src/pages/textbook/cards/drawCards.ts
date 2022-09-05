@@ -33,6 +33,19 @@ export default function drawCards(): void {
           });
           const card = document.querySelector('.word-summary');
           if (card instanceof HTMLElement) card.click();
+        }).then(() => {
+          if (userId && token) {
+            getUserWord(userId, token).then((userWords: USERWORD[]) => {
+              userWords.forEach((userWord) => {
+                const wordBLock = document.getElementById(userWord.optional.wordId);
+                if (wordBLock instanceof HTMLElement) {
+                  if (userWord.difficulty === 'true') wordBLock.classList.add('hard');
+                  if (userWord.optional.studied) wordBLock.classList.add('studied');
+                }
+              });
+              drawCrown();
+            });
+          }
         });
       } else if (token && userId) {
         getUserWord(userId, token).then((answer) => {
@@ -51,19 +64,6 @@ export default function drawCards(): void {
         textBookBLock.classList.remove(textBookBLock.classList[1]);
       }
       textBookBLock.classList.add(`textbook-background_${group}`);
-
-      if (token && userId) {
-        getUserWord(userId, token).then((userWords: USERWORD[]) => {
-          userWords.forEach((userWord) => {
-            const wordBLock = document.getElementById(userWord.optional.wordId);
-            if (wordBLock instanceof HTMLElement) {
-              if (userWord.difficulty === 'true') wordBLock.classList.add('hard');
-              if (userWord.optional.studied) wordBLock.classList.add('studied');
-            }
-          });
-          drawCrown();
-        });
-      }
     }
   }
 }
