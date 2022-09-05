@@ -31,6 +31,7 @@ export default class Constants {
   static signIn = {};
 
   static gamesPage = {
+    unauth: 'Войдите, чтобы сохранить результаты игры',
     heading: 'Игры',
     message: 'Закрепи новые слова при помощи игр',
     audioChallengeHeading: 'Аудиовызов',
@@ -116,6 +117,7 @@ export default class Constants {
   ];
 
   static textBookPage = {
+    unauth: 'Войдите, чтобы управлять словами и видеть статистику изучения',
     localStorageKeyForPage: 'textbookPageNumber',
     localStorageKeyForGroup: 'textbookGroupNumber',
     numberFirstPage: 0,

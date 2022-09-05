@@ -4,6 +4,7 @@ import Constants from '../../../constants/Constants';
 import openGamesPage from '../openGamesPage';
 import prepareUpsertStats from '../../stats/model/prepareUpsertStats';
 import updateGameUserWords from '../updateGameUserWords';
+import unauthMessage from '../../../components/unauthMessage';
 
 export default async function finishGame(gameState: GameState) {
   clearInterval(gameState.timer);
@@ -117,6 +118,7 @@ export default async function finishGame(gameState: GameState) {
       updatedUserWords.todayGameStudiedWords,
     );
   } else {
-    gameState.sprintContainer.append('Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры');
+    const message = unauthMessage(Constants.gamesPage.unauth);
+    gameState.sprintContainer.append(message);
   }
 }

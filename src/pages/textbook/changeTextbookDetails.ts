@@ -6,6 +6,7 @@ import { USERWORD, WORD } from '../../types/ResponsesTypes';
 import getUserWord from './workWithApi/getUserWord';
 import changeWordStatus from './changeWordStatus';
 import playAllAudioWord from './cards/playAllAudioWord';
+import unauthMessage from '../../components/unauthMessage';
 
 export default function changeTextbookDetails(event: Event): void {
   const { currentTarget } = event;
@@ -75,7 +76,7 @@ export default function changeTextbookDetails(event: Event): void {
         });
 
         if (!window.localStorage.getItem(Constants.localStorageKeys.token)) {
-          controls = '';
+          controls = unauthMessage(Constants.textBookPage.unauth);
         }
 
         const img = createBLock('div', {
