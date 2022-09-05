@@ -75,6 +75,8 @@
 .end-audioCall{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 2rem;
     text-align: center;
     padding: 3rem 2rem;
     font-size: 1.4rem;
