@@ -60,7 +60,6 @@ export function getGameReadyFromTextBook() {
       });
 
       showLoader();
-      // mainBlock.append(heading, sprintContainer);
 
       let howManyPages = Constants.pages - Number(page) + 1;
       if (howManyPages > Constants.sprintPagesToPlay) {
