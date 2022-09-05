@@ -8,7 +8,7 @@ export default function playAudioWord(word: WORD) {
 }
 export function voiceFunction(Word: WORD) {
   const audioWrapper = document.querySelector('.voice') as HTMLElement;
-  // audioWrapper.textContent = '';
+  audioWrapper.textContent = '';
 
   audioWrapper.addEventListener('click', () => {
     playAudioWord(Word);
