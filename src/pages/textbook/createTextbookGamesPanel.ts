@@ -14,6 +14,7 @@ export default function createTextbookGamesPanel(): HTMLElement {
     children: [Constants.gamesPage.audioChallengeHeading],
     event: 'click',
     listener: () => controllerAudioCall(1),
+    attributes: { name: 'game-button' },
   });
 
   const buttonSprint = createBLock('button', {
@@ -21,6 +22,7 @@ export default function createTextbookGamesPanel(): HTMLElement {
     children: [Constants.gamesPage.sprintHeading],
     event: 'click',
     listener: () => getGameReadyFromTextBook(),
+    attributes: { name: 'game-button' },
   });
 
   const textbookGames = createBLock('div', {

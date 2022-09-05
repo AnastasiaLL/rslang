@@ -69,10 +69,14 @@ export default function changeTextbookDetails(event: Event): void {
           ],
         });
 
-        const controls = createBLock('div', {
+        let controls: HTMLElement | string = createBLock('div', {
           classList: ['word-details__controls'],
           children: [firstControl, secondControl],
         });
+
+        if (!window.localStorage.getItem(Constants.localStorageKeys.token)) {
+          controls = '';
+        }
 
         const img = createBLock('div', {
           classList: ['word-details__image'],
