@@ -706,6 +706,7 @@ footer .copyright:before {
   box-shadow: 1px 0px 10px -5px rgba(34, 60, 80, 0.2);
   border-radius: 8px;
   flex: 1 1 auto;
+  background-color: #FFFFFF;
 }
 
 .team-screen__info {
@@ -713,10 +714,8 @@ footer .copyright:before {
   gap: 3rem;
   flex-direction: column;
   align-items: center;
-  padding-top: 21rem;
   text-align: center;
-  padding: 1rem 1rem 2rem;
-  background-color: #FFFFFF;
+  padding: 21rem 1rem 2rem;
 }
 
 .cardWrapper {
@@ -729,15 +728,15 @@ footer .copyright:before {
 }
 
 .id-1 {
-  background-image: url(http://localhost:8080/src/assets/images/1.jpg);
+  background-image: url("../images/1.jpg");
 }
 
 .id-2 {
-  background-image: url(http://localhost:8080/src/assets/images/2.jpg);
+  background-image: url("../images/2.jpg");
 }
 
 .id-3 {
-  background-image: url(http://localhost:8080/src/assets/images/3.jpg);
+  background-image: url("../images/3.jpg");
 }
 
 .stats {
