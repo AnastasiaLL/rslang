@@ -67,8 +67,6 @@ export default function openTextbook() {
       if (reason.status === 401) logOut();
     });
   }
-
-
   // сделать меню активным
 
   updateNav('textbook');

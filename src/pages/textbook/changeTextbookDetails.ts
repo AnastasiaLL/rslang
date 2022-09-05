@@ -5,6 +5,7 @@ import Constants from '../../constants/Constants';
 import { USERWORD, WORD } from '../../types/ResponsesTypes';
 import getUserWord from './workWithApi/getUserWord';
 import changeWordStatus from './changeWordStatus';
+import playAudioWord from '../games/audiocall/audio';
 
 export default function changeTextbookDetails(event: Event): void {
   const { currentTarget } = event;
@@ -16,6 +17,8 @@ export default function changeTextbookDetails(event: Event): void {
 
         const soundIconBlock = createBLock('div', {
           classList: ['word-details__sound-icon'],
+          event: 'click',
+          listener: () => { playAudioWord(wordData); },
         });
 
         soundIconBlock.innerHTML = soundIcon;
