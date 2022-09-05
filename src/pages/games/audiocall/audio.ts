@@ -1,4 +1,5 @@
 import { WORD } from '../../../types/ResponsesTypes';
+import soundIcon from '../../textbook/soundIcon';
 
 export default function playAudioWord(word: WORD) {
   //   const audioWrapper = document.querySelector('.voice') as HTMLElement;
@@ -9,6 +10,7 @@ export default function playAudioWord(word: WORD) {
 export function voiceFunction(Word: WORD) {
   const audioWrapper = document.querySelector('.voice') as HTMLElement;
   audioWrapper.textContent = '';
+  audioWrapper.innerHTML = soundIcon;
 
   audioWrapper.addEventListener('click', () => {
     playAudioWord(Word);
