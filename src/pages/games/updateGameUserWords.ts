@@ -11,7 +11,6 @@ export default async function updateSprintUserWords(
   correctAnswersIDs: (string | undefined)[],
 ) {
   const userWords = await getUserWord(userId, token);
-  console.log('userWords которые уже есть перед игрой', userWords);
 
   const todayGameNewWords = [];
   const todayGameStudiedWords = [];
@@ -48,7 +47,6 @@ export default async function updateSprintUserWords(
           suchWord.optional.incorrectAnswers += 1;
           suchWord.optional.correctAnswersSequence = 0;
         }
-        console.log('suchWord', suchWord);
 
         // Делаем новый объект, куда переписываем все поля пришедшего в том числе обновленнные
         //  иначе бэкенд не берет
@@ -94,7 +92,6 @@ export default async function updateSprintUserWords(
           newUserWord.optional.incorrectAnswers += 1;
         }
 
-        console.log('newUserWord', newUserWord);
         createUserWord(userId, id, newUserWord, token, 'POST');
       }
     }
