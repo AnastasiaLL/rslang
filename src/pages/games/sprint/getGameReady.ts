@@ -20,7 +20,6 @@ export function getGameReady(chapterId: number) {
 
     const heading = createBLock('div', {
       classList: ['game-parameters'],
-      // children: [`${Constants.sprintGame.levelHeading}: ${String(chapterId + 1)}`]
       children: [`${Constants.sprintGame.levelHeading}: ${Constants.chapters[chapterId]}`],
     });
 
@@ -61,15 +60,14 @@ export function getGameReadyFromTextBook() {
 
       showLoader();
 
-      let howManyPages = Constants.pages - Number(page) + 1;
-      if (howManyPages > Constants.sprintPagesToPlay) {
-        howManyPages = Constants.sprintPagesToPlay;
-      }
-
       const promises = [];
 
-      for (let i = 0; i < howManyPages; i += 1) {
-        promises.push(getWords(Number(page) - 1 + i, Number(group)));
+      for (let i = 0; i < Constants.sprintPagesToPlay; i += 1) {
+        if ((Number(page) - 1 + i) < Constants.pages) {
+          promises.push(getWords(Number(page) - 1 + i, Number(group)));
+        } else {
+          promises.push(getWords(Number(page) - Constants.pages, Number(group)));
+        }
       }
 
       const words: WordPairedWithGuessTranslation[][] = [];
