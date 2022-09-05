@@ -167,27 +167,22 @@ export async function endAudioCallGame() {
 
   mainBlock.append(endWrap);
 
-  // update user/words & stats; ////////////////
-
   const token = window.localStorage.getItem(Constants.localStorageKeys.token);
   const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
 
   if (token && userId) {
-  // updateGameUserWords
-
     const allShownWordsIDs = [...answersCorrectArray, ...answersWrongArray]
       .map((wordData) => wordData?.id);
     const correctAnswersIDs = answersCorrectArray.map((wordData) => wordData?.id);
 
     const updatedUserWords = await updateGameUserWords(
-      'audio', // audio
+      'audio',
       token,
       userId,
-      allShownWordsIDs, // id те которые польз-ль видел
-      correctAnswersIDs, // id угадал
+      allShownWordsIDs,
+      correctAnswersIDs,
     );
 
-    // updateStatistics
     const correct = answersCorrectArray.length;
     const totalWordsShown = [...answersCorrectArray, ...answersWrongArray].length;
 
@@ -195,9 +190,9 @@ export async function endAudioCallGame() {
       'audio',
       token,
       userId,
-      totalWordsShown, // сами слова
-      correct, // правильные
-      maxSeries, // подряд
+      totalWordsShown,
+      correct,
+      maxSeries,
       updatedUserWords.todayGameNewWords,
       updatedUserWords.todayGameStudiedWords,
     );

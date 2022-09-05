@@ -1,5 +1,4 @@
 import { AllDayStat, SeveralDaysStat } from './stats';
-// responses
 
 export interface WORD {
     id: string;

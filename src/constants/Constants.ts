@@ -1,5 +1,3 @@
-// import {attributes} from "../types/tagOption";
-
 export default class Constants {
   static url = 'https://rslang2022q1.herokuapp.com';
 

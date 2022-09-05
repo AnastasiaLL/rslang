@@ -7,21 +7,25 @@ export async function getStatistics() {
   const token = window.localStorage.getItem(Constants.localStorageKeys.token);
   const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
 
-  const url = `${Constants.url}/users/${userId}/statistics`;
+  if (token && userId) {
+    const url = `${Constants.url}/users/${userId}/statistics`;
 
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-      },
-    });
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+        },
+      });
 
-    const answer = await response.json();
-    return answer;
-  } catch {
+      const answer = await response.json();
+      return answer;
+    } catch {
+      return null;
+    }
+  } else {
     return null;
   }
 }
@@ -30,7 +34,6 @@ export async function dayStats(allStats: STATISTICS): Promise<AllDayStat> {
   if (allStats) {
     return allStats.optional.todayStat;
   }
-  // если получили ничего, то нулевые данные, чтобы показались графики
 
   return nullStats.optional.todayStat;
 }

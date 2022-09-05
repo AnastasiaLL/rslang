@@ -60,7 +60,6 @@ export function drawTodayStats(
 
   Constants.statisticPage.statsBlocks.forEach((item, index) => {
     const data = (Object.values(dayStatsData))[index];
-    console.log('Object.values(dayStatsData))[index]', data);
     const statCard = createBLock('div', {
       classList: ['stat-card'],
     });
@@ -102,8 +101,6 @@ export function drawTodayStats(
 
   return todayStats;
 }
-
-// ///////////////////////////////////////// //////////////////////////////////////////////
 
 export async function openStatsPage() {
   window.localStorage.setItem(Constants.localStorageKeys.pageName, 'stats');

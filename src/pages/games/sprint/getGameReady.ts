@@ -80,7 +80,6 @@ export function getGameReadyFromTextBook() {
               words.unshift(pairedWords);
             }
           });
-          console.log('1st Promise result', words);
 
           const token = window.localStorage.getItem(Constants.localStorageKeys.token);
           const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
@@ -96,15 +95,11 @@ export function getGameReadyFromTextBook() {
             const userWordStudied = secondPromiseResult
               .filter((word: USERWORD) => word.optional.studied === true);
 
-            console.log('userWordNotStudied', userWordStudied);
-
             const userWordStudiedIDs = userWordStudied
               .map((word: USERWORD) => word.optional.wordId);
 
             const studiedFilteredOut = words.flat()
               .filter((word) => !userWordStudiedIDs.includes(word.id));
-
-            console.log('studiedFilteredOut', studiedFilteredOut);
 
             startGame(Constants.sprintGame.gameTime, sprintContainer, studiedFilteredOut);
           } else {

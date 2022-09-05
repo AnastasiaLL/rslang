@@ -713,9 +713,10 @@ footer .copyright:before {
   gap: 3rem;
   flex-direction: column;
   align-items: center;
-  margin-top: 20rem;
+  padding-top: 21rem;
   text-align: center;
   padding: 1rem 1rem 2rem;
+  background-color: #FFFFFF;
 }
 
 .cardWrapper {

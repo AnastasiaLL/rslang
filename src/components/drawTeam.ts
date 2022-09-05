@@ -27,12 +27,6 @@ export function openTeamPage(name: string, dev: string, info: string, id: string
     classList: ['team-screen', `${id}`],
     children: [infoBlock],
   });
-
-  // const main = document.querySelector('#main-block');
-  // if (main instanceof HTMLElement) {
-  //   main.append(card);
-  // }
-
   const cardWrapper = document.querySelector('.cardWrapper');
   if (cardWrapper instanceof HTMLElement) {
     cardWrapper.append(card);

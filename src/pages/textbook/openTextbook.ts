@@ -33,14 +33,11 @@ export default function openTextbook() {
 
   const mainBlock = document.querySelector('#main-block');
 
-  // записать стр в главный блок
-
   if (mainBlock) {
     mainBlock.innerHTML = '';
     mainBlock.append(textbook);
   }
 
-  // вывести карточки
   const localStoragePageNumber = window.localStorage
     .getItem(Constants.textBookPage.localStorageKeyForPage);
   if (localStoragePageNumber) {
@@ -67,7 +64,6 @@ export default function openTextbook() {
       if (reason.status === 401) logOut();
     });
   }
-  // сделать меню активным
 
   updateNav('textbook');
 }

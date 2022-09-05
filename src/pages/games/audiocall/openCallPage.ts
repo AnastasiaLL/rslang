@@ -3,7 +3,6 @@ import { WORD } from '../../../types/ResponsesTypes';
 import soundIcon from '../../textbook/soundIcon';
 import keydownAudiocall from './keyboard';
 import { endAudioCallGame, isMatch, nextWords } from './wordsFunctions';
-// import { getRandomWords } from './wordsFunctions';
 
 export const index = 0;
 export let currentWordsArray: WORD[] = [];
