@@ -1,8 +1,6 @@
 import { currentWordsArray } from './openCallPage';
 import { endAudioCallGame, isMatch, nextWords } from './wordsFunctions';
 
-window.addEventListener('keydown', keydownAudiocall);
-
 export default function keydownAudiocall(event: KeyboardEvent) {
   if (document.querySelector('.audiocall')) {
     if (event.code === 'Enter') {

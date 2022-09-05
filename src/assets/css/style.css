@@ -696,6 +696,7 @@ footer .copyright:before {
 .team-screen {
   display: flex;
   width: 25%;
+  xheight: 54vh;
   margin: 20px;
   background-repeat: no-repeat;
   background-position: right top;

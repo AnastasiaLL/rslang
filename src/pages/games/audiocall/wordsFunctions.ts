@@ -7,7 +7,6 @@ import openGamesPage from '../openGamesPage';
 import updateGameUserWords from '../updateGameUserWords';
 import playAudioWord, { voiceFunction } from './audio';
 import openAudioCallPage, { drawWords } from './openCallPage';
-import unauthMessage from '../../../components/unauthMessage';
 
 export let answersCorrect = 0;
 export let answersWrong = 0;
@@ -204,12 +203,11 @@ export async function endAudioCallGame() {
       updatedUserWords.todayGameStudiedWords,
     );
   } else {
-    const paragraph = unauthMessage(Constants.gamesPage.unauth);
-    // const paragraph = createBLock('p', {
-    //  classList: ['audiocall-paragraph'],
-    //  children: ['Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры'],
-    // });
-    endWrap.append(paragraph);
+    const paragraph = createBLock('p', {
+      classList: ['audiocall-paragraph'],
+      children: ['Войдите или зарегистируйтесь и войдите, чтобы сохранить результаты игры'],
+    });
+    mainBlock.append(paragraph);
   }
 }
 
