@@ -2,7 +2,6 @@ import { USER } from '../../../types/ResponsesTypes';
 import Constants from '../../../constants/Constants';
 
 export default async function createUser(data: USER) {
-  console.log(data);
   const response = await fetch(`${Constants.url}${Constants.path.users}`, {
     method: 'POST',
     headers: {

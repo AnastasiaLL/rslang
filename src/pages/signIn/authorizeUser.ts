@@ -6,7 +6,6 @@ import createErrorAlert from '../../components/createErrorAlert';
 export default function authorizeUser() {
   const emailBlock = document.querySelector('#emailSignInput');
   const passwordBlock = document.querySelector('#passwordSignInput');
-  console.log([emailBlock, passwordBlock]);
   if (
     emailBlock instanceof HTMLInputElement
     && passwordBlock instanceof HTMLInputElement

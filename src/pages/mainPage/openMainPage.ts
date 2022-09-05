@@ -26,7 +26,6 @@ export default function openMainPage(): void {
   let infoBlock;
 
   if (window.localStorage.getItem(Constants.localStorageKeys.userId)) {
-    console.log(window.localStorage.getItem(Constants.localStorageKeys.userId));
     infoBlock = createBLock('div', {
       classList: ['start-screen__info'],
       children: [headLine, paragraph],

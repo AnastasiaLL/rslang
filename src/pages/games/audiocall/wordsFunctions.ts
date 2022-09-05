@@ -168,7 +168,6 @@ export async function endAudioCallGame() {
   mainBlock.append(endWrap);
 
   // update user/words & stats; ////////////////
-  console.log('all words in game', [...answersCorrectArray, ...answersWrongArray]);
 
   const token = window.localStorage.getItem(Constants.localStorageKeys.token);
   const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);

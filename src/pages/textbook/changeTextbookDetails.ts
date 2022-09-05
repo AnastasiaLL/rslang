@@ -120,7 +120,6 @@ export default function changeTextbookDetails(event: Event): void {
           if (token && userId) {
             getUserWord(userId, token, currentTarget.id).then((userWordData: USERWORD | Error) => {
               if (!(userWordData instanceof Error) && userWordData) {
-                console.log(userWordData);
                 if (userWordData.difficulty === 'true') hardControl.checked = true;
                 if (userWordData.optional.studied) studiedControl.checked = true;
 
