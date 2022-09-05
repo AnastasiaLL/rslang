@@ -12,7 +12,6 @@ export default function drawCrown() {
       const btn = button;
       (btn as HTMLButtonElement).disabled = true;
     });
-    console.log(document.getElementsByName('game-button'));
   } else {
     pageCounter?.classList.remove('page-crown');
     document.getElementsByName('game-button').forEach((button) => {

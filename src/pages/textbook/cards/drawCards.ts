@@ -27,7 +27,6 @@ export default function drawCards(): void {
     if (group && page) {
       if (group !== 'hard') {
         getWords(Number(page) - 1, Number(group)).then((answer) => {
-          console.log(answer);
           answer.forEach((word: WORD) => {
             wordList.append(createCard(word));
           });

@@ -82,7 +82,6 @@ export function drawWords(arrWords: WORD[]) {
     WordsWrapper.append(newWord);
 
     currentWordsArray.push(arrWords[i]);
-    console.log(currentWordsArray);
   }
   document.addEventListener('keydown', keydownAudiocall);
 }

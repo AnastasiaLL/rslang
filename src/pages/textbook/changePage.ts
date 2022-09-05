@@ -7,7 +7,6 @@ export default function changePage(direction: string): () => void {
     const currentPageBlock = document.querySelector('#pagination__active');
     if (currentPageBlock instanceof HTMLElement) {
       const currentPage = Number(currentPageBlock.dataset.pageNumber);
-      console.log(currentPage);
       switch (direction) {
         case 'next':
           currentPageBlock.innerHTML = `${currentPage + 1}`;
