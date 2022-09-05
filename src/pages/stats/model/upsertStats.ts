@@ -4,7 +4,7 @@ import { STATISTICS } from '../../../types/ResponsesTypes';
 export default async function upsertStats(userId: string, token: string, newStatsObj: STATISTICS) {
   const url = `${Constants.url}/users/${userId}/statistics`;
 
-  const response = await fetch(url, {
+  await fetch(url, {
     method: 'PUT',
     credentials: 'same-origin',
     headers: {
@@ -14,10 +14,4 @@ export default async function upsertStats(userId: string, token: string, newStat
     },
     body: JSON.stringify(newStatsObj),
   });
-
-  const answer = await response.json();
-  const status = response;
-
-  console.log(status);
-  console.log(answer);
 }

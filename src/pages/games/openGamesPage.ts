@@ -4,7 +4,6 @@ import updateNav from '../../utils/updateNav';
 import { controllerAudioCall } from './audiocall/wordsFunctions';
 import { getGameReady } from './sprint/getGameReady';
 
-
 export default function openGamesPage() {
   window.localStorage.setItem(Constants.localStorageKeys.pageName, 'games');
   const mainBlock = document.querySelector('#main-block');
@@ -23,7 +22,6 @@ export default function openGamesPage() {
     children: [Constants.gamesPage.faq],
   });
 
-  //= ===============Аудиовызов===========================
   const audiocallH1 = createBLock('h3', {
     children: [Constants.gamesPage.audioChallengeHeading],
   });
@@ -53,11 +51,8 @@ export default function openGamesPage() {
   const audiocallWrapper = createBLock('div', {
     classList: ['audiocall__wrapper', 'game'],
     children: [audiocallH1, audiocallP, startPlayText, audiocallDifficultyContainer],
-    // listener: openAudioCallPage,
-    // event: 'click'
   });
 
-  //= =================Спринт============================
   const sprintH1 = createBLock('h3', {
     children: [Constants.gamesPage.sprintHeading],
   });

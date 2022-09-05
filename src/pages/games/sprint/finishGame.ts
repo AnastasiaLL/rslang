@@ -82,28 +82,22 @@ export default async function finishGame(gameState: GameState) {
     startAgainButton,
   );
 
-  // update user/words & stats; ////////////////
-  console.log('all words in game', [...gameState.correctAnswers, ...gameState.incorrectAnswers]);
-
   const token = window.localStorage.getItem(Constants.localStorageKeys.token);
   const userId = window.localStorage.getItem(Constants.localStorageKeys.userId);
 
   if (token && userId) {
-    // updateGameUserWords
-
     const allShownWordsIDs = [...gameState.correctAnswers, ...gameState.incorrectAnswers]
       .map((wordData) => wordData?.id);
     const correctAnswersIDs = gameState.correctAnswers.map((wordData) => wordData?.id);
 
     const updatedUserWords = await updateGameUserWords(
-      'sprint', // audio
+      'sprint',
       token,
       userId,
-      allShownWordsIDs, // id те которые польз-ль видел
-      correctAnswersIDs, // id угадал
+      allShownWordsIDs,
+      correctAnswersIDs,
     );
 
-    // updateStatistics
     const correct = gameState.correctAnswers.length;
     const totalWordsShown = [...gameState.correctAnswers, ...gameState.incorrectAnswers].length;
 

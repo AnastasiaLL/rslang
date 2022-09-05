@@ -25,11 +25,6 @@ export default function createForm(
         }
       }
     });
-    // return createBLock('label', {
-    //   classList: ['form__label'],
-    //   attributes: { for: `${option.id}${formName}Input` },
-    //   children: [input, option.label],
-    // });
     return input;
   });
 
