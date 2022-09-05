@@ -13,7 +13,7 @@ export default function createTextbookGamesPanel(): HTMLElement {
     classList: ['button', 'secondary-button'],
     children: [Constants.gamesPage.audioChallengeHeading],
     event: 'click',
-    listener: () => controllerAudioCall(1),
+    listener: () => controllerAudioCall(false),
     attributes: { name: 'game-button' },
   });
 

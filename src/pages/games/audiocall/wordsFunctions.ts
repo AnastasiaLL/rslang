@@ -111,7 +111,7 @@ export async function endAudioCallGame() {
   scores.innerHTML = `
         <div class="score">
           ${Constants.sprintGame.score}
-          <div class="total-score">20</div>
+          <div class="total-score">${answersWrong + answersCorrect}</div>
         </div>
         <div class="score">
           ${Constants.sprintGame.sequenceOfSuccess}
@@ -218,22 +218,28 @@ export function startAudioCallGame() {
   playAudioWord(allWords[currentWordNumber]);
 }
 
-export function controllerAudioCall(id: number) {
+export function controllerAudioCall(id: number | false) {
   let page = getRandomNumber(1, 29);
+  let altID: number;
   answersCorrect = 0;
   answersWrong = 0;
   answersCorrectArray = [];
   answersWrongArray = [];
+
   const groupBlock = document.querySelector('.chapter__heading') as HTMLSelectElement;
   const pageBlock = document.querySelector('#pagination__active') as HTMLElement;
 
-  if (groupBlock && pageBlock) {
+  if (groupBlock && pageBlock && id === false) {
     page = Number(pageBlock.dataset.pageNumber) - 1;
-    id = Number(groupBlock.value);
+    altID = Number(groupBlock.value);
+    getAudioCallWords(altID, page).then(() => {
+      getRandomArray(allWords);
+      startAudioCallGame();
+    });
+  } else if (typeof (id) === 'number') {
+    getAudioCallWords(id, page).then(() => {
+      getRandomArray(allWords);
+      startAudioCallGame();
+    });
   }
-
-  getAudioCallWords(id, page).then(() => {
-    getRandomArray(allWords);
-    startAudioCallGame();
-  });
 }
