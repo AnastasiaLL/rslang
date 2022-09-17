@@ -1,0 +1,45 @@
+.team-screen {
+    display: flex;
+    width: 25%;
+    height: 54vh;
+    margin: 20px;
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 70%;
+    background-position-x: center;
+    border: 1px solid #dddddd;
+    box-shadow: 1px 0px 10px -5px rgb(34 60 80 / 20%);
+    border-radius: 8px;
+    flex: 1 1 auto;
+    background-color: $color-shade-xxl;
+}
+
+.team-screen__info {
+  display: flex;
+  gap: 3rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 21rem 1rem 2rem;
+}
+
+.cardWrapper {
+    display: flex;
+    margin-top: 10vh;
+}
+
+.team-screen__description {
+    font-size: 1.8rem;
+}
+
+.id-1{
+    background-image: url('../images/1.jpg');
+}
+.id-2{
+    background-image: url('../images/2.jpg');
+
+}
+.id-3{
+    background-image: url('../images/3.jpg');
+
+}

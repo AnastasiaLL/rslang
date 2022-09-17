@@ -1,0 +1,337 @@
+.textbook__page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 6rem 2rem;
+  align-items: center;
+  gap: 3rem;
+
+  border-radius: 8px;
+}
+
+
+.chapter__heading {
+  border: none;
+  padding: 1.5rem 1.5rem 1.5rem 1rem;
+  outline: none;
+  color: $color-primary;
+  font-size: 2rem;
+  background: $color-shade-xxl;
+  border-radius: $border-radius;
+
+  &:hover{
+    background-color: $color-primary-light;
+    cursor: pointer;
+    border-radius: $border-radius;
+  }
+}
+
+.textbook__words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+.word-details__sound-icon {
+  padding: 8px;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  fill: $color-primary;
+
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+
+.word-details__sound-icon:hover {
+  background-color: $color-primary-light;
+  cursor: pointer;
+}
+
+.textbook__content {
+  display: grid;
+  grid-template-columns: 1.1fr 2fr;
+  gap: 2rem;
+  font-size: 1.4rem;
+}
+
+.word-details {
+  position: relative;
+
+  border: $color-shade-xl 1px solid;
+  padding: 1.5rem 2rem 2rem;
+  box-shadow: $box-shadow;
+  background-color: $color-shade-xxl;
+  border-radius: $border-radius;
+  height: fit-content;
+}
+
+.word-details__word {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  padding-right: 3rem;
+}
+
+.transcription {
+  color: $color-shade-m;
+  font-weight: normal;
+}
+
+.word-details__image {
+  height: 23rem;
+  background-size: cover;
+  border-radius: $border-radius;
+}
+
+.word-summary {
+  position:relative;
+
+  height: 11rem;
+  width: 18rem;
+
+  overflow: hidden;
+  border: $color-shade-xl 1px solid;
+  padding: 1.5rem 2rem;
+  box-shadow: $box-shadow;
+  background-color: $color-shade-xxl;
+  border-radius: $border-radius;
+}
+
+.word-details__word-russian {
+  font-size: 2.5rem;
+}
+
+.translation {
+  color: $color-shade-m;
+}
+
+.example {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hard {
+  border: $color-secondary 1px solid;
+  box-shadow: 1px 0 10px -5px rgb(255 165 54 / 70%);
+}
+
+.studied {
+  border: $color-primary 1px solid;
+  box-shadow: 1px 0 10px -5px rgb(58, 126, 82, 70%);
+}
+
+.word-details__switch {
+  position: relative;
+  display: flex;
+  width: 5.5rem;
+  height: 2.8rem;
+}
+
+.word-details__switch input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.word-details__switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-shade-xl;
+  border-radius: 50rem;
+}
+
+.word-details__switch-slider:before {
+  position: absolute;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  content: "";
+  height: 2rem;
+  width: 2rem;
+  background-color: $color-shade-xxl;
+  border-radius: 500px;
+  transition: .3s;
+}
+
+input:checked + .switch-studied {
+  background-color: $color-primary;
+}
+
+input:focus + .switch-studied {
+  box-shadow: 0 0 1px $color-primary;
+}
+
+input:checked + .switch-hard {
+  background-color: $color-secondary;
+}
+
+input:focus + .switch-hard {
+  box-shadow: 0 0 1px $color-secondary;
+}
+
+input:checked + .word-details__switch-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.word-details__status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-transform: uppercase;
+  color: $color-shade-m;
+}
+
+.word-details__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+
+.word-summary:hover {
+  background-color: $color-primary-light;
+  cursor: pointer;
+}
+
+.word-summary h3 {
+  font-size: 2rem;
+}
+
+
+.word-summary__studied-icon {
+  padding: 8px;
+  font-size: 2rem;
+  color: $color-primary;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.7rem;
+
+  display: none;
+}
+
+.word-summary__active {
+  background-color: $color-primary-light;
+}
+
+
+.textbook__page-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+.pagination {
+  display: flex;
+  gap: 1rem;
+}
+
+.pagination__control{
+  border: 1px solid $color-shade-m;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: $color-shade-m;
+  background-color: $color-shade-xxl;
+}
+
+.pagination__inactive {
+  border: 1px solid $color-shade-l;
+  color: $color-shade-m;
+  background-color: $color-shade-xl;
+  cursor: default;
+}
+
+.pagination__active {
+  background-color: $color-primary;
+  color: $color-shade-xxl;
+  cursor: default;
+}
+
+.textbook__scores {
+  display: flex;
+  gap: 2rem;
+  justify-content:space-around;
+  color: $color-shade-l;
+  border-top: 1px solid #dddddd;
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.textbook__score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.textbook__score-num {
+  font-size: 3rem;
+  color: $color-primary;
+}
+
+.textbook-background_0 {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(153, 92, 223, 0.5) 0%, rgba(153, 92, 223, 0.5) 4%, rgba(153, 92, 223, 0.05) 4%, rgba(153, 92, 223, 0.05) 100%);
+}
+
+.textbook-background_1 {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(92, 173, 223, 0.5) 0%, rgba(92, 173, 223, 0.5) 4%, rgba(92, 173, 223, 0.05) 4%, rgba(92, 173, 223, 0.05) 100%);
+}
+
+.textbook-background_2 {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(92, 223, 184, 0.5) 0%, rgba(92, 223, 166, 0.5) 4%, rgba(92, 223, 166, 0.05) 4%, rgba(92, 223, 166, 0.05) 100%);
+}
+
+.textbook-background_3 {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(151, 223, 92, 0.5) 0%, rgba(151, 223, 92, 0.5) 4%, rgba(151, 223, 92, 0.05) 4%, rgba(151, 223, 92, 0.05) 100%);
+}
+
+.textbook-background_4 {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 160, 51, 0.5) 0%, rgba(255, 160, 51, 0.5) 4%, rgba(255, 160, 51, 0.05) 4%, rgba(255, 160, 51, 0.05) 100%);
+}
+
+.textbook-background_5 {
+  height: 100%;
+  background: linear-gradient(90deg, rgb(223, 97, 92, 0.5) 0%, rgba(223, 97, 92, 0.5) 4%, rgba(223, 97, 92, 0.05) 4%, rgba(223, 97, 92, 0.05) 100%);
+}
+
+.textbook-background_hard {
+  height: 100%;
+  background: rgb(255, 255, 255);
+}
+
+.page-crown::after {
+  position: absolute;
+  margin-top: -45px;
+  content: " ";
+  background: url("../images/crown.svg");
+  background-size: 100%;
+  width: 25px;
+  height: 20px;
+}

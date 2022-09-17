@@ -1,0 +1,125 @@
+.start-games{
+    height: 100%;
+    padding: 6rem 2rem;
+}
+.info-games{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    gap: 4rem;
+}
+.start-games__description{
+    font-size: 2rem;
+}
+.start-games__h{
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.games__wrapper{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    align-items: center;
+    min-height: 25rem;
+    gap: 8rem;
+}
+.game {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+    xcursor: pointer;
+    border-radius: $border-radius;
+    color: $color-shade-xxl;
+    min-width: 20rem;
+    max-width: 43rem;
+    xtransform: scale(1);
+    xtransform-style: preserve-3d;
+    xtransition: transform .5s;
+    font-size: 1.4rem;
+    gap: 3rem;
+}
+
+.game:active,
+.game:hover{
+    transform: scale(1.2);
+    transition: transform .3s;
+}
+
+.audiocall__wrapper {
+    background-color: rgba(255, 159, 64, 1);
+}
+
+.sprint__wrapper {
+    background-color: rgba(153, 102, 255, 1);
+}
+
+.audiocall__p  {
+    font-size: 15px;
+}
+.audiocall__h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.sprint__h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+.sprint__p {
+  font-size: 1.4rem;
+}
+
+.difficulty-choice {
+  border: 1px solid $color-shade-xxl;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: $color-shade-xxl;
+  cursor: pointer;
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+.difficulty-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.start-play-text {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 2.7rem;
+}
+
+.start-games__rules {
+  font-size: 1.6rem;
+  max-width: 75rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+    ol{
+      list-style: decimal;
+      margin: 1rem 2rem;
+    }
+    ul{
+      list-style: circle;
+      margin: 1rem;
+    }
+    li {
+    }
+
+
+}

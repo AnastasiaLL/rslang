@@ -1,0 +1,48 @@
+{
+  "name": "rslang",
+  "version": "1.0.0",
+  "description": "task links:\r https://github.com/rolling-scopes-school/tasks/blob/master/tasks/stage-2/rs-lang/rslang.md",
+  "main": "index.js",
+  "scripts": {
+    "style": "sass src/assets/styles/index.scss src/assets/css/style.css",
+    "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
+    "build": "webpack --config ./webpack.config.js --env mode=prod",
+    "lint": "eslint . --ext .ts --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnastasiaLL/rslang.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnastasiaLL/rslang/issues"
+  },
+  "homepage": "https://github.com/AnastasiaLL/rslang#readme",
+  "devDependencies": {
+    "@typescript-eslint/parser": "^5.30.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^5.2.7",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-airbnb": "^0.0.1-security",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.2.0",
+    "sass": "^1.54.4",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "webpack": "^5.74.0",
+    "chart.js": "^3.9.1"
+  }
+}

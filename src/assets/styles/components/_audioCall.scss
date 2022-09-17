@@ -1,0 +1,95 @@
+.audiocall {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.answers-wrapper{
+    display: flex;
+    margin-bottom: 30px;
+    width: 553px;
+    justify-content: space-around;
+}
+
+.promt{
+    font-size: 15px;
+}
+
+.answers__correct{
+    font-size: 17px;
+    color: #3a7e52;
+    background-color: rgba(77, 52, 224, 0.1);
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.answers__wrong{
+    font-size: 17px;
+    color: #bb3b3b;
+    background-color: rgba(77, 52, 224, 0.1);
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.voice{
+    background-color: rgba(77, 52, 224, 0.1);
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+    border-radius: 90px;
+    padding: 11px;
+}
+
+.words{
+    display: flex;
+    font-size: 20px;
+    margin: 33px;
+}
+
+.word {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.end-audioCall{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 1.4rem;
+}
+
+
+.audiocall-results__answers {
+    gap: 4rem;
+    display: flex;
+    align-items: flex-start;
+    border-top: 1px solid #dddddd;
+    padding-top: 5rem;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.audiocall-results__scores {
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+    color: #898989;
+    margin: 30px;
+}
+
+.audiocall-button {
+    width: 100px;
+    margin: 0 auto;
+}
+
+.audiocall-paragraph {
+    margin: 30px;
+    text-align: center;
+}

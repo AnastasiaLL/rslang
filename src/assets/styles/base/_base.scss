@@ -1,0 +1,91 @@
+html{
+    font-size: 10px; 
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+    color: $color-shade-xs;
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    transition: 0.3s;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+  text-decoration: none;
+  color: $color-primary;
+}
+
+a:hover{
+  text-decoration: none;
+  color: $color-secondary;
+}
+
+ul{
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+}
+
+input, label, button {
+  cursor: pointer;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #f9f9fd;
+  height: 100%;
+  color: $color-shade-s;
+}
+
+.wrapper{
+    width: $desktop-width;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+
+    @include media-tablet{
+        max-width: $tablet-width;
+    }
+}
+
+h2 {
+  color: $color-shade-m;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+  xfont-weight: bolder;
+  letter-spacing: 0.1rem;
+}
+
+.main-block{
+  border: 1px solid #dddddd;
+  box-shadow: 1px 0px 10px -5px rgb(34 60 80 / 20%);
+  border-radius: $border-radius;
+
+  flex: 1 1 auto;
+
+  gap: 6rem;
+}
+
+.unath-message {
+	padding: 1rem;
+  border: 1px solid #9d21d1;
+  margin: 1rem 0;
+  border-radius: 8px;
+  background: #fcebff;
+  text-align: center;
+  max-width: 40rem;
+}
