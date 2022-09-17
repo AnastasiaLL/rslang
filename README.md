@@ -7,7 +7,7 @@
 * SASS
 * HTML
 * Webpack
-* EsLint
+* EsLint (airbnb)
 * Chart.js - библиотека для построения графиков 
 * Mongo db 
 * Node js
